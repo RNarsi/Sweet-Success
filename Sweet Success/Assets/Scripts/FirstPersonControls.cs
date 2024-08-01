@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Presets;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
+
 public class FirstPersonControls : MonoBehaviour
 {
     // Public variables to set movement and look speed, and the player camera
