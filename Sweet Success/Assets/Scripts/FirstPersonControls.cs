@@ -107,6 +107,7 @@ public class FirstPersonControls : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime; // Apply gravity to the velocity
         characterController.Move(velocity * Time.deltaTime); // Apply the velocity to the character
+        //yes
 
     }
     
