@@ -26,7 +26,7 @@ public class FirstPersonControls : MonoBehaviour
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
     public float pickUpRange = 3f; // Range within which objects can be picked up
-    private bool holdingThing = false;
+ 
 
 
     private void Awake()
@@ -130,7 +130,7 @@ public class FirstPersonControls : MonoBehaviour
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
             heldObject.transform.parent = null;
-            holdingThing = false;
+           
         }
 
         // Perform a raycast from the camera's position forward
@@ -155,7 +155,7 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
             }
-            else if (hit.collider.CompareTag("Thing"))
+            if (hit.collider.CompareTag("Gun"))
             {
                 // Pick up the object
                 heldObject = hit.collider.gameObject;
@@ -166,7 +166,6 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
 
-                holdingThing = true;
             }
         }
     }
