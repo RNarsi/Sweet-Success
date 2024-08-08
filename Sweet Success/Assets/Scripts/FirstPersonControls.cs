@@ -21,6 +21,14 @@ public class FirstPersonControls : MonoBehaviour
 
     private CharacterController characterController; // Reference to the CharacterController component
 
+    [Header("PICKING UP SETTINGS")]
+    [Space(5)]
+    public Transform holdPosition; // Position where the picked-up object will be held
+    private GameObject heldObject; // Reference to the currently held object
+    public float pickUpRange = 3f; // Range within which objects can be picked up
+    private bool holdingThing = false;
+
+
     private void Awake()
     {  
         //before any other scripts start method run
@@ -55,7 +63,9 @@ public class FirstPersonControls : MonoBehaviour
                                                                                                 // action is LookAround in action map
         playerInput.Player.LookAround.performed += ctx => lookInput = ctx.ReadValue<Vector2>(); // Update lookInput when look input is performed
         playerInput.Player.LookAround.canceled += ctx => lookInput = Vector2.zero; // Reset lookInput when look input is canceled
-        
+
+        // Subscribe to the pick-up input event
+        playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
 
     }
     private void Update()
@@ -98,6 +108,8 @@ public class FirstPersonControls : MonoBehaviour
         playerCamera.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
         
     }
+
+
     public void ApplyGravity()
     {
         if (characterController.isGrounded && velocity.y < 0) // check if player grounded / touching floor
@@ -107,8 +119,57 @@ public class FirstPersonControls : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime; // Apply gravity to the velocity
         characterController.Move(velocity * Time.deltaTime); // Apply the velocity to the character
-        //yes
+        ///yes
 
     }
-    
+
+    public void PickUpObject()
+    {
+        // Check if we are already holding an object
+        if (heldObject != null)
+        {
+            heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
+            heldObject.transform.parent = null;
+            holdingThing = false;
+        }
+
+        // Perform a raycast from the camera's position forward
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Debugging: Draw the ray in the Scene view: so you can see if it hitting the thing you want it to hit
+        Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f); //2 here is "duration"
+
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the hit object has the tag "PickUp"
+            if (hit.collider.CompareTag("PickUp"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+            }
+            else if (hit.collider.CompareTag("Thing"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingThing = true;
+            }
+        }
+    }
+
+
 }
