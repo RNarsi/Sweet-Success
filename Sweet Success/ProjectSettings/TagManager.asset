@@ -8,6 +8,15 @@ TagManager:
   - PickUp
   - 'Thing '
   - Gun
+  - Spoon
+  - Flour
+  - Butter
+  - Egg
+  - Sugar
+  - Salt
+  - Water
+  - Baking Soda
+  - Cooking Oil
   layers:
   - Default
   - TransparentFX

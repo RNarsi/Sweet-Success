@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class FirstPersonControls : MonoBehaviour
 {
+    [Header("MOVEMENT SETTINGS")]
+    [Space(5)]
     // Public variables to set movement and look speed, and the player camera
 
     public float moveSpeed; // Speed at which the player moves 
@@ -20,13 +24,31 @@ public class FirstPersonControls : MonoBehaviour
     private Vector3 velocity; // Velocity of the player
 
     private CharacterController characterController; // Reference to the CharacterController component
-
+    
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
     public float pickUpRange = 3f; // Range within which objects can be picked up
- 
+
+    [Header("PLACE SETTINGS")]
+    [Space(5)]
+
+    private bool HoldingItems = false;
+
+    public GameObject crackedEggPrefab; // crackedEgg prefab for placing
+    public Transform crackedEggSpawnPoint; // Point from which the crackedEgg will spawn
+    private bool holdingEgg = false;
+
+    [Space(5)]
+    public GameObject butterBlockPrefab; // butterBlock prefab for placing
+    public Transform butterBlockSpawnPoint;// Point from which the butterBlock will spawn
+    private bool holdingButter = false;
+
+    [Space(5)]
+    public GameObject sugarCubesPrefab; // sugarCubes prefab for placing
+    public Transform sugarCubesSpawnPoint;// Point from which the sugarCubes will spawn
+    private bool holdingSugar = false;
 
 
     private void Awake()
@@ -63,6 +85,9 @@ public class FirstPersonControls : MonoBehaviour
                                                                                                 // action is LookAround in action map
         playerInput.Player.LookAround.performed += ctx => lookInput = ctx.ReadValue<Vector2>(); // Update lookInput when look input is performed
         playerInput.Player.LookAround.canceled += ctx => lookInput = Vector2.zero; // Reset lookInput when look input is canceled
+
+        // Subscribe to the Place input event
+        playerInput.Player.Place.performed += ctx => Place(); // Call the Place method when place input is performed
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
@@ -123,6 +148,45 @@ public class FirstPersonControls : MonoBehaviour
 
     }
 
+
+    public void Place()
+    {
+        if (holdingEgg == true)
+        {
+            // Instantiate the crackedEgg at the spawn point
+            GameObject crackedEgg = Instantiate(crackedEggPrefab, crackedEggSpawnPoint.position, crackedEggSpawnPoint.rotation);
+
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = crackedEgg.GetComponent<Rigidbody>();
+            rb.velocity = crackedEggSpawnPoint.forward * 0.1f;
+
+            // Destroy the projectile after 3 seconds
+            // Destroy(crackedEgg, 3f);
+        }
+         if (holdingButter == true)
+        {
+            // Instantiate the butterBlock at the spawn point
+            GameObject butterBlock = Instantiate(butterBlockPrefab, butterBlockSpawnPoint.position, butterBlockSpawnPoint.rotation);
+
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = butterBlock.GetComponent<Rigidbody>();
+            rb.velocity = butterBlockSpawnPoint.forward * 0.1f;
+        }
+         if (holdingSugar == true) 
+        {
+            // Instantiate the butterBlock at the spawn point
+            GameObject sugarCubes = Instantiate(sugarCubesPrefab, sugarCubesSpawnPoint.position, sugarCubesSpawnPoint.rotation);
+
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = sugarCubes.GetComponent<Rigidbody>();
+            rb.velocity = sugarCubesSpawnPoint.forward * 0.1f;
+        }
+        
+            
+        
+    }
+
+
     public void PickUpObject()
     {
         // Check if we are already holding an object
@@ -144,18 +208,7 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             // Check if the hit object has the tag "PickUp"
-            if (hit.collider.CompareTag("PickUp"))
-            {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
-
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-            }
-            if (hit.collider.CompareTag("Gun"))
+            if (hit.collider.CompareTag("Egg"))
             {
                 // Pick up the object
                 heldObject = hit.collider.gameObject;
@@ -166,7 +219,106 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
 
+                holdingEgg = true;
+                holdingButter = false;
+                holdingSugar = false;
+
             }
+            if (hit.collider.CompareTag("Butter"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+               /* foreach (bool holdingThing in HoldingThingsArray) 
+                {
+                    holdingThing = false;
+                }
+
+                holdingButter = true;     */
+
+                holdingButter = true;
+                holdingSugar = false;
+                holdingEgg = false;
+            }
+  
+            if (hit.collider.CompareTag("Sugar"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingSugar = true;
+                holdingEgg = false;
+                holdingButter = false;
+            }
+   /*         if (hit.collider.CompareTag("Salt"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+            }
+                if (hit.collider.CompareTag("Flour"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+            }
+            if (hit.collider.CompareTag("Water"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+            }
+            if (hit.collider.CompareTag("Baking Soda"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+            }
+            if (hit.collider.CompareTag("Cooking Oil"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+            }
+   */
+   
         }
     }
 
