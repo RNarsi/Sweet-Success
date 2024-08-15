@@ -8,7 +8,15 @@ TagManager:
   - PickUp
   - 'Thing '
   - Gun
-  - Door
+  - Spoon
+  - Flour
+  - Butter
+  - Egg
+  - Sugar
+  - Salt
+  - Water
+  - Baking Soda
+  - Cooking Oil
   layers:
   - Default
   - TransparentFX
@@ -17,7 +25,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 'Trigger '
+  - 
   - 
   - 
   - 
