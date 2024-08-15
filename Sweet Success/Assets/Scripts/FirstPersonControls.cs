@@ -34,7 +34,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("PLACE SETTINGS")]
     [Space(5)]
 
-    private bool HoldingItems = false;
+  //  private bool HoldingItems = false;
 
     public GameObject crackedEggPrefab; // crackedEgg prefab for placing
     public Transform crackedEggSpawnPoint; // Point from which the crackedEgg will spawn
