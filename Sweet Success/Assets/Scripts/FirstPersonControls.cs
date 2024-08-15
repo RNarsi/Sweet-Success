@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -91,6 +92,8 @@ public class FirstPersonControls : MonoBehaviour
 
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
+
+    
 
     }
     private void Update()
@@ -262,63 +265,65 @@ public class FirstPersonControls : MonoBehaviour
                 holdingEgg = false;
                 holdingButter = false;
             }
-   /*         if (hit.collider.CompareTag("Salt"))
-            {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-            }
-                if (hit.collider.CompareTag("Flour"))
-            {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-            }
-            if (hit.collider.CompareTag("Water"))
-            {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+            /*         if (hit.collider.CompareTag("Salt"))
+                     {
+                         // Pick up the object
+                         heldObject = hit.collider.gameObject;
+                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-            }
-            if (hit.collider.CompareTag("Baking Soda"))
-            {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                         // Attach the object to the hold position
+                         heldObject.transform.position = holdPosition.position;
+                         heldObject.transform.rotation = holdPosition.rotation;
+                         heldObject.transform.parent = holdPosition;
+                     }
+                         if (hit.collider.CompareTag("Flour"))
+                     {
+                         // Pick up the object
+                         heldObject = hit.collider.gameObject;
+                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-            }
-            if (hit.collider.CompareTag("Cooking Oil"))
-            {
-                // Pick up the object
-                heldObject = hit.collider.gameObject;
-                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                         // Attach the object to the hold position
+                         heldObject.transform.position = holdPosition.position;
+                         heldObject.transform.rotation = holdPosition.rotation;
+                         heldObject.transform.parent = holdPosition;
+                     }
+                     if (hit.collider.CompareTag("Water"))
+                     {
+                         // Pick up the object
+                         heldObject = hit.collider.gameObject;
+                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                // Attach the object to the hold position
-                heldObject.transform.position = holdPosition.position;
-                heldObject.transform.rotation = holdPosition.rotation;
-                heldObject.transform.parent = holdPosition;
-            }
-   */
-   
+                         // Attach the object to the hold position
+                         heldObject.transform.position = holdPosition.position;
+                         heldObject.transform.rotation = holdPosition.rotation;
+                         heldObject.transform.parent = holdPosition;
+                     }
+                     if (hit.collider.CompareTag("Baking Soda"))
+                     {
+                         // Pick up the object
+                         heldObject = hit.collider.gameObject;
+                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                         // Attach the object to the hold position
+                         heldObject.transform.position = holdPosition.position;
+                         heldObject.transform.rotation = holdPosition.rotation;
+                         heldObject.transform.parent = holdPosition;
+                     }
+                     if (hit.collider.CompareTag("Cooking Oil"))
+                     {
+                         // Pick up the object
+                         heldObject = hit.collider.gameObject;
+                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                         // Attach the object to the hold position
+                         heldObject.transform.position = holdPosition.position;
+                         heldObject.transform.rotation = holdPosition.rotation;
+                         heldObject.transform.parent = holdPosition;
+                     }
+            */
+
         }
     }
 
