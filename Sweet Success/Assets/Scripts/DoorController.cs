@@ -9,8 +9,11 @@ public class DoorController : MonoBehaviour
         if(other.tag == "FridgeDoor")
         {
             Animator anim = other.GetComponentInChildren<Animator>(); //detect which has animator atttached 
-            if(Input.GetKeyDown(KeyCode.O) )
-            anim.SetTrigger("OpenClose(1)");
+            if(Input.GetKeyDown(KeyCode.O))
+            {
+                anim.SetTrigger("OpenClose(1)"); //Key O is meant for open
+            }  
         }
     }
 }
+ 
