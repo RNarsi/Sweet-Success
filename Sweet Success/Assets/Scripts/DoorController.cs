@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    /*private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.tag == "FridgeDoor")
         {
@@ -14,8 +14,14 @@ public class DoorController : MonoBehaviour
                 anim.SetTrigger("OpenClose(1)"); //Key O is meant for open
             }  
         }
-    } */
+    } 
+    
 
+
+    //Above is the code for open door mechanic. Our door animator works but it opens on start, without being trigger.
+    
+
+    //Iteration of open door mechanic:
 /* [SerializedField] privte Animator myDoor = null;
  [SerializeField] private bool openTrigger = false;
  [SerializeField] private bool closeTrigger = false;

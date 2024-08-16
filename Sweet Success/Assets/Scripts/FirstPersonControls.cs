@@ -53,9 +53,9 @@ public class FirstPersonControls : MonoBehaviour
     public Transform sugarCubesSpawnPoint;// Point from which the sugarCubes will spawn
     private bool holdingSugar = false;
 
-    public Transform doorHinge1;
+    /*public Transform doorHinge1;
     public Transform doorHinge2;
-    private GameObject door;
+    private GameObject door; */
 
     private void Awake()
     {
@@ -99,7 +99,7 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
 
         //open input event
-        playerInput.Player.OpenDoor.performed += ctx => OpenDoor();
+        //playerInput.Player.OpenDoor.performed += ctx => OpenDoor();
 
 
 
@@ -273,7 +273,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingButter = false;
             }
 
-
+            //The code below is for other ingredients:
             /*         if (hit.collider.CompareTag("Salt"))
                      {
                          // Pick up the object
@@ -333,8 +333,8 @@ public class FirstPersonControls : MonoBehaviour
 
         }
     }
-
-    public void OpenDoor()
+    //Iteration of open door mechanic:
+    /*public void OpenDoor()
     {
         if (door !=null) 
         {
@@ -363,7 +363,7 @@ public class FirstPersonControls : MonoBehaviour
               door.transform.rotation = doorHinge2.rotation;
                 door.transform.parent = doorHinge2;
             }
-        }
+        } */
 
 
 
@@ -377,10 +377,10 @@ public class FirstPersonControls : MonoBehaviour
                     anim.SetTrigger("OpenClose(1)"); //Key O is meant for open
                 }
             }
-        }*/
+        }
 
        
 
 
-    }
+    }*/
 }

@@ -6361,16 +6361,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453684234}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.856377, y: 2.7647266, z: 0.41724616}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.8874002, y: 7.385708, z: 0.1995919}
+  m_LocalScale: {x: 2.156103, y: 4.545816, z: 0.6560211}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1100830306}
   - {fileID: 1314062620}
   - {fileID: 1665736001}
   - {fileID: 593020423}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1053490107}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &453684236
 BoxCollider:
@@ -13120,7 +13120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1053490104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13202,9 +13202,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.981, y: 1.14, z: 0.113}
-  m_LocalScale: {x: 0.46379977, y: -0.21998249, z: 1.5243412}
+  m_LocalScale: {x: 0.46379977, y: 0.2199825, z: 1.5243412}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 453684235}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056429444
@@ -13778,7 +13779,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100830305}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f0dfdf682be529c41a72302acf12d46b, type: 2}
   m_CullingMode: 0
@@ -16375,7 +16376,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314062619}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f0dfdf682be529c41a72302acf12d46b, type: 2}
   m_CullingMode: 0
@@ -17836,8 +17837,6 @@ MonoBehaviour:
   sugarCubesPrefab: {fileID: 4780663553763741542, guid: 7b0b450919625ba49b9507824d1791b0,
     type: 3}
   sugarCubesSpawnPoint: {fileID: 626562771}
-  doorHinge1: {fileID: 1100830306}
-  doorHinge2: {fileID: 1314062620}
 --- !u!54 &1430781740
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25948,5 +25947,4 @@ SceneRoots:
   - {fileID: 944945060}
   - {fileID: 1195848419}
   - {fileID: 91062624}
-  - {fileID: 453684235}
   - {fileID: 1053490107}
