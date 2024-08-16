@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if(other.tag == "FridgeDoor")
         {
@@ -14,6 +14,29 @@ public class DoorController : MonoBehaviour
                 anim.SetTrigger("OpenClose(1)"); //Key O is meant for open
             }  
         }
-    }
+    } */
+
+/* [SerializedField] privte Animator myDoor = null;
+ [SerializeField] private bool openTrigger = false;
+ [SerializeField] private bool closeTrigger = false;
+
+ private void OnTriggerEnter(Collider other)
+ {
+     if (other.CompareTag("Player"))
+     {
+         if (openTrigger)
+         {
+             myDoor.Play("Door Hinge(1)_Open", 0, 0.0f);
+             gameObject.SetActive(false);
+         }
+
+         else if (closeTrigger)
+         {
+             myDoor.Play("Door Hinge(1)_Close", 0, 0.0f);
+             gameObject.SetActive(false);
+         }
+
+     }
+ } */
+
 }
- 

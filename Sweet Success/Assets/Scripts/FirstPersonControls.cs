@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,16 +17,17 @@ public class FirstPersonControls : MonoBehaviour
     public float lookSpeed; // Sensitivity of the camera movement // looks around
     public float gravity = -9.81f; // Gravity value
     public Transform playerCamera; // Reference to the player's camera // big T - transform of camera ,diff game object , script on player // can refer to any other game objects transform
-                                  
+
     // Private variables to store input values and the character controller                              
     //action map - we put vector 2 
     private Vector2 moveInput; // Stores the movement input from the player
     private Vector2 lookInput; // Stores the look input from the player
+    //public Transform openInput
     private float verticalLookRotation = 0f; // Keeps track of verticalcamera rotation for clamping // prevent players neck from fliping all the way back
     private Vector3 velocity; // Velocity of the player
 
     private CharacterController characterController; // Reference to the CharacterController component
-    
+
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
     public Transform holdPosition; // Position where the picked-up object will be held
@@ -35,7 +37,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("PLACE SETTINGS")]
     [Space(5)]
 
-  //  private bool HoldingItems = false;
+    //  private bool HoldingItems = false;
 
     public GameObject crackedEggPrefab; // crackedEgg prefab for placing
     public Transform crackedEggSpawnPoint; // Point from which the crackedEgg will spawn
@@ -51,9 +53,12 @@ public class FirstPersonControls : MonoBehaviour
     public Transform sugarCubesSpawnPoint;// Point from which the sugarCubes will spawn
     private bool holdingSugar = false;
 
+    public Transform doorHinge1;
+    public Transform doorHinge2;
+    private GameObject door;
 
     private void Awake()
-    {  
+    {
         //before any other scripts start method run
         // is for early setup
 
@@ -63,27 +68,27 @@ public class FirstPersonControls : MonoBehaviour
     }
     private void OnEnable()
     {
-            //enables input actions
-            //listens for player input
+        //enables input actions
+        //listens for player input
 
-            // Create a new instance of the input actions    // "Controls" is the name of the actionmap we created
+        // Create a new instance of the input actions    // "Controls" is the name of the actionmap we created
         var playerInput = new Controls();
 
         // Enable the input actions
         playerInput.Player.Enable();
 
         // Subscribe to the movement input events      
-                                                                                                 // "Player" is the name action map -we named it Player  
-                                                                                                 //Movement is the binding
+        // "Player" is the name action map -we named it Player  
+        //Movement is the binding
         playerInput.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>(); // Update moveInput when movement input is performed 
-                                                                                                // Lambda expression(shorter way)
-                                                                                                //has the player touched WASD or joystick or arrows? 
-                                                                                                //ctx - context, refers to the key bindings
+                                                                                              // Lambda expression(shorter way)
+                                                                                              //has the player touched WASD or joystick or arrows? 
+                                                                                              //ctx - context, refers to the key bindings
         playerInput.Player.Movement.canceled += ctx => moveInput = Vector2.zero; // Reset moveInput when movement input is canceled
-                                                                                  //no input by player - cancels the context that means no movement
-      
-          // Subscribe to the look input events
-                                                                                                // action is LookAround in action map
+                                                                                 //no input by player - cancels the context that means no movement
+
+        // Subscribe to the look input events
+        // action is LookAround in action map
         playerInput.Player.LookAround.performed += ctx => lookInput = ctx.ReadValue<Vector2>(); // Update lookInput when look input is performed
         playerInput.Player.LookAround.canceled += ctx => lookInput = Vector2.zero; // Reset lookInput when look input is canceled
 
@@ -93,7 +98,10 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
 
-    
+        //open input event
+        playerInput.Player.OpenDoor.performed += ctx => OpenDoor();
+
+
 
     }
     private void Update()
@@ -103,6 +111,8 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
+       
+
     }
     public void Move()
     {
@@ -131,10 +141,10 @@ public class FirstPersonControls : MonoBehaviour
         // Vertical rotation: Adjust the vertical look rotation and clamp it to prevent flipping
         verticalLookRotation -= LookY;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f); // restricting up and down looking
- 
+
         // Apply the clamped vertical rotation to the player camera // attach to camera not player coz we use camera to look around
         playerCamera.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
-        
+
     }
 
 
@@ -166,7 +176,7 @@ public class FirstPersonControls : MonoBehaviour
             // Destroy the projectile after 3 seconds
             // Destroy(crackedEgg, 3f);
         }
-         if (holdingButter == true)
+        if (holdingButter == true)
         {
             // Instantiate the butterBlock at the spawn point
             GameObject butterBlock = Instantiate(butterBlockPrefab, butterBlockSpawnPoint.position, butterBlockSpawnPoint.rotation);
@@ -175,7 +185,7 @@ public class FirstPersonControls : MonoBehaviour
             Rigidbody rb = butterBlock.GetComponent<Rigidbody>();
             rb.velocity = butterBlockSpawnPoint.forward * 0.1f;
         }
-         if (holdingSugar == true) 
+        if (holdingSugar == true)
         {
             // Instantiate the butterBlock at the spawn point
             GameObject sugarCubes = Instantiate(sugarCubesPrefab, sugarCubesSpawnPoint.position, sugarCubesSpawnPoint.rotation);
@@ -184,11 +194,8 @@ public class FirstPersonControls : MonoBehaviour
             Rigidbody rb = sugarCubes.GetComponent<Rigidbody>();
             rb.velocity = sugarCubesSpawnPoint.forward * 0.1f;
         }
-        
-            
-        
-    }
 
+    }
 
     public void PickUpObject()
     {
@@ -197,7 +204,7 @@ public class FirstPersonControls : MonoBehaviour
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
             heldObject.transform.parent = null;
-           
+
         }
 
         // Perform a raycast from the camera's position forward
@@ -238,18 +245,18 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
 
-               /* foreach (bool holdingThing in HoldingThingsArray) 
-                {
-                    holdingThing = false;
-                }
+                /* foreach (bool holdingThing in HoldingThingsArray) 
+                 {
+                     holdingThing = false;
+                 }
 
-                holdingButter = true;     */
+                 holdingButter = true;     */
 
                 holdingButter = true;
                 holdingSugar = false;
                 holdingEgg = false;
             }
-  
+
             if (hit.collider.CompareTag("Sugar"))
             {
                 // Pick up the object
@@ -327,5 +334,53 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
+    public void OpenDoor()
+    {
+        if (door !=null) 
+        {
+            door.transform.parent = null;
+        }
 
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Debugging: Draw the ray in the Scene view: so you can see if it hitting the thing you want it to hit
+        Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f); //2 here is "duration"
+
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the hit object has the tag "PickUp"
+            if (hit.collider.CompareTag("FridgeDoor"))
+            {
+                // Pick up the object
+                door.GetComponent<Transform>().rotation = hit.collider.transform.rotation;
+               door = hit.collider.gameObject;
+                //hldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                door.transform.position = doorHinge2.position;
+              door.transform.rotation = doorHinge2.rotation;
+                door.transform.parent = doorHinge2;
+            }
+        }
+
+
+
+        /*private void OnTriggerStay(Collider other)
+        {
+            if (other.tag == "FridgeDoor")
+            {
+                Animator anim = other.GetComponentInChildren<Animator>(); //detect which has animator atttached 
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    anim.SetTrigger("OpenClose(1)"); //Key O is meant for open
+                }
+            }
+        }*/
+
+       
+
+
+    }
 }

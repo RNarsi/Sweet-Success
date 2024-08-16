@@ -64,9 +64,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Open"",
+                    ""name"": ""OpenDoor"",
                     ""type"": ""Button"",
-                    ""id"": ""929f9ce4-e6a3-4eaf-bfda-271a22dbbbaf"",
+                    ""id"": ""1f3303bb-4f8f-4012-9883-0d6b2e324841"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -253,7 +253,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""82b13122-5821-47e8-8314-3e8771bd1438"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -263,12 +263,23 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f4c5365c-9a5f-4517-b2fa-0f874038d740"",
+                    ""id"": ""468405d1-1c5a-4c0b-ac2a-777844e23fd0"",
                     ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Open"",
+                    ""action"": ""OpenDoor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d883e89-de3a-49c4-86d2-e5207878f1b1"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""OpenDoor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -306,7 +317,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_LookAround = m_Player.FindAction("LookAround", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
-        m_Player_Open = m_Player.FindAction("Open", throwIfNotFound: true);
+        m_Player_OpenDoor = m_Player.FindAction("OpenDoor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,7 +383,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LookAround;
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Place;
-    private readonly InputAction m_Player_Open;
+    private readonly InputAction m_Player_OpenDoor;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -381,7 +392,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @LookAround => m_Wrapper.m_Player_LookAround;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Place => m_Wrapper.m_Player_Place;
-        public InputAction @Open => m_Wrapper.m_Player_Open;
+        public InputAction @OpenDoor => m_Wrapper.m_Player_OpenDoor;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -403,9 +414,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Place.started += instance.OnPlace;
             @Place.performed += instance.OnPlace;
             @Place.canceled += instance.OnPlace;
-            @Open.started += instance.OnOpen;
-            @Open.performed += instance.OnOpen;
-            @Open.canceled += instance.OnOpen;
+            @OpenDoor.started += instance.OnOpenDoor;
+            @OpenDoor.performed += instance.OnOpenDoor;
+            @OpenDoor.canceled += instance.OnOpenDoor;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -422,9 +433,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Place.started -= instance.OnPlace;
             @Place.performed -= instance.OnPlace;
             @Place.canceled -= instance.OnPlace;
-            @Open.started -= instance.OnOpen;
-            @Open.performed -= instance.OnOpen;
-            @Open.canceled -= instance.OnOpen;
+            @OpenDoor.started -= instance.OnOpenDoor;
+            @OpenDoor.performed -= instance.OnOpenDoor;
+            @OpenDoor.canceled -= instance.OnOpenDoor;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -466,6 +477,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnLookAround(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
-        void OnOpen(InputAction.CallbackContext context);
+        void OnOpenDoor(InputAction.CallbackContext context);
     }
 }
