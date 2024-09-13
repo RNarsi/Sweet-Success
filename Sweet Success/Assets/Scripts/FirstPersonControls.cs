@@ -374,17 +374,17 @@ public class FirstPersonControls : MonoBehaviour
                          heldObject.transform.rotation = holdPosition.rotation;
                          heldObject.transform.parent = holdPosition;
 
-                        holdingSalt=true
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingFlour=false
-                        holdingWater=false
-                        holdingBakingSoda=false
-                        holdingCookingOil=false
-                        holdingVanillaExtract=false
-                        holdingChocolateChips=false
-                        holdingBlueberries=false
+                                holdingSalt=true
+                                holdingEgg=false
+                                holdingButter=false
+                                holdingSugar=false
+                                holdingFlour=false
+                                holdingWater=false
+                                holdingBakingSoda=false
+                                holdingCookingOil=false
+                                holdingVanillaExtract=false
+                                holdingChocolateChips=false
+                                holdingBlueberries=false
 
                      }
                          if (hit.collider.CompareTag("Flour"))
