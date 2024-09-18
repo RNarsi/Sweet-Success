@@ -27530,7 +27530,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -27707,18 +27707,18 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.4587753, g: 0.651715, b: 0.9245283, a: 1}
-        key2: {r: 0.0047204727, g: 0.2682415, b: 0.83396226, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.51815593, g: 0.62943363, b: 0.7735849, a: 1}
+        key1: {r: 0.82641506, g: 0.5540884, b: 0.41008896, a: 1}
+        key2: {r: 0.3257173, g: 0.5349946, b: 0.83396226, a: 0}
+        key3: {r: 0.25430405, g: 0.4383186, b: 0.7056604, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 31071
-        ctime2: 65535
-        ctime3: 0
+        ctime1: 6554
+        ctime2: 31071
+        ctime3: 48033
         ctime4: 0
         ctime5: 0
         ctime6: 0
@@ -27733,7 +27733,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 4
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -32264,7 +32264,7 @@ Transform:
   m_GameObject: {fileID: 1296361700}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.079, y: 0.93, z: -12.664}
+  m_LocalPosition: {x: 2.099, y: 0.93, z: -12.677}
   m_LocalScale: {x: 0.19938226, y: 0.2, z: 0.0055614584}
   m_ConstrainProportionsScale: 0
   m_Children: []
