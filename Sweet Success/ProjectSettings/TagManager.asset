@@ -19,6 +19,8 @@ TagManager:
   - Cooking Oil
   - Door
   - FridgeDoor
+  - Milk
+  - Vanilla
   layers:
   - Default
   - TransparentFX
