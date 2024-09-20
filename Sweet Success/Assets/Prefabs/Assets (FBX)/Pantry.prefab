@@ -73,6 +73,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8220918260775358206, guid: 29825d56725945042ac19afb72a46418,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -6142815788380083281, guid: 29825d56725945042ac19afb72a46418,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -117,6 +122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pantry
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949537230524975169, guid: 29825d56725945042ac19afb72a46418,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8688380668580716074, guid: 29825d56725945042ac19afb72a46418,
         type: 3}
