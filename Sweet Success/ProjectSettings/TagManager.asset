@@ -21,6 +21,9 @@ TagManager:
   - FridgeDoor
   - Milk
   - Vanilla
+  - Vanilla Extract
+  - Chocolate Chips
+  - Blueberries
   layers:
   - Default
   - TransparentFX
