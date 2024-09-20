@@ -24,6 +24,7 @@ TagManager:
   - Vanilla Extract
   - Chocolate Chips
   - Blueberries
+  - Step
   layers:
   - Default
   - TransparentFX

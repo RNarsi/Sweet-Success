@@ -30,8 +30,10 @@ public class FirstPersonControls : MonoBehaviour
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
     public float pickUpRange = 3f; // Range within which objects can be picked up
-    
-   
+
+    [Header("FRIDGE DOOR SETTINGS")]
+    [Space(5)]
+    public Transform Hinge;
   
 
     [Header("PLACE SETTINGS")]
@@ -141,6 +143,7 @@ public class FirstPersonControls : MonoBehaviour
         // Subscribe to the pick-up input event
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
 
+        playerInput.Player.Interaction.performed += ctx => Interact();
     }
     private void Update()
     {
@@ -149,7 +152,26 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
+
+        if (Open && Hinge.rotation.y < 0.9f)
+        {
+            Hinge.Rotate(0, 140 * Time.deltaTime, 0);
+        }
+        else if (Hinge.rotation.y > 0.9f)
+        {
+            Open = false;
+        }
+        Debug.Log(Hinge.rotation.y);
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.gameObject.CompareTag("Step"))
+        {
+            Open = true;
+        }
+    }
+
     public void Move()
     {
         // handles movement based on input
@@ -316,28 +338,30 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
-   /* public void Interact()
+    public void Interact()
     {
         Ray ray = new Ray(playerCamera.position, playerCamera.forward);
         RaycastHit hit;
 
+        Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f); 
+
         if (Physics.Raycast(ray,out hit, pickUpRange))
         {
-            hit.collider.CompareTag("FridgeDoor");
+            hit.collider.CompareTag("Door");
         }
-        if (hit.collider.CompareTag("FridgeDoor"))
+        if (hit.collider.CompareTag("Door"))
         {
-            StartCoroutine(OpenDoor(hit.collider.gameObject));
+            StartCoroutine(SlideDoor(hit.collider.gameObject));
         }
     }
-   */
+   
 
-    private IEnumerator RaiseDoor(GameObject door)
+    private IEnumerator SlideDoor(GameObject door)
     {
         float openAmount = 5f; 
         float openSpeed = 2f; 
         Vector3 startPosition = door.transform.position;  
-        Vector3 endPosition = startPosition + Vector3.right * openAmount; 
+        Vector3 endPosition = startPosition + Vector3.forward * openAmount; 
 
        
         while (door.transform.position.x < endPosition.x)
