@@ -316,6 +316,38 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
+   /* public void Interact()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray,out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("FridgeDoor");
+        }
+        if (hit.collider.CompareTag("FridgeDoor"))
+        {
+            StartCoroutine(OpenDoor(hit.collider.gameObject));
+        }
+    }
+   */
+
+    private IEnumerator RaiseDoor(GameObject door)
+    {
+        float openAmount = 5f; 
+        float openSpeed = 2f; 
+        Vector3 startPosition = door.transform.position;  
+        Vector3 endPosition = startPosition + Vector3.right * openAmount; 
+
+       
+        while (door.transform.position.x < endPosition.x)
+        {
+            door.transform.position = Vector3.MoveTowards(door.transform.position, endPosition, openSpeed * Time.deltaTime);
+            yield return null; //Wait until the next frame before continuing the loop
+        }
+    }
+
+
     public void PickUpObject()
     {
         // Check if we are already holding an object
