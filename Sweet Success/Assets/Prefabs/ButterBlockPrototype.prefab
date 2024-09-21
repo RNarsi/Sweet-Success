@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3661156236997508421}
   - component: {fileID: -9195248921617627900}
   m_Layer: 0
-  m_Name: ButterBlock
+  m_Name: ButterBlockPrototype
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

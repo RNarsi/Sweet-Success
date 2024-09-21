@@ -30,11 +30,16 @@ public class FirstPersonControls : MonoBehaviour
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
     public float pickUpRange = 3f; // Range within which objects can be picked up
+    
+   
+  
 
     [Header("PLACE SETTINGS")]
     [Space(5)]
 
-  //  private bool HoldingItems = false;
+    //  private bool HoldingItems = false;
+    
+    private bool holdingPickUp = false;
 
     public GameObject crackedEggPrefab; // crackedEgg prefab for placing
     public Transform crackedEggSpawnPoint; // Point from which the crackedEgg will spawn
@@ -50,6 +55,50 @@ public class FirstPersonControls : MonoBehaviour
     public Transform sugarCubesSpawnPoint;// Point from which the sugarCubes will spawn
     private bool holdingSugar = false;
 
+    [Space(5)]
+    public GameObject saltGrainsPrefab; //  prefab for placing
+    public Transform saltGrainsSpawnPoint;// Point from which it will spawn
+    private bool holdingSalt = false;
+
+    [Space(5)]
+    public GameObject flourPowderPrefab; // prefab for placing
+    public Transform flourPowderSpawnPoint;//Point from which it will spawn
+    private bool holdingFlour = false;
+
+    [Space(5)]
+    public GameObject waterDropsPrefab; // prefab for placing
+    public Transform waterDropsSpawnPoint;// Point from which it will spawn
+    private bool holdingWater = false;
+
+    [Space(5)]
+    public GameObject milkDropsPrefab; // prefab for placing
+    public Transform milkDropsSpawnPoint;// Point from which it will spawn
+    private bool holdingMilk = false;
+
+    [Space(5)]
+    public GameObject cookingOilDropsPrefab; // prefab for placing
+    public Transform cookingOilDropsSpawnPoint;// Point from which it will spawn
+    private bool holdingCookingOil = false;
+    
+    [Space(5)]
+    public GameObject vanillaExtractDropsPrefab; // prefab for placing
+    public Transform vanillaExtractDropsSpawnPoint;// Point from which it will spawn
+    private bool holdingVanillaExtract = false;
+
+    [Space(5)]
+    public GameObject chocoChipsPrefab; // prefab for placing
+    public Transform chocoChipsSpawnPoint;// Point from which it will spawn
+    private bool holdingChocolateChips = false;
+
+    [Space(5)]
+    public GameObject blueberryPrefab; // prefab for placing
+    public Transform  blueberrySpawnPoint;// Point from which it will spawn
+    private bool holdingBlueberries = false;
+
+    [Space(5)]
+    public GameObject bakingSodaPowderPrefab; // prefab for placing
+    public Transform bakingSodaPowderSpawnPoint;// Point from which it will spawn
+    private bool holdingBakingSoda= false;
 
     private void Awake()
     {  
@@ -134,7 +183,6 @@ public class FirstPersonControls : MonoBehaviour
         
     }
 
-
     public void ApplyGravity()
     {
         if (characterController.isGrounded && velocity.y < 0) // check if player grounded / touching floor
@@ -163,7 +211,7 @@ public class FirstPersonControls : MonoBehaviour
             // Destroy the projectile after 3 seconds
             // Destroy(crackedEgg, 3f);
         }
-         if (holdingButter == true)
+        if (holdingButter == true)
         {
             // Instantiate at the spawn point
             GameObject butterBlock = Instantiate(butterBlockPrefab, butterBlockSpawnPoint.position, butterBlockSpawnPoint.rotation);
@@ -172,7 +220,7 @@ public class FirstPersonControls : MonoBehaviour
             Rigidbody rb = butterBlock.GetComponent<Rigidbody>();
             rb.velocity = butterBlockSpawnPoint.forward * 0.1f;
         }
-         if (holdingSugar == true) 
+        if (holdingSugar == true)
         {
             // Instantiate at the spawn point
             GameObject sugarCubes = Instantiate(sugarCubesPrefab, sugarCubesSpawnPoint.position, sugarCubesSpawnPoint.rotation);
@@ -181,82 +229,122 @@ public class FirstPersonControls : MonoBehaviour
             Rigidbody rb = sugarCubes.GetComponent<Rigidbody>();
             rb.velocity = sugarCubesSpawnPoint.forward * 0.1f;
         }
+        if (holdingSalt == true) 
+        {
+            // Instantiateat the spawn point
+            GameObject saltGrains = Instantiate(saltGrainsPrefab, saltGrainsSpawnPoint.position, saltGrainsSpawnPoint.rotation);
 
-        /*
-                   if (holdingSalt == true) 
-                {
-                        // Instantiateat the spawn point
-                        GameObject saltGrains = Instantiate(saltGrainsPrefab, saltGrainsSpawnPoint.position, saltGrainsSpawnPoint.rotation);
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = saltGrains.GetComponent<Rigidbody>();
+            rb.velocity = saltGrainsSpawnPoint.forward * 0.1f;
+        }
+        if (holdingFlour == true) 
+        {
+           // Instantiate at the spawn point
+           GameObject flourPowder = Instantiate(flourPowderPrefab, flourPowderSpawnPoint.position, flourPowderSpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = saltGrains.GetComponent<Rigidbody>();
-                        rb.velocity = saltGrainsSpawnPoint.forward * 0.1f;
-                }
-                    if (holdingFlour == true) 
-                {
-                        // Instantiate at the spawn point
-                        GameObject flourPowder = Instantiate(flourPowderPrefab, flourPowderSpawnPoint.position, flourPowderSpawnPoint.rotation);
+           // Get the Rigidbody component and set its velocity
+           Rigidbody rb = flourPowder.GetComponent<Rigidbody>();
+           rb.velocity = flourPowderSpawnPoint.forward * 0.1f;
+        }
+        if (holdingWater == true) 
+        {
+           // Instantiate at the spawn point
+           GameObject waterDrops = Instantiate(waterDropsPrefab, waterDropsSpawnPoint.position, waterDropsSpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = flourPowder.GetComponent<Rigidbody>();
-                        rb.velocity = flourPowderSpawnPoint.forward * 0.1f;
-                }
-                    if (holdingWater == true) 
-                {
-                        // Instantiate at the spawn point
-                        GameObject waterDrops = Instantiate(waterDropsPrefab, waterDropsSpawnPoint.position, waterDropsSpawnPoint.rotation);
+           // Get the Rigidbody component and set its velocity
+           Rigidbody rb = waterDrops.GetComponent<Rigidbody>();
+           rb.velocity = waterDropsSpawnPoint.forward * 0.1f;
+        }
+        if (holdingMilk == true)
+        {
+            // Instantiate at the spawn point
+            GameObject milkDrops = Instantiate(milkDropsPrefab, milkDropsSpawnPoint.position, milkDropsSpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = waterDrops.GetComponent<Rigidbody>();
-                        rb.velocity = waterDropsSpawnPoint.forward * 0.1f;
-                }
-                     if (holdingBakingSoda == true) 
-                {
-                        // Instantiate at the spawn point
-                        GameObject bakingSodaPowder = Instantiate(bakingSodaPowderPrefab, bakingSodaPowderSpawnPoint.position, bakingSodaPowderSpawnPoint.rotation);
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = milkDrops.GetComponent<Rigidbody>();
+            rb.velocity = milkDropsSpawnPoint.forward * 0.1f;
+        }
+        if (holdingBakingSoda == true) 
+        {
+           // Instantiate at the spawn point
+           GameObject bakingSodaPowder = Instantiate(bakingSodaPowderPrefab, bakingSodaPowderSpawnPoint.position, bakingSodaPowderSpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = bakingSodaPowder.GetComponent<Rigidbody>();
-                        rb.velocity = bakingSodaPowderSpawnPoint.forward * 0.1f;
-                }
-                     if (holdingCookingOil == true) 
-                {
-                        // Instantiate at the spawn point
-                        GameObject cookingOilDrops = Instantiate(cookingOilDropsPrefab, cookingOilDropsSpawnPoint.position, cookingOilDropsSpawnPoint.rotation);
+           // Get the Rigidbody component and set its velocity
+           Rigidbody rb = bakingSodaPowder.GetComponent<Rigidbody>();
+           rb.velocity = bakingSodaPowderSpawnPoint.forward * 0.1f;
+        }
+        if (holdingCookingOil == true) 
+        {
+           // Instantiate at the spawn point
+           GameObject cookingOilDrops = Instantiate(cookingOilDropsPrefab, cookingOilDropsSpawnPoint.position, cookingOilDropsSpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = cookingOilDrops.GetComponent<Rigidbody>();
-                        rb.velocity = cookingOilDropsSpawnPoint.forward * 0.1f;
-                }
-                     if (holdingVanillaExtract == true) 
-                {
-                        // Instantiate at the spawn point
-                        GameObject vanillaExtractDrops = Instantiate(vanillaExtractDropsPrefab, vanillaExtractDropsSpawnPoint.position, vanillaExtractDropsSpawnPoint.rotation);
+           // Get the Rigidbody component and set its velocity
+           Rigidbody rb = cookingOilDrops.GetComponent<Rigidbody>();
+           rb.velocity = cookingOilDropsSpawnPoint.forward * 0.1f;
+        }
+        if (holdingVanillaExtract == true) 
+        {
+          // Instantiate at the spawn point
+          GameObject vanillaExtractDrops = Instantiate(vanillaExtractDropsPrefab, vanillaExtractDropsSpawnPoint.position, vanillaExtractDropsSpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = vanillaExtractDrops.GetComponent<Rigidbody>();
-                        rb.velocity = vanillaExtractDropsSpawnPoint.forward * 0.1f;
-                }
-                    if (holdingChocolateChips == true) 
-                {
-                        // Instantiate at the spawn point
-                        GameObject chocoChips = Instantiate(chocoChipsPrefab, chocoChipsSpawnPoint.position, chocoChipsSpawnPoint.rotation);
+          // Get the Rigidbody component and set its velocity
+          Rigidbody rb = vanillaExtractDrops.GetComponent<Rigidbody>();
+          rb.velocity = vanillaExtractDropsSpawnPoint.forward * 0.1f;
+        }
+        if (holdingChocolateChips == true) 
+        {
+           // Instantiate at the spawn point
+           GameObject chocoChips = Instantiate(chocoChipsPrefab, chocoChipsSpawnPoint.position, chocoChipsSpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = chocoChips.GetComponent<Rigidbody>();
-                        rb.velocity = chocoChipsSpawnPoint.forward * 0.1f;
-                }
-                   if (holdingBlueberries == true) 
-                {
-                        // Instantiate at the spawn point
-                        GameObject blueberry = Instantiate(blueberryPrefab, blueberrySpawnPoint.position, blueberrySpawnPoint.rotation);
+           // Get the Rigidbody component and set its velocity
+           Rigidbody rb = chocoChips.GetComponent<Rigidbody>();
+           rb.velocity = chocoChipsSpawnPoint.forward * 0.1f;
+        }
+        if (holdingBlueberries == true) 
+        {
+          // Instantiate at the spawn point
+          GameObject blueberry = Instantiate(blueberryPrefab, blueberrySpawnPoint.position, blueberrySpawnPoint.rotation);
 
-                        // Get the Rigidbody component and set its velocity
-                        Rigidbody rb = blueberry.GetComponent<Rigidbody>();
-                        rb.velocity = blueberrySpawnPoint.forward * 0.1f;
-                }
-        */
+          // Get the Rigidbody component and set its velocity
+          Rigidbody rb = blueberry.GetComponent<Rigidbody>();
+          rb.velocity = blueberrySpawnPoint.forward * 0.1f;
+        }
+        else
+        {
+          holdingPickUp = true;
+        }
+    }
 
+   /* public void Interact()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray,out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("FridgeDoor");
+        }
+        if (hit.collider.CompareTag("FridgeDoor"))
+        {
+            StartCoroutine(OpenDoor(hit.collider.gameObject));
+        }
+    }
+   */
+
+    private IEnumerator RaiseDoor(GameObject door)
+    {
+        float openAmount = 5f; 
+        float openSpeed = 2f; 
+        Vector3 startPosition = door.transform.position;  
+        Vector3 endPosition = startPosition + Vector3.right * openAmount; 
+
+       
+        while (door.transform.position.x < endPosition.x)
+        {
+            door.transform.position = Vector3.MoveTowards(door.transform.position, endPosition, openSpeed * Time.deltaTime);
+            yield return null; //Wait until the next frame before continuing the loop
+        }
     }
 
 
@@ -295,15 +383,15 @@ public class FirstPersonControls : MonoBehaviour
                 holdingEgg = true;
                 holdingButter = false;
                 holdingSugar = false;
-
-                /*  holdingFlour=false
-                   holdingWater=false
-                   holdingBakingSoda=false
-                   holdingCookingOil=false
-                   holdingVanillaExtract=false
-                   holdingChocolateChips=false
-                   holdingBlueberries=false
-               */
+                holdingPickUp = false;
+                holdingMilk = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false; 
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
 
             }
             if (hit.collider.CompareTag("Butter"))
@@ -327,15 +415,15 @@ public class FirstPersonControls : MonoBehaviour
                 holdingButter = true;
                 holdingSugar = false;
                 holdingEgg = false;
-
-                /*  holdingFlour=false
-                    holdingWater=false
-                    holdingBakingSoda=false
-                    holdingCookingOil=false
-                    holdingVanillaExtract=false
-                    holdingChocolateChips=false
-                    holdingBlueberries=false
-                */
+                holdingPickUp = false;
+                holdingMilk = false;
+                holdingFlour =false;
+                holdingWater=false;
+                holdingBakingSoda=false;
+                holdingCookingOil=false;
+                holdingVanillaExtract=false;
+                holdingChocolateChips=false;
+                holdingBlueberries=false; 
             }
 
             if (hit.collider.CompareTag("Sugar"))
@@ -352,211 +440,273 @@ public class FirstPersonControls : MonoBehaviour
                 holdingSugar = true;
                 holdingEgg = false;
                 holdingButter = false;
-
-                /* holdingFlour=false
-                   holdingWater=false
-                   holdingBakingSoda=false
-                   holdingCookingOil=false
-                   holdingVanillaExtract=false
-                   holdingChocolateChips=false
-                   holdingBlueberries=false
-               */
+                holdingPickUp=false;
+                holdingMilk = false;
+                holdingFlour =false;
+                holdingWater=false;
+                holdingBakingSoda=false;
+                holdingCookingOil=false;
+                holdingVanillaExtract=false;
+                holdingChocolateChips=false;
+                holdingBlueberries=false;
 
             }
-            /*         if (hit.collider.CompareTag("Salt"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+            if (hit.collider.CompareTag("Salt"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
-                                holdingSalt=true
-                                holdingEgg=false
-                                holdingButter=false
-                                holdingSugar=false
-                                holdingFlour=false
-                                holdingWater=false
-                                holdingBakingSoda=false
-                                holdingCookingOil=false
-                                holdingVanillaExtract=false
-                                holdingChocolateChips=false
-                                holdingBlueberries=false
+                holdingSalt = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
 
-                     }
-                         if (hit.collider.CompareTag("Flour"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+            }
+            if (hit.collider.CompareTag("Flour"))
+            {
+               // Pick up the object
+               heldObject = hit.collider.gameObject;
+               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
-                        
-                        holdingFlour=true
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingSalt=false
-                        holdingWater=false
-                        holdingBakingSoda=false
-                        holdingCookingOil=false
-                        holdingVanillaExtract=false
-                        holdingChocolateChips=false
-                        holdingBlueberries=false
+               // Attach the object to the hold position
+               heldObject.transform.position = holdPosition.position;
+               heldObject.transform.rotation = holdPosition.rotation;
+               heldObject.transform.parent = holdPosition;
 
-                     }
-                         if (hit.collider.CompareTag("Water"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                holdingFlour = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
+            }
+            if (hit.collider.CompareTag("Water"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                        holdingWater=true
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingSalt=false
-                        holdingFlour=false
-                        holdingBakingSoda=false
-                        holdingCookingOil=false
-                        holdingVanillaExtract=false
-                        holdingChocolateChips=false
-                        holdingBlueberries=false
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
-                     }
-                        if (hit.collider.CompareTag("Baking Soda"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                holdingWater = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false; 
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
+            }
+            if (hit.collider.CompareTag("Milk"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                        holdingBakingSoda=true
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingSalt=false
-                        holdingFlour=false
-                        holdingWater=false
-                        holdingCookingOil=false
-                        holdingVanillaExtract=false
-                        holdingChocolateChips=false
-                        holdingBlueberries=false
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
-                     }
-                       if (hit.collider.CompareTag("Cooking Oil"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                holdingMilk = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
+            }
+            if (hit.collider.CompareTag("Baking Soda"))
+            {
+               // Pick up the object
+               heldObject = hit.collider.gameObject;
+               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                        holdingCookingOil=true
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingSalt=false
-                        holdingFlour=false
-                        holdingWater=false
-                        holdingBakingSoda=false
-                        holdingVanillaExtract=false
-                        holdingChocolateChips=false
-                        holdingBlueberries=false
+               // Attach the object to the hold position
+               heldObject.transform.position = holdPosition.position;
+               heldObject.transform.rotation = holdPosition.rotation;
+               heldObject.transform.parent = holdPosition;
 
-                     }
-                        if (hit.collider.CompareTag("Vanilla Extract"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                holdingBakingSoda = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
+            }
+            if (hit.collider.CompareTag("Cooking Oil"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                        holdingVanillaExtract=true
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingSalt=false
-                        holdingFlour=false
-                        holdingWater=false
-                        holdingBakingSoda=false
-                        holdingCookingOil=false
-                        holdingChocolateChips=false
-                        holdingBlueberries=false
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
-                     }
-                          if (hit.collider.CompareTag("Chocolate Chips"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                holdingCookingOil = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
-                        
-                        holdingChocolateChips=ture
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingSalt=false
-                        holdingFlour=false
-                        holdingWater=false
-                        holdingBakingSoda=false
-                        holdingCookingOil=false
-                        holdingVanillaExtract=false
-                        holdingBlueberries=false
+            }
+            if (hit.collider.CompareTag("Vanilla Extract"))
+            {
+               // Pick up the object
+               heldObject = hit.collider.gameObject;
+               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                     }
-                         if (hit.collider.CompareTag("Blueberries"))
-                     {
-                         // Pick up the object
-                         heldObject = hit.collider.gameObject;
-                         heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+               // Attach the object to the hold position
+               heldObject.transform.position = holdPosition.position;
+               heldObject.transform.rotation = holdPosition.rotation;
+               heldObject.transform.parent = holdPosition;
 
-                         // Attach the object to the hold position
-                         heldObject.transform.position = holdPosition.position;
-                         heldObject.transform.rotation = holdPosition.rotation;
-                         heldObject.transform.parent = holdPosition;
+                holdingVanillaExtract = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
 
-                        holdingBlueberries=true
-                        holdingEgg=false
-                        holdingButter=false
-                        holdingSugar=false
-                        holdingSalt=false
-                        holdingFlour=false
-                        holdingWater=false
-                        holdingBakingSoda=false
-                        holdingCookingOil=false
-                        holdingVanillaExtract=false
-                        holdingChocolateChips=false
+            }
+            if (hit.collider.CompareTag("Chocolate Chips"))
+            {
+               // Pick up the object
+               heldObject = hit.collider.gameObject;
+               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-                     }
-            */
+               // Attach the object to the hold position
+               heldObject.transform.position = holdPosition.position;
+               heldObject.transform.rotation = holdPosition.rotation;
+               heldObject.transform.parent = holdPosition;
 
+                holdingChocolateChips = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingBlueberries = false;
+                holdingPickUp = false;
+
+            }
+            if (hit.collider.CompareTag("Blueberries"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingBlueberries = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingPickUp = false;
+
+            }
+            if (hit.collider.CompareTag("PickUp"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingPickUp = true;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+            }
         }
     }
 
