@@ -10,7 +10,7 @@ public class openDoors : MonoBehaviour
     {
         if (Open)
         {
-            transform.Rotate(0, 170, 0);
+            transform.Rotate(0, -170, 0);
         }
     }
 

@@ -34,6 +34,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("FRIDGE DOOR SETTINGS")]
     [Space(5)]
     public Transform Hinge;
+    private bool Open;
   
 
     [Header("PLACE SETTINGS")]
