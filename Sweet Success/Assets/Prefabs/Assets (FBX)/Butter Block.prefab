@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 93bcc6ad7e9b01744a82c41f6b075e0d,
         type: 3}
       propertyPath: m_Name
-      value: ButterBlock
+      value: Butter Block
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -152,8 +152,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.9999998, z: 0.955624}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.818971, y: 1.9889915, z: 0.8790262}
+  m_Center: {x: 0.014671768, y: 0.005503516, z: 0.005220484}
 --- !u!114 &803524050936305320
 MonoBehaviour:
   m_ObjectHideFlags: 0
