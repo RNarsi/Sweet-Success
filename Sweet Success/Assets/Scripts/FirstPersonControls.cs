@@ -154,15 +154,15 @@ public class FirstPersonControls : MonoBehaviour
         LookAround();
         ApplyGravity();
 
-        if (Open && Hinge.rotation.y < 0.2f)
+        if (Open && Hinge.rotation.z < 0.2f)
         {
-            Hinge.Rotate(0, 90 * Time.deltaTime, 0);
+            Hinge.Rotate(0, 0, -90 * Time.deltaTime);
         }
-        else if (Hinge.rotation.y > 0.2f)
+        else if (Hinge.rotation.z > 0.2f)
         {
             Open = false;
         }
-        Debug.Log(Hinge.rotation.y);
+        Debug.Log(Hinge.rotation.z);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
