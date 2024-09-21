@@ -154,11 +154,11 @@ public class FirstPersonControls : MonoBehaviour
         LookAround();
         ApplyGravity();
 
-        if (Open && Hinge.rotation.y < 0.9f)
+        if (Open && Hinge.rotation.y < 0.2f)
         {
-            Hinge.Rotate(0, 140 * Time.deltaTime, 0);
+            Hinge.Rotate(0, 90 * Time.deltaTime, 0);
         }
-        else if (Hinge.rotation.y > 0.9f)
+        else if (Hinge.rotation.y > 0.2f)
         {
             Open = false;
         }
