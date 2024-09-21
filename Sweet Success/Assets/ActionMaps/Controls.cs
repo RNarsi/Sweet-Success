@@ -64,15 +64,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""OpenDoor"",
-                    ""type"": ""Button"",
-                    ""id"": ""1f3303bb-4f8f-4012-9883-0d6b2e324841"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""0170309f-68ae-4329-b665-66b74896676c"",
@@ -272,28 +263,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""468405d1-1c5a-4c0b-ac2a-777844e23fd0"",
-                    ""path"": ""<Keyboard>/o"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""OpenDoor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6d883e89-de3a-49c4-86d2-e5207878f1b1"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""OpenDoor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c64b3fed-f620-4606-abf5-02a279382860"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -348,7 +317,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_LookAround = m_Player.FindAction("LookAround", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
-        m_Player_OpenDoor = m_Player.FindAction("OpenDoor", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
     }
 
@@ -415,7 +383,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LookAround;
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Place;
-    private readonly InputAction m_Player_OpenDoor;
     private readonly InputAction m_Player_Interaction;
     public struct PlayerActions
     {
@@ -425,7 +392,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @LookAround => m_Wrapper.m_Player_LookAround;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Place => m_Wrapper.m_Player_Place;
-        public InputAction @OpenDoor => m_Wrapper.m_Player_OpenDoor;
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -448,9 +414,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Place.started += instance.OnPlace;
             @Place.performed += instance.OnPlace;
             @Place.canceled += instance.OnPlace;
-            @OpenDoor.started += instance.OnOpenDoor;
-            @OpenDoor.performed += instance.OnOpenDoor;
-            @OpenDoor.canceled += instance.OnOpenDoor;
             @Interaction.started += instance.OnInteraction;
             @Interaction.performed += instance.OnInteraction;
             @Interaction.canceled += instance.OnInteraction;
@@ -470,9 +433,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Place.started -= instance.OnPlace;
             @Place.performed -= instance.OnPlace;
             @Place.canceled -= instance.OnPlace;
-            @OpenDoor.started -= instance.OnOpenDoor;
-            @OpenDoor.performed -= instance.OnOpenDoor;
-            @OpenDoor.canceled -= instance.OnOpenDoor;
             @Interaction.started -= instance.OnInteraction;
             @Interaction.performed -= instance.OnInteraction;
             @Interaction.canceled -= instance.OnInteraction;
@@ -517,7 +477,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnLookAround(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
-        void OnOpenDoor(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
     }
 }

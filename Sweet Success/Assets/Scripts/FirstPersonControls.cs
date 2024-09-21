@@ -362,7 +362,7 @@ public class FirstPersonControls : MonoBehaviour
         float openAmount = 5f; 
         float openSpeed = 2f; 
         Vector3 startPosition = door.transform.position;  
-        Vector3 endPosition = startPosition + Vector3.forward * openAmount; 
+        Vector3 endPosition = startPosition + Vector3.right * openAmount; 
 
        
         while (door.transform.position.x < endPosition.x)
