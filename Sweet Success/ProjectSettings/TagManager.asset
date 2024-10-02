@@ -25,6 +25,7 @@ TagManager:
   - Chocolate Chips
   - Blueberries
   - Step
+  - Tap
   layers:
   - Default
   - TransparentFX

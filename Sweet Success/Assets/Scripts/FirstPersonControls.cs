@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class FirstPersonControls : MonoBehaviour
 {
@@ -35,7 +36,13 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public Transform Hinge;
     private bool Open;
-  
+
+    [Header("TAP SETTINGS")]
+    [Space(5)]
+    public ParticleSystem RunningWater;
+    public GameObject WaterFlow;
+    public bool TapOpen = false;
+    public bool TapClosed = true;
 
     [Header("PLACE SETTINGS")]
     [Space(5)]
@@ -354,6 +361,30 @@ public class FirstPersonControls : MonoBehaviour
         {
             StartCoroutine(SlideDoor(hit.collider.gameObject));
         }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Tap");
+
+            if (hit.collider.CompareTag("Tap"))
+            {
+                if (TapOpen)
+                {
+                    TapOpen = false;
+                    TapClosed = true;
+                    WaterFlow.gameObject.SetActive(false);
+                    RunningWater.Stop();
+                }
+                else
+                {
+                    TapOpen = true;
+                    TapClosed = false;
+                    WaterFlow.gameObject.SetActive(true);
+                    RunningWater.Play();
+                }
+            }
+        }
+       
     }
    
 
