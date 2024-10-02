@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class FirstPersonControls : MonoBehaviour
 {
@@ -35,14 +37,15 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public Transform Hinge;
     private bool Open;
-  
 
-    [Header("PLACE SETTINGS")]
+    [Header("UI SETTINGS")]
     [Space(5)]
+    public TextMeshProUGUI pickUpText;
 
-    //  private bool HoldingItems = false;
-    
-    private bool holdingPickUp = false;
+
+    [Header("Place Settings")]
+    [Space(5)]
+    private bool holdingPickUp = false;                       //  private bool HoldingItems = false;
 
     public GameObject crackedEggPrefab; // crackedEgg prefab for placing
     public Transform crackedEggSpawnPoint; // Point from which the crackedEgg will spawn
@@ -153,6 +156,7 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
+        CheckForPickUp(); // Check for pickup objects every frame
 
         if (Open && Hinge.rotation.z < 0.2f)
         {
@@ -732,6 +736,34 @@ public class FirstPersonControls : MonoBehaviour
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
             }
+        }
+    }
+
+    private void CheckForPickUp()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Perform raycast to detect objects
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the object has the "PickUp" tag
+            if (hit.collider.CompareTag("PickUp"))
+            {
+                // Display the pick-up text
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name;  //name is the name of the game object - rename it 
+            }
+            else
+            {
+                // Hide the pick-up text if not looking at a "PickUp" object
+                pickUpText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            // Hide the text if not looking at any object
+            pickUpText.gameObject.SetActive(false);
         }
     }
 
