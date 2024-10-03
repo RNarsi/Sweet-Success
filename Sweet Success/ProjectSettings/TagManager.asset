@@ -26,6 +26,13 @@ TagManager:
   - Blueberries
   - Step
   - Tap
+  - Knob
+  - Tap1
+  - Tap2
+  - Tap3
+  - Tap4
+  - Tap5
+  - Tap6
   layers:
   - Default
   - TransparentFX

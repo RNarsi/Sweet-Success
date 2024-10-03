@@ -41,8 +41,29 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public ParticleSystem RunningWater;
     public GameObject WaterFlow;
+    public ParticleSystem RunningWater1;
+    public GameObject WaterFlow1;
+    public ParticleSystem RunningWater2;
+    public GameObject WaterFlow2;
+    public ParticleSystem RunningWater3;
+    public GameObject WaterFlow3;
+    public ParticleSystem RunningWater4;
+    public GameObject WaterFlow4;
+    public ParticleSystem RunningWater5;
+    public GameObject WaterFlow5;
+    public ParticleSystem RunningWater6;
+    public GameObject WaterFlow6;
     public bool TapOpen = false;
     public bool TapClosed = true;
+
+    [Header("STOVE SETTINGS")]
+    [Space(5)]
+    public ParticleSystem StoveFlame;
+    public GameObject GasFlame;
+    public ParticleSystem StoveFlame1;
+    public GameObject GasFlame1;
+    public bool KnobOn = false;
+    public bool KnobOff = true;
 
     [Header("PLACE SETTINGS")]
     [Space(5)]
@@ -384,7 +405,167 @@ public class FirstPersonControls : MonoBehaviour
                 }
             }
         }
-       
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Tap1");
+
+            if (hit.collider.CompareTag("Tap1"))
+            {
+                if (TapOpen)
+                {
+                    TapOpen = false;
+                    TapClosed = true;
+                    WaterFlow1.gameObject.SetActive(false);
+                    RunningWater1.Stop();
+                }
+                else
+                {
+                    TapOpen = true;
+                    TapClosed = false;
+                    WaterFlow1.gameObject.SetActive(true);
+                    RunningWater1.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Tap2");
+
+            if (hit.collider.CompareTag("Tap2"))
+            {
+                if (TapOpen)
+                {
+                    TapOpen = false;
+                    TapClosed = true;
+                    WaterFlow2.gameObject.SetActive(false);
+                    RunningWater2.Stop();
+                }
+                else
+                {
+                    TapOpen = true;
+                    TapClosed = false;
+                    WaterFlow2.gameObject.SetActive(true);
+                    RunningWater2.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Tap3");
+
+            if (hit.collider.CompareTag("Tap3"))
+            {
+                if (TapOpen)
+                {
+                    TapOpen = false;
+                    TapClosed = true;
+                    WaterFlow3.gameObject.SetActive(false);
+                    RunningWater3.Stop();
+                }
+                else
+                {
+                    TapOpen = true;
+                    TapClosed = false;
+                    WaterFlow3.gameObject.SetActive(true);
+                    RunningWater3.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Tap4");
+
+            if (hit.collider.CompareTag("Tap4"))
+            {
+                if (TapOpen)
+                {
+                    TapOpen = false;
+                    TapClosed = true;
+                    WaterFlow4.gameObject.SetActive(false);
+                    RunningWater4.Stop();
+                }
+                else
+                {
+                    TapOpen = true;
+                    TapClosed = false;
+                    WaterFlow4.gameObject.SetActive(true);
+                    RunningWater4.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Tap5");
+
+            if (hit.collider.CompareTag("Tap5"))
+            {
+                if (TapOpen)
+                {
+                    TapOpen = false;
+                    TapClosed = true;
+                    WaterFlow5.gameObject.SetActive(false);
+                    RunningWater5.Stop();
+                }
+                else
+                {
+                    TapOpen = true;
+                    TapClosed = false;
+                    WaterFlow5.gameObject.SetActive(true);
+                    RunningWater5.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Tap6");
+
+            if (hit.collider.CompareTag("Tap6"))
+            {
+                if (TapOpen)
+                {
+                    TapOpen = false;
+                    TapClosed = true;
+                    WaterFlow6.gameObject.SetActive(false);
+                    RunningWater6.Stop();
+                }
+                else
+                {
+                    TapOpen = true;
+                    TapClosed = false;
+                    WaterFlow6.gameObject.SetActive(true);
+                    RunningWater6.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Knob");
+
+            if (hit.collider.CompareTag("Knob"))
+            {
+                if (KnobOn)
+                {
+                    KnobOn = false;
+                    KnobOff = true;
+                    GasFlame.gameObject.SetActive(false);
+                    StoveFlame.Stop();
+                }
+                else
+                {
+                    KnobOn = true;
+                    KnobOff = false;
+                    GasFlame.gameObject.SetActive(true);
+                    StoveFlame.Play();
+                }
+            }
+        }
     }
    
 
