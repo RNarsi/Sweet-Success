@@ -62,6 +62,73 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject GasFlame;
     public ParticleSystem StoveFlame1;
     public GameObject GasFlame1;
+    public ParticleSystem StoveFlame2;
+    public GameObject GasFlame2;
+    public ParticleSystem StoveFlame3;
+    public GameObject GasFlame3;
+    public ParticleSystem StoveFlame4;
+    public GameObject GasFlame4;
+    public ParticleSystem StoveFlame5;
+    public GameObject GasFlame5;
+    public ParticleSystem StoveFlame6;
+    public GameObject GasFlame6;
+    public ParticleSystem StoveFlame7;
+    public GameObject GasFlame7;
+    public ParticleSystem StoveFlame8;
+    public GameObject GasFlame8;
+    public ParticleSystem StoveFlame9;
+    public GameObject GasFlame9;
+    public ParticleSystem StoveFlame10;
+    public GameObject GasFlame10;
+    public ParticleSystem StoveFlame11;
+    public GameObject GasFlame11;
+    public ParticleSystem StoveFlame12;
+    public GameObject GasFlame12;
+    public ParticleSystem StoveFlame13;
+    public GameObject GasFlame13;
+    public ParticleSystem StoveFlame14;
+    public GameObject GasFlame14;
+    public ParticleSystem StoveFlame15;
+    public GameObject GasFlame15;
+    public ParticleSystem StoveFlame16;
+    public GameObject GasFlame16;
+    public ParticleSystem StoveFlame17;
+    public GameObject GasFlame17;
+    public ParticleSystem StoveFlame18;
+    public GameObject GasFlame18;
+    public ParticleSystem StoveFlame19;
+    public GameObject GasFlame19;
+    public ParticleSystem StoveFlame20;
+    public GameObject GasFlame20;
+    public ParticleSystem StoveFlame21;
+    public GameObject GasFlame21;
+    public ParticleSystem StoveFlame22;
+    public GameObject GasFlame22;
+    public ParticleSystem StoveFlame23;
+    public GameObject GasFlame23;
+    public ParticleSystem StoveFlame24;
+    public GameObject GasFlame24;
+    public ParticleSystem StoveFlame25;
+    public GameObject GasFlame25;
+    public ParticleSystem StoveFlame26;
+    public GameObject GasFlame26;
+    public ParticleSystem StoveFlame27;
+    public GameObject GasFlame27;
+    public ParticleSystem StoveFlame28;
+    public GameObject GasFlame28;
+    public ParticleSystem StoveFlame29;
+    public GameObject GasFlame29;
+    public ParticleSystem StoveFlame30;
+    public GameObject GasFlame30;
+    public ParticleSystem StoveFlame31;
+    public GameObject GasFlame31;
+    public ParticleSystem StoveFlame32;
+    public GameObject GasFlame32;
+    public ParticleSystem StoveFlame33;
+    public GameObject GasFlame33;
+    public ParticleSystem StoveFlame34;
+    public GameObject GasFlame34;
+    
     public bool KnobOn = false;
     public bool KnobOff = true;
 
@@ -555,6 +622,10 @@ public class FirstPersonControls : MonoBehaviour
                     KnobOn = false;
                     KnobOff = true;
                     GasFlame.gameObject.SetActive(false);
+                    GasFlame1.gameObject.SetActive(false);
+                    GasFlame2.gameObject.SetActive(false);
+                    GasFlame3.gameObject.SetActive(false);
+                    GasFlame4.gameObject.SetActive(false);
                     StoveFlame.Stop();
                 }
                 else
@@ -562,6 +633,196 @@ public class FirstPersonControls : MonoBehaviour
                     KnobOn = true;
                     KnobOff = false;
                     GasFlame.gameObject.SetActive(true);
+                    GasFlame1.gameObject.SetActive(true);
+                    GasFlame2 .gameObject.SetActive(true);
+                    GasFlame3.gameObject.SetActive(true);
+                    GasFlame4.gameObject.SetActive(true);
+                    StoveFlame.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Knob1");
+
+            if (hit.collider.CompareTag("Knob1"))
+            {
+                if (KnobOn)
+                {
+                    KnobOn = false;
+                    KnobOff = true;
+                    GasFlame5.gameObject.SetActive(false);
+                    GasFlame6.gameObject.SetActive(false);
+                    GasFlame7.gameObject.SetActive(false);
+                    GasFlame8.gameObject.SetActive(false);
+                    GasFlame9.gameObject.SetActive(false);
+                    StoveFlame.Stop();
+                }
+                else
+                {
+                    KnobOn = true;
+                    KnobOff = false;
+                    GasFlame5.gameObject.SetActive(true);
+                    GasFlame6.gameObject.SetActive(true);
+                    GasFlame7.gameObject.SetActive(true);
+                    GasFlame8.gameObject.SetActive(true);
+                    GasFlame9.gameObject.SetActive(true);
+                    StoveFlame.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Knob2");
+
+            if (hit.collider.CompareTag("Knob2"))
+            {
+                if (KnobOn)
+                {
+                    KnobOn = false;
+                    KnobOff = true;
+                    GasFlame10.gameObject.SetActive(false);
+                    GasFlame11.gameObject.SetActive(false);
+                    GasFlame12.gameObject.SetActive(false);
+                    GasFlame13.gameObject.SetActive(false);
+                    GasFlame14.gameObject.SetActive(false);
+                    StoveFlame.Stop();
+                }
+                else
+                {
+                    KnobOn = true;
+                    KnobOff = false;
+                    GasFlame10.gameObject.SetActive(true);
+                    GasFlame11.gameObject.SetActive(true);
+                    GasFlame12.gameObject.SetActive(true);
+                    GasFlame13.gameObject.SetActive(true);
+                    GasFlame14.gameObject.SetActive(true);
+                    StoveFlame.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Knob3");
+
+            if (hit.collider.CompareTag("Knob3"))
+            {
+                if (KnobOn)
+                {
+                    KnobOn = false;
+                    KnobOff = true;
+                    GasFlame15.gameObject.SetActive(false);
+                    GasFlame16.gameObject.SetActive(false);
+                    GasFlame17.gameObject.SetActive(false);
+                    GasFlame18.gameObject.SetActive(false);
+                    GasFlame19.gameObject.SetActive(false);
+                    StoveFlame.Stop();
+                }
+                else
+                {
+                    KnobOn = true;
+                    KnobOff = false;
+                    GasFlame15.gameObject.SetActive(true);
+                    GasFlame16.gameObject.SetActive(true);
+                    GasFlame17.gameObject.SetActive(true);
+                    GasFlame18.gameObject.SetActive(true);
+                    GasFlame19.gameObject.SetActive(true);
+                    StoveFlame.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("KnobFour");
+
+            if (hit.collider.CompareTag("KnobFour"))
+            {
+                if (KnobOn)
+                {
+                    KnobOn = false;
+                    KnobOff = true;
+                    GasFlame20.gameObject.SetActive(false);
+                    GasFlame21.gameObject.SetActive(false);
+                    GasFlame22.gameObject.SetActive(false);
+                    GasFlame23.gameObject.SetActive(false);
+                    GasFlame24.gameObject.SetActive(false);
+                    StoveFlame.Stop();
+                }
+                else
+                {
+                    KnobOn = true;
+                    KnobOff = false;
+                    GasFlame20.gameObject.SetActive(true);
+                    GasFlame21.gameObject.SetActive(true);
+                    GasFlame22.gameObject.SetActive(true);
+                    GasFlame23.gameObject.SetActive(true);
+                    GasFlame24.gameObject.SetActive(true);
+                    StoveFlame.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("KnobFive");
+
+            if (hit.collider.CompareTag("KnobFive"))
+            {
+                if (KnobOn)
+                {
+                    KnobOn = false;
+                    KnobOff = true;
+                    GasFlame25.gameObject.SetActive(false);
+                    GasFlame26.gameObject.SetActive(false);
+                    GasFlame27.gameObject.SetActive(false);
+                    GasFlame28.gameObject.SetActive(false);
+                    GasFlame29.gameObject.SetActive(false);
+                    StoveFlame.Stop();
+                }
+                else
+                {
+                    KnobOn = true;
+                    KnobOff = false;
+                    GasFlame25.gameObject.SetActive(true);
+                    GasFlame26.gameObject.SetActive(true);
+                    GasFlame27.gameObject.SetActive(true);
+                    GasFlame28.gameObject.SetActive(true);
+                    GasFlame29.gameObject.SetActive(true);
+                    StoveFlame.Play();
+                }
+            }
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("Knobvi");
+
+            if (hit.collider.CompareTag("Knobvi"))
+            {
+                if (KnobOn)
+                {
+                    KnobOn = false;
+                    KnobOff = true;
+                    GasFlame30.gameObject.SetActive(false);
+                    GasFlame31.gameObject.SetActive(false);
+                    GasFlame32.gameObject.SetActive(false);
+                    GasFlame33.gameObject.SetActive(false);
+                    GasFlame34.gameObject.SetActive(false);
+                    StoveFlame.Stop();
+                }
+                else
+                {
+                    KnobOn = true;
+                    KnobOff = false;
+                    GasFlame30.gameObject.SetActive(true);
+                    GasFlame31.gameObject.SetActive(true);
+                    GasFlame32.gameObject.SetActive(true);
+                    GasFlame33.gameObject.SetActive(true);
+                    GasFlame34.gameObject.SetActive(true);
                     StoveFlame.Play();
                 }
             }

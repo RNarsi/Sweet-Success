@@ -33,6 +33,10 @@ TagManager:
   - Tap4
   - Tap5
   - Tap6
+  - Knob1
+  - Knob2
+  - Knob3
+  - knob4
   layers:
   - Default
   - TransparentFX
