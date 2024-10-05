@@ -36,7 +36,9 @@ TagManager:
   - Knob1
   - Knob2
   - Knob3
-  - knob4
+  - KnobFour
+  - KnobFive
+  - Knobvi
   layers:
   - Default
   - TransparentFX
