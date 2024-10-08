@@ -25,6 +25,20 @@ TagManager:
   - Chocolate Chips
   - Blueberries
   - Step
+  - Tap
+  - Knob
+  - Tap1
+  - Tap2
+  - Tap3
+  - Tap4
+  - Tap5
+  - Tap6
+  - Knob1
+  - Knob2
+  - Knob3
+  - KnobFour
+  - KnobFive
+  - Knobvi
   layers:
   - Default
   - TransparentFX
