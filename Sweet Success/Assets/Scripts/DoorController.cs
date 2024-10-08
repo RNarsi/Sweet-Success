@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class openDoors : MonoBehaviour
+/*
+public class DoorController : MonoBehaviour
 {
-    private bool Open;
-
-    private void Update()
+    private void OnTriggerStay(Collider other)
     {
-        if (Open)
+        if(other.tag == "FridgeDoor")
         {
-            transform.Rotate(0, 0, 90);
+            Animator anim = other.GetComponentInChildren<Animator>();  //check for tag then will look for animator in children 
+            if(Input.GetKeyDown(KeyCode.F))
+            anim.SetTrigger("OpenClose");
         }
     }
-
-}
+}*/

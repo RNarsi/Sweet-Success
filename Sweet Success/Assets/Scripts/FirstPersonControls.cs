@@ -460,6 +460,15 @@ public class FirstPersonControls : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
+            hit.collider.CompareTag("FridgeDoor");
+        }
+        if (hit.collider.CompareTag("FridgeDoor"))
+        {
+            StartCoroutine(SlideDoor(hit.collider.gameObject));
+        }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
             hit.collider.CompareTag("Tap");
 
             if (hit.collider.CompareTag("Tap"))
@@ -835,9 +844,10 @@ public class FirstPersonControls : MonoBehaviour
                 }
             }
         }
+        
     }
-   
 
+         
     private IEnumerator SlideDoor(GameObject door)
     {
         float openAmount = 5f; 
