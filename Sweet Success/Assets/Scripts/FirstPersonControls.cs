@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
@@ -25,7 +27,11 @@ public class FirstPersonControls : MonoBehaviour
     private Vector3 velocity; // Velocity of the player
 
     private CharacterController characterController; // Reference to the CharacterController component
-    
+
+    [Header("UI SETTINGS")]
+    [Space(5)]
+    public TextMeshProUGUI pickUpText;
+
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
     public Transform holdPosition; // Position where the picked-up object will be held
@@ -248,6 +254,8 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
+        CheckForPickUp(); // Check for pickup objects every frame
+
 
         if (Open && Hinge.rotation.z < 0.2f)
         {
@@ -1208,5 +1216,32 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
+    private void CheckForPickUp()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Perform raycast to detect objects
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the object has the "PickUp" tag
+            if (hit.collider.CompareTag("PickUp"))
+            {
+                // Display the pick-up text
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name;  //name is the name of the game object - rename it 
+            }
+            else
+            {
+                // Hide the pick-up text if not looking at a "PickUp" object
+                pickUpText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            // Hide the text if not looking at any object
+            pickUpText.gameObject.SetActive(false);
+        }
+    }
 
 }
