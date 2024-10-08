@@ -386,7 +386,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 772136487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &658997619
@@ -445,6 +446,7 @@ GameObject:
   - component: {fileID: 772136486}
   - component: {fileID: 772136485}
   - component: {fileID: 772136484}
+  - component: {fileID: 772136488}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -528,13 +530,30 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1564093289}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 658997618}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &772136488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772136483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76bc82b0440e57b44a078ac3bd156f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 658997617}
+  rotationSpeed: 45
+  UIElements:
+  - {fileID: 1564093288}
+  initialButton: {fileID: 1564093288}
 --- !u!1 &1316365794
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,9 +720,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.8490566, g: 0.6763617, b: 0.4341402, a: 1}
+    m_PressedColor: {r: 0.735849, g: 0.50360507, b: 0.30405834, a: 1}
+    m_SelectedColor: {r: 0.7433963, g: 0.7433963, b: 0.7433963, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -722,7 +741,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1564093291}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772136488}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopCoroutine
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1564093291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,10 +1019,9 @@ BoxCollider:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 658997618}
   - {fileID: 1726403658}
   - {fileID: 462268947}
-  - {fileID: 772136487}
+  - {fileID: 658997618}
   - {fileID: 2794547748515511883}
   - {fileID: 1316365798}
   - {fileID: 594117389}
