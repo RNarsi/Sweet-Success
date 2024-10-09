@@ -444,11 +444,17 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray,out hit, pickUpRange))
         {
             hit.collider.CompareTag("Door");
+
+            if (hit.collider.CompareTag("Door"))
+            {
+                StartCoroutine(SlideDoor(hit.collider.gameObject));
+            }
+            else
+            {
+                Open = false;
+            }
         }
-        if (hit.collider.CompareTag("Door"))
-        {
-            StartCoroutine(SlideDoor(hit.collider.gameObject));
-        }
+       
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
