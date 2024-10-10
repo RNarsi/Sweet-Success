@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+/*
 public class ItemNameDisplay : MonoBehaviour
 {
 
@@ -53,3 +53,4 @@ public class ItemNameDisplay : MonoBehaviour
     }
     
 }
+*/

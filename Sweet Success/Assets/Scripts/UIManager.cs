@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject initialButton;
     public GameObject pausePage;
     public GameObject resumePage;
-    public GameObject quizPage;
+    public GameObject quitPage;
     
 
     // Method to rotate the camera left by 90 degrees

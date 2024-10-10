@@ -18,7 +18,7 @@ public class FirstPersonControls : MonoBehaviour
     public float lookSpeed; // Sensitivity of the camera movement // looks around
     public float gravity = -9.81f; // Gravity value
     public Transform playerCamera; // Reference to the player's camera // big T - transform of camera ,diff game object , script on player // can refer to any other game objects transform
-                                  
+
     // Private variables to store input values and the character controller                              
     //action map - we put vector 2 
     private Vector2 moveInput; // Stores the movement input from the player
@@ -38,6 +38,11 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public Transform Hinge;
     private bool Open;
+
+    [Header("UI SETTINGS")]
+    public TextMeshProUGUI pickUpText;
+    public GameObject ingredientsText;
+    public GameObject useText;
 
     [Header("TAP SETTINGS")]
     [Space(5)]
@@ -130,7 +135,7 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject GasFlame33;
     public ParticleSystem StoveFlame34;
     public GameObject GasFlame34;
-    
+
     public bool KnobOn = false;
     public bool KnobOff = true;
 
@@ -138,7 +143,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
 
     //  private bool HoldingItems = false;
-    
+
     private bool holdingPickUp = false;
 
     public GameObject crackedEggPrefab; // crackedEgg prefab for placing
@@ -179,7 +184,7 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject cookingOilDropsPrefab; // prefab for placing
     public Transform cookingOilDropsSpawnPoint;// Point from which it will spawn
     private bool holdingCookingOil = false;
-    
+
     [Space(5)]
     public GameObject vanillaExtractDropsPrefab; // prefab for placing
     public Transform vanillaExtractDropsSpawnPoint;// Point from which it will spawn
@@ -192,16 +197,16 @@ public class FirstPersonControls : MonoBehaviour
 
     [Space(5)]
     public GameObject blueberryPrefab; // prefab for placing
-    public Transform  blueberrySpawnPoint;// Point from which it will spawn
+    public Transform blueberrySpawnPoint;// Point from which it will spawn
     private bool holdingBlueberries = false;
 
     [Space(5)]
     public GameObject bakingSodaPowderPrefab; // prefab for placing
     public Transform bakingSodaPowderSpawnPoint;// Point from which it will spawn
-    private bool holdingBakingSoda= false;
+    private bool holdingBakingSoda = false;
 
     private void Awake()
-    {  
+    {
         //before any other scripts start method run
         // is for early setup
 
@@ -211,27 +216,27 @@ public class FirstPersonControls : MonoBehaviour
     }
     private void OnEnable()
     {
-            //enables input actions
-            //listens for player input
+        //enables input actions
+        //listens for player input
 
-            // Create a new instance of the input actions    // "Controls" is the name of the actionmap we created
+        // Create a new instance of the input actions    // "Controls" is the name of the actionmap we created
         var playerInput = new Controls();
 
         // Enable the input actions
         playerInput.Player.Enable();
 
         // Subscribe to the movement input events      
-                                                                                                 // "Player" is the name action map -we named it Player  
-                                                                                                 //Movement is the binding
+        // "Player" is the name action map -we named it Player  
+        //Movement is the binding
         playerInput.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>(); // Update moveInput when movement input is performed 
-                                                                                                // Lambda expression(shorter way)
-                                                                                                //has the player touched WASD or joystick or arrows? 
-                                                                                                //ctx - context, refers to the key bindings
+                                                                                              // Lambda expression(shorter way)
+                                                                                              //has the player touched WASD or joystick or arrows? 
+                                                                                              //ctx - context, refers to the key bindings
         playerInput.Player.Movement.canceled += ctx => moveInput = Vector2.zero; // Reset moveInput when movement input is canceled
-                                                                                  //no input by player - cancels the context that means no movement
-      
-          // Subscribe to the look input events
-                                                                                                // action is LookAround in action map
+                                                                                 //no input by player - cancels the context that means no movement
+
+        // Subscribe to the look input events
+        // action is LookAround in action map
         playerInput.Player.LookAround.performed += ctx => lookInput = ctx.ReadValue<Vector2>(); // Update lookInput when look input is performed
         playerInput.Player.LookAround.canceled += ctx => lookInput = Vector2.zero; // Reset lookInput when look input is canceled
 
@@ -250,6 +255,9 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
+        CheckForInteraction();
+        CheckForPickUp();
+        CheckForIngredients();
 
     }
 
@@ -280,10 +288,10 @@ public class FirstPersonControls : MonoBehaviour
         // Vertical rotation: Adjust the vertical look rotation and clamp it to prevent flipping
         verticalLookRotation -= LookY;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f); // restricting up and down looking
- 
+
         // Apply the clamped vertical rotation to the player camera // attach to camera not player coz we use camera to look around
         playerCamera.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
-        
+
     }
 
     public void ApplyGravity()
@@ -332,7 +340,7 @@ public class FirstPersonControls : MonoBehaviour
             Rigidbody rb = sugarCubes.GetComponent<Rigidbody>();
             rb.velocity = sugarCubesSpawnPoint.forward * 0.1f;
         }
-        if (holdingSalt == true) 
+        if (holdingSalt == true)
         {
             // Instantiateat the spawn point
             GameObject saltGrains = Instantiate(saltGrainsPrefab, saltGrainsSpawnPoint.position, saltGrainsSpawnPoint.rotation);
@@ -341,23 +349,23 @@ public class FirstPersonControls : MonoBehaviour
             Rigidbody rb = saltGrains.GetComponent<Rigidbody>();
             rb.velocity = saltGrainsSpawnPoint.forward * 0.1f;
         }
-        if (holdingFlour == true) 
+        if (holdingFlour == true)
         {
-           // Instantiate at the spawn point
-           GameObject flourPowder = Instantiate(flourPowderPrefab, flourPowderSpawnPoint.position, flourPowderSpawnPoint.rotation);
+            // Instantiate at the spawn point
+            GameObject flourPowder = Instantiate(flourPowderPrefab, flourPowderSpawnPoint.position, flourPowderSpawnPoint.rotation);
 
-           // Get the Rigidbody component and set its velocity
-           Rigidbody rb = flourPowder.GetComponent<Rigidbody>();
-           rb.velocity = flourPowderSpawnPoint.forward * 0.1f;
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = flourPowder.GetComponent<Rigidbody>();
+            rb.velocity = flourPowderSpawnPoint.forward * 0.1f;
         }
-        if (holdingWater == true) 
+        if (holdingWater == true)
         {
-           // Instantiate at the spawn point
-           GameObject waterDrops = Instantiate(waterDropsPrefab, waterDropsSpawnPoint.position, waterDropsSpawnPoint.rotation);
+            // Instantiate at the spawn point
+            GameObject waterDrops = Instantiate(waterDropsPrefab, waterDropsSpawnPoint.position, waterDropsSpawnPoint.rotation);
 
-           // Get the Rigidbody component and set its velocity
-           Rigidbody rb = waterDrops.GetComponent<Rigidbody>();
-           rb.velocity = waterDropsSpawnPoint.forward * 0.1f;
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = waterDrops.GetComponent<Rigidbody>();
+            rb.velocity = waterDropsSpawnPoint.forward * 0.1f;
         }
         if (holdingMilk == true)
         {
@@ -368,54 +376,54 @@ public class FirstPersonControls : MonoBehaviour
             Rigidbody rb = milkDrops.GetComponent<Rigidbody>();
             rb.velocity = milkDropsSpawnPoint.forward * 0.1f;
         }
-        if (holdingBakingSoda == true) 
+        if (holdingBakingSoda == true)
         {
-           // Instantiate at the spawn point
-           GameObject bakingSodaPowder = Instantiate(bakingSodaPowderPrefab, bakingSodaPowderSpawnPoint.position, bakingSodaPowderSpawnPoint.rotation);
+            // Instantiate at the spawn point
+            GameObject bakingSodaPowder = Instantiate(bakingSodaPowderPrefab, bakingSodaPowderSpawnPoint.position, bakingSodaPowderSpawnPoint.rotation);
 
-           // Get the Rigidbody component and set its velocity
-           Rigidbody rb = bakingSodaPowder.GetComponent<Rigidbody>();
-           rb.velocity = bakingSodaPowderSpawnPoint.forward * 0.1f;
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = bakingSodaPowder.GetComponent<Rigidbody>();
+            rb.velocity = bakingSodaPowderSpawnPoint.forward * 0.1f;
         }
-        if (holdingCookingOil == true) 
+        if (holdingCookingOil == true)
         {
-           // Instantiate at the spawn point
-           GameObject cookingOilDrops = Instantiate(cookingOilDropsPrefab, cookingOilDropsSpawnPoint.position, cookingOilDropsSpawnPoint.rotation);
+            // Instantiate at the spawn point
+            GameObject cookingOilDrops = Instantiate(cookingOilDropsPrefab, cookingOilDropsSpawnPoint.position, cookingOilDropsSpawnPoint.rotation);
 
-           // Get the Rigidbody component and set its velocity
-           Rigidbody rb = cookingOilDrops.GetComponent<Rigidbody>();
-           rb.velocity = cookingOilDropsSpawnPoint.forward * 0.1f;
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = cookingOilDrops.GetComponent<Rigidbody>();
+            rb.velocity = cookingOilDropsSpawnPoint.forward * 0.1f;
         }
-        if (holdingVanillaExtract == true) 
+        if (holdingVanillaExtract == true)
         {
-          // Instantiate at the spawn point
-          GameObject vanillaExtractDrops = Instantiate(vanillaExtractDropsPrefab, vanillaExtractDropsSpawnPoint.position, vanillaExtractDropsSpawnPoint.rotation);
+            // Instantiate at the spawn point
+            GameObject vanillaExtractDrops = Instantiate(vanillaExtractDropsPrefab, vanillaExtractDropsSpawnPoint.position, vanillaExtractDropsSpawnPoint.rotation);
 
-          // Get the Rigidbody component and set its velocity
-          Rigidbody rb = vanillaExtractDrops.GetComponent<Rigidbody>();
-          rb.velocity = vanillaExtractDropsSpawnPoint.forward * 0.1f;
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = vanillaExtractDrops.GetComponent<Rigidbody>();
+            rb.velocity = vanillaExtractDropsSpawnPoint.forward * 0.1f;
         }
-        if (holdingChocolateChips == true) 
+        if (holdingChocolateChips == true)
         {
-           // Instantiate at the spawn point
-           GameObject chocoChips = Instantiate(chocoChipsPrefab, chocoChipsSpawnPoint.position, chocoChipsSpawnPoint.rotation);
+            // Instantiate at the spawn point
+            GameObject chocoChips = Instantiate(chocoChipsPrefab, chocoChipsSpawnPoint.position, chocoChipsSpawnPoint.rotation);
 
-           // Get the Rigidbody component and set its velocity
-           Rigidbody rb = chocoChips.GetComponent<Rigidbody>();
-           rb.velocity = chocoChipsSpawnPoint.forward * 0.1f;
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = chocoChips.GetComponent<Rigidbody>();
+            rb.velocity = chocoChipsSpawnPoint.forward * 0.1f;
         }
-        if (holdingBlueberries == true) 
+        if (holdingBlueberries == true)
         {
-          // Instantiate at the spawn point
-          GameObject blueberry = Instantiate(blueberryPrefab, blueberrySpawnPoint.position, blueberrySpawnPoint.rotation);
+            // Instantiate at the spawn point
+            GameObject blueberry = Instantiate(blueberryPrefab, blueberrySpawnPoint.position, blueberrySpawnPoint.rotation);
 
-          // Get the Rigidbody component and set its velocity
-          Rigidbody rb = blueberry.GetComponent<Rigidbody>();
-          rb.velocity = blueberrySpawnPoint.forward * 0.1f;
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = blueberry.GetComponent<Rigidbody>();
+            rb.velocity = blueberrySpawnPoint.forward * 0.1f;
         }
         else
         {
-          holdingPickUp = true;
+            holdingPickUp = true;
         }
     }
 
@@ -424,9 +432,9 @@ public class FirstPersonControls : MonoBehaviour
         Ray ray = new Ray(playerCamera.position, playerCamera.forward);
         RaycastHit hit;
 
-        Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f); 
+        Debug.DrawRay(playerCamera.position, playerCamera.forward * pickUpRange, Color.red, 2f);
 
-        if (Physics.Raycast(ray,out hit, pickUpRange))
+        if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             hit.collider.CompareTag("Door");
         }
@@ -628,7 +636,7 @@ public class FirstPersonControls : MonoBehaviour
                     KnobOff = false;
                     GasFlame.gameObject.SetActive(true);
                     GasFlame1.gameObject.SetActive(true);
-                    GasFlame2 .gameObject.SetActive(true);
+                    GasFlame2.gameObject.SetActive(true);
                     GasFlame3.gameObject.SetActive(true);
                     GasFlame4.gameObject.SetActive(true);
                     StoveFlame.Play();
@@ -821,18 +829,18 @@ public class FirstPersonControls : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
-         
+
     private IEnumerator SlideDoor(GameObject door)
     {
-        float openAmount = 5f; 
-        float openSpeed = 2f; 
-        Vector3 startPosition = door.transform.position;  
-        Vector3 endPosition = startPosition + Vector3.right * openAmount; 
+        float openAmount = 5f;
+        float openSpeed = 2f;
+        Vector3 startPosition = door.transform.position;
+        Vector3 endPosition = startPosition + Vector3.right * openAmount;
 
-       
+
         while (door.transform.position.x < endPosition.x)
         {
             door.transform.position = Vector3.MoveTowards(door.transform.position, endPosition, openSpeed * Time.deltaTime);
@@ -848,7 +856,7 @@ public class FirstPersonControls : MonoBehaviour
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; // Enable physics
             heldObject.transform.parent = null;
-           
+
         }
 
         // Perform a raycast from the camera's position forward
@@ -881,7 +889,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingFlour = false;
                 holdingWater = false;
                 holdingBakingSoda = false;
-                holdingCookingOil = false; 
+                holdingCookingOil = false;
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
@@ -898,25 +906,25 @@ public class FirstPersonControls : MonoBehaviour
                 heldObject.transform.rotation = holdPosition.rotation;
                 heldObject.transform.parent = holdPosition;
 
-               /* foreach (bool holdingThing in HoldingThingsArray) 
-                {
-                    holdingThing = false;
-                }
+                /* foreach (bool holdingThing in HoldingThingsArray) 
+                 {
+                     holdingThing = false;
+                 }
 
-                holdingButter = true;     */
+                 holdingButter = true;     */
 
                 holdingButter = true;
                 holdingSugar = false;
                 holdingEgg = false;
                 holdingPickUp = false;
                 holdingMilk = false;
-                holdingFlour =false;
-                holdingWater=false;
-                holdingBakingSoda=false;
-                holdingCookingOil=false;
-                holdingVanillaExtract=false;
-                holdingChocolateChips=false;
-                holdingBlueberries=false; 
+                holdingFlour = false;
+                holdingWater = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
             }
 
             if (hit.collider.CompareTag("Sugar"))
@@ -933,15 +941,15 @@ public class FirstPersonControls : MonoBehaviour
                 holdingSugar = true;
                 holdingEgg = false;
                 holdingButter = false;
-                holdingPickUp=false;
+                holdingPickUp = false;
                 holdingMilk = false;
-                holdingFlour =false;
-                holdingWater=false;
-                holdingBakingSoda=false;
-                holdingCookingOil=false;
-                holdingVanillaExtract=false;
-                holdingChocolateChips=false;
-                holdingBlueberries=false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
 
             }
             if (hit.collider.CompareTag("Salt"))
@@ -972,14 +980,14 @@ public class FirstPersonControls : MonoBehaviour
             }
             if (hit.collider.CompareTag("Flour"))
             {
-               // Pick up the object
-               heldObject = hit.collider.gameObject;
-               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-               // Attach the object to the hold position
-               heldObject.transform.position = holdPosition.position;
-               heldObject.transform.rotation = holdPosition.rotation;
-               heldObject.transform.parent = holdPosition;
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
                 holdingFlour = true;
                 holdingEgg = false;
@@ -1010,7 +1018,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingWater = true;
                 holdingEgg = false;
                 holdingButter = false;
-                holdingSugar = false; 
+                holdingSugar = false;
                 holdingSalt = false;
                 holdingFlour = false;
                 holdingMilk = false;
@@ -1048,14 +1056,14 @@ public class FirstPersonControls : MonoBehaviour
             }
             if (hit.collider.CompareTag("Baking Soda"))
             {
-               // Pick up the object
-               heldObject = hit.collider.gameObject;
-               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-               // Attach the object to the hold position
-               heldObject.transform.position = holdPosition.position;
-               heldObject.transform.rotation = holdPosition.rotation;
-               heldObject.transform.parent = holdPosition;
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
                 holdingBakingSoda = true;
                 holdingEgg = false;
@@ -1100,14 +1108,14 @@ public class FirstPersonControls : MonoBehaviour
             }
             if (hit.collider.CompareTag("Vanilla Extract"))
             {
-               // Pick up the object
-               heldObject = hit.collider.gameObject;
-               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-               // Attach the object to the hold position
-               heldObject.transform.position = holdPosition.position;
-               heldObject.transform.rotation = holdPosition.rotation;
-               heldObject.transform.parent = holdPosition;
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
                 holdingVanillaExtract = true;
                 holdingEgg = false;
@@ -1126,14 +1134,14 @@ public class FirstPersonControls : MonoBehaviour
             }
             if (hit.collider.CompareTag("Chocolate Chips"))
             {
-               // Pick up the object
-               heldObject = hit.collider.gameObject;
-               heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
-               // Attach the object to the hold position
-               heldObject.transform.position = holdPosition.position;
-               heldObject.transform.rotation = holdPosition.rotation;
-               heldObject.transform.parent = holdPosition;
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
 
                 holdingChocolateChips = true;
                 holdingEgg = false;
@@ -1155,6 +1163,8 @@ public class FirstPersonControls : MonoBehaviour
                 // Pick up the object
                 heldObject = hit.collider.gameObject;
                 heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+
 
                 // Attach the object to the hold position
                 heldObject.transform.position = holdPosition.position;
@@ -1179,6 +1189,8 @@ public class FirstPersonControls : MonoBehaviour
             if (hit.collider.CompareTag("PickUp"))
             {
                 // Pick up the object
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to Interact ";
                 heldObject = hit.collider.gameObject;
                 heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
 
@@ -1200,7 +1212,103 @@ public class FirstPersonControls : MonoBehaviour
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
             }
+            else
+            {
+                // Hide the pick-up text if not looking at a interactable 
+                pickUpText.gameObject.SetActive(false);
+            }
+
         }
     }
+
+    private void CheckForIngredients()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Perform raycast to detect objects
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the object has the different interactables tags  
+            if (hit.collider.CompareTag("Butter") || hit.collider.CompareTag("Flour") || hit.collider.CompareTag("Egg") || hit.collider.CompareTag("Sugar") || hit.collider.CompareTag("Salt") || hit.collider.CompareTag("Water") || hit.collider.CompareTag("Baking Soda") || hit.collider.CompareTag("Cooking Oil") || hit.collider.CompareTag("Milk") || hit.collider.CompareTag("Vanilla Extract") || hit.collider.CompareTag("Chocolate Chips") || hit.collider.CompareTag("Blueberries"))
+            {
+
+                // Display the pick-up text
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to PickUp " + " Click 'P' to Pour ";
+            }
+            else
+            {
+                // Hide the pick-up text if not looking at a interactable 
+                pickUpText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            // Hide the text if not looking at any object
+            pickUpText.gameObject.SetActive(false);
+        }
+
+    }
+
+    private void CheckForInteraction()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Perform raycast to detect objects
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the object has the different interactables tags  
+            if (hit.collider.CompareTag("Tap") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Door"))
+            {
+
+                // Display the pick-up text
+                ingredientsText.gameObject.SetActive(true);
+                /*pickUpText.text = hit.collider.gameObject.name + " Click 'E' to PickUp ";*/
+            }
+            else
+            {
+                // Hide the pick-up text if not looking at a interactable 
+                ingredientsText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            // Hide the text if not looking at any object
+            ingredientsText.gameObject.SetActive(false);
+        }
+
+    }
+
+    private void CheckForPickUp()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Perform raycast to detect objects
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the object has the different interactables tags  
+            if (hit.collider.CompareTag("PickUp"))
+            {
+                // Display the pick-up text
+                useText.gameObject.SetActive(true);
+                /*pickUpText.text = hit.collider.gameObject.name + " Click 'E' to PickUp ";*/
+            }
+            else
+            {
+                // Hide the pick-up text if not looking at a interactable 
+                useText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            // Hide the text if not looking at any object
+            useText.gameObject.SetActive(false);
+        }
+
+    }
+
 
 }
