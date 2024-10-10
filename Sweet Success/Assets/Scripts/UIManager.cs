@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UIManager : MonoBehaviour
     private bool isRotating = false; // Track if the camera is currently rotating
     public GameObject[] UIElements;
     public GameObject initialButton;
+    
 
     // Method to rotate the camera left by 90 degrees
     public void RotateCameraLeftBy90Degrees()
@@ -45,5 +47,16 @@ public class UIManager : MonoBehaviour
             UIelement.SetActive(true);
         }
     }
+
+    public void Play()
+    {
+        SceneManager.LoadScene("SampleScene"); 
+    }
+    
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
 }
 

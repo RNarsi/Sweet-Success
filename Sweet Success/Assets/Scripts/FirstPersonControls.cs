@@ -28,10 +28,6 @@ public class FirstPersonControls : MonoBehaviour
 
     private CharacterController characterController; // Reference to the CharacterController component
 
-    [Header("UI SETTINGS")]
-    [Space(5)]
-    public TextMeshProUGUI pickUpText;
-
     [Header("PICKING UP SETTINGS")]
     [Space(5)]
     public Transform holdPosition; // Position where the picked-up object will be held
@@ -254,26 +250,7 @@ public class FirstPersonControls : MonoBehaviour
         Move();
         LookAround();
         ApplyGravity();
-        CheckForPickUp(); // Check for pickup objects every frame
 
-
-        if (Open && Hinge.rotation.z < 0.2f)
-        {
-            Hinge.Rotate(0, 0, -90 * Time.deltaTime);
-        }
-        else if (Hinge.rotation.z > 0.2f)
-        {
-            Open = false;
-        }
-        Debug.Log(Hinge.rotation.z);
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.collider.gameObject.CompareTag("Step"))
-        {
-            Open = true;
-        }
     }
 
     public void Move()
@@ -1223,34 +1200,6 @@ public class FirstPersonControls : MonoBehaviour
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
             }
-        }
-    }
-
-    private void CheckForPickUp()
-    {
-        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
-        RaycastHit hit;
-
-        // Perform raycast to detect objects
-        if (Physics.Raycast(ray, out hit, pickUpRange))
-        {
-            // Check if the object has the "PickUp" tag
-            if (hit.collider.CompareTag("PickUp"))
-            {
-                // Display the pick-up text
-                pickUpText.gameObject.SetActive(true);
-                pickUpText.text = hit.collider.gameObject.name;  //name is the name of the game object - rename it 
-            }
-            else
-            {
-                // Hide the pick-up text if not looking at a "PickUp" object
-                pickUpText.gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            // Hide the text if not looking at any object
-            pickUpText.gameObject.SetActive(false);
         }
     }
 

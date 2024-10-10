@@ -9,7 +9,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField]
     private float m_MovementSpeed = 5f;
     [SerializeField]
-    private Transform m_PlayerCamera = null;
+    public Transform m_PlayerCamera = null;
     [SerializeField]
     private bool m_MoveWithMouse = true;
 
