@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     private bool isRotating = false; // Track if the camera is currently rotating
     public GameObject[] UIElements;
     public GameObject initialButton;
+    public GameObject pausePage;
+    public GameObject resumePage;
+    public GameObject quizPage;
     
 
     // Method to rotate the camera left by 90 degrees
@@ -58,5 +61,16 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
+    public void Home()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void Quit()
+    {
+    Application.Quit();
+    }
 }
+
+
 
