@@ -7,6 +7,7 @@ public class TimerController : MonoBehaviour
 {
     public Image timer_linear_image;
     public GameObject restart_game_textholder;
+    public GameObject restartMenu;
     float time_remaining;
     public float max_time = 900.0f;
 
@@ -27,7 +28,7 @@ public class TimerController : MonoBehaviour
         }
         else    //time is 0 and we want to display the text 
         {
-            restart_game_textholder.SetActive(true);
+            restartMenu.SetActive(true);
 
         }
 

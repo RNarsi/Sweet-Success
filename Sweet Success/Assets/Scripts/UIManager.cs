@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class UIManager : MonoBehaviour
     public float rotationSpeed = 1f; // Speed at which the camera rotates
     private bool isRotating = false; // Track if the camera is currently rotating
     public GameObject[] UIElements;
+    private Controls playerInput;
     public GameObject initialButton;
     public GameObject pausePage;
     public GameObject resumePage;
@@ -70,7 +72,16 @@ public class UIManager : MonoBehaviour
     {
     Application.Quit();
     }
+
+    public void Pause()
+    {
+        pausePage.SetActive(true);
+        playerInput.Disable();
+    }
+    public void Resume()
+    {
+        pausePage.SetActive(false);
+        playerInput.Player.Enable();
+    }
+
 }
-
-
-
