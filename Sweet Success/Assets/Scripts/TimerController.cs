@@ -8,7 +8,7 @@ public class TimerController : MonoBehaviour
     public Image timer_linear_image;
     public GameObject restart_game_textholder;
     public GameObject restartMenu;
-    float time_remaining;
+    public float time_remaining;
     public float max_time = 900.0f;
 
 

@@ -554,8 +554,6 @@ MonoBehaviour:
   - {fileID: 1564093288}
   initialButton: {fileID: 1564093288}
   pausePage: {fileID: 0}
-  resumePage: {fileID: 0}
-  quizPage: {fileID: 0}
 --- !u!1 &1316365794
 GameObject:
   m_ObjectHideFlags: 0

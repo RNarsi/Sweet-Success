@@ -13,9 +13,10 @@ public class UIManager : MonoBehaviour
     private Controls playerInput;
     public GameObject initialButton;
     public GameObject pausePage;
-    public GameObject resumePage;
-    public GameObject quitPage;
-    
+    //public GameObject resumePage;
+    //public GameObject quitPage;
+
+    bool GamePaused;
 
     // Method to rotate the camera left by 90 degrees
     public void RotateCameraLeftBy90Degrees()
@@ -24,6 +25,25 @@ public class UIManager : MonoBehaviour
         {
             StartCoroutine(RotateCameraCoroutine(90f));
         }
+    }
+
+    private void Start()
+    {
+        GamePaused = false;
+    }
+
+    private void Update()
+    {
+        if (GamePaused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+       
+
     }
 
     // Coroutine to smoothly rotate the camera
@@ -70,18 +90,18 @@ public class UIManager : MonoBehaviour
 
     public void Quit()
     {
-    Application.Quit();
+    SceneManager.LoadScene("Main Menu");
     }
 
     public void Pause()
     {
+        GamePaused = true;
         pausePage.SetActive(true);
         playerInput.Disable();
     }
-    public void Resume()
+    public void Restart()
     {
-        pausePage.SetActive(false);
-        playerInput.Player.Enable();
+        SceneManager.LoadScene("SampleScene");
     }
 
 }
