@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
     {
         GamePaused = true;
         pausePage.SetActive(true);
-        playerInput.Disable();
+       // playerInput.Disable();
     }
     public void Restart()
     {
