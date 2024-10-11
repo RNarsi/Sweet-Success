@@ -14,6 +14,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     // Public variables to set movement and look speed, and the player camera
 
+   
     public float moveSpeed; // Speed at which the player moves 
     public float lookSpeed; // Sensitivity of the camera movement // looks around
     public float gravity = -9.81f; // Gravity value
@@ -33,6 +34,8 @@ public class FirstPersonControls : MonoBehaviour
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
     public float pickUpRange = 3f; // Range within which objects can be picked up
+    private bool isPickingUp = false; // Whether the player is currently picking up the object
+    public float pickUpObjectSpeed; 
 
     [Header("FRIDGE DOOR SETTINGS")]
     [Space(5)]
@@ -40,9 +43,14 @@ public class FirstPersonControls : MonoBehaviour
     private bool Open;
 
     [Header("UI SETTINGS")]
+    [Space(5)]
     public TextMeshProUGUI pickUpText;
     public GameObject ingredientsText;
     public GameObject useText;
+
+    [Header("ANIMATION SETTINGS")]
+    [Space(5)]
+    public Animator animator; // Reference to the Animator component
 
     [Header("TAP SETTINGS")]
     [Space(5)]
@@ -271,9 +279,20 @@ public class FirstPersonControls : MonoBehaviour
         // Transform direction from local to world space //translates from local to world space // local - in local context // World- whole scene (world) context 
         // think about planets the moon around earth = local moon around the sun= global
         move = transform.TransformDirection(move);
+        float currentSpeed;
+
+        if (moveInput.x == 0 && moveInput.y == 0)
+        {
+            currentSpeed = 0;
+        }
+        else
+        {
+            currentSpeed = moveSpeed;
+        }
 
         // Move the character controller based on the movement vector and speed
         characterController.Move(move * moveSpeed * Time.deltaTime);
+        animator.SetFloat("Speed", currentSpeed);   // Update the speed parameter in the Animator
     }
     public void LookAround()
     {
@@ -437,21 +456,32 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             hit.collider.CompareTag("Door");
+
+            if (hit.collider.CompareTag("Door"))
+            {
+                StartCoroutine(SlideDoor(hit.collider.gameObject));
+            }
+            else
+            {
+                Open = false;
+            }
         }
-        if (hit.collider.CompareTag("Door"))
-        {
-            StartCoroutine(SlideDoor(hit.collider.gameObject));
-        }
+        
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             hit.collider.CompareTag("FridgeDoor");
-        }
-        if (hit.collider.CompareTag("FridgeDoor"))
-        {
-            StartCoroutine(SlideDoor(hit.collider.gameObject));
-        }
 
+            if (hit.collider.CompareTag("FridgeDoor"))
+            {
+                StartCoroutine(SlideDoor(hit.collider.gameObject));
+            }
+            else
+            {
+                Open = false;
+            }
+        }
+       
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             hit.collider.CompareTag("Tap");
@@ -858,6 +888,11 @@ public class FirstPersonControls : MonoBehaviour
             heldObject.transform.parent = null;
 
         }
+
+        //if (isPickingUp)
+        //{
+        //    currentSpeed = pickUpObjectSpeed;
+        //}
 
         // Perform a raycast from the camera's position forward
         Ray ray = new Ray(playerCamera.position, playerCamera.forward);
