@@ -39,6 +39,7 @@ TagManager:
   - KnobFour
   - KnobFive
   - Knobvi
+  - 'Oven Door '
   layers:
   - Default
   - TransparentFX
@@ -48,10 +49,10 @@ TagManager:
   - UI
   - Ground
   - 'Trigger '
-  - 
-  - 
-  - 
-  - 
+  - 'Ingredients '
+  - BigEquipment
+  - SmallEquipment
+  - Interact
   - 
   - 
   - 
