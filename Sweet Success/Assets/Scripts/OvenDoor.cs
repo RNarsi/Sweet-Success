@@ -20,7 +20,7 @@ public class OvenDoor : MonoBehaviour
     public void OpenDoor()
     {
         Debug.Log("Opening");
-        Hinge.Rotate(openAngle , 0, 0);
+        Hinge.Rotate(openAngle, 0, 0);
     }
 
     public void CloseDoor()
