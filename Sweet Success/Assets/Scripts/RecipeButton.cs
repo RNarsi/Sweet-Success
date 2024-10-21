@@ -34,6 +34,7 @@ public class RecipeButton : MonoBehaviour
             {
                 recipeButton1.SetActive(false);
             }
+
             if (hit.collider.CompareTag("Recipe2"))
             {
                 recipeButton2.SetActive(true);
@@ -42,6 +43,7 @@ public class RecipeButton : MonoBehaviour
             {
                 recipeButton2.SetActive(false);
             }
+
             if (hit.collider.CompareTag("Recipe3"))
             {
                 recipeButton3.SetActive(true);
