@@ -40,6 +40,9 @@ TagManager:
   - KnobFive
   - Knobvi
   - 'Oven Door '
+  - Recipe1
+  - Recipe2
+  - Recipe3
   layers:
   - Default
   - TransparentFX

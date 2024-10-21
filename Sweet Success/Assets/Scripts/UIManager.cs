@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     private Controls playerInput;
     public GameObject initialButton;
     public GameObject pausePage;
+    public GameObject RecipeBook;
+
     //public GameObject resumePage;
     //public GameObject quitPage;
 
@@ -42,7 +44,7 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-       
+
 
     }
 
@@ -75,9 +77,9 @@ public class UIManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("SampleScene"); 
+        SceneManager.LoadScene("SampleScene");
     }
-    
+
     public void MainMenu()
     {
         SceneManager.LoadScene("Main Menu");
@@ -90,18 +92,28 @@ public class UIManager : MonoBehaviour
 
     public void Quit()
     {
-    SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void Pause()
     {
         GamePaused = true;
         pausePage.SetActive(true);
-       // playerInput.Disable();
+        // playerInput.Disable();
     }
     public void Restart()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void ExitPage()
+    {
+        RecipeBook.SetActive(false);
+    }
+
+    public void LoadRecipe()
+    {
+        RecipeBook.SetActive(true);
     }
 
 }

@@ -14,7 +14,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     // Public variables to set movement and look speed, and the player camera
 
-   
+
     public float moveSpeed; // Speed at which the player moves 
     public float lookSpeed; // Sensitivity of the camera movement // looks around
     public float gravity = -9.81f; // Gravity value
@@ -35,7 +35,7 @@ public class FirstPersonControls : MonoBehaviour
     private GameObject heldObject; // Reference to the currently held object
     public float pickUpRange = 3f; // Range within which objects can be picked up
     private bool isPickingUp = false; // Whether the player is currently picking up the object
-    public float pickUpObjectSpeed; 
+    public float pickUpObjectSpeed;
 
     [Header("FRIDGE DOOR SETTINGS")]
     [Space(5)]
@@ -47,6 +47,7 @@ public class FirstPersonControls : MonoBehaviour
     public TextMeshProUGUI pickUpText;
     public GameObject ingredientsText;
     public GameObject useText;
+    //public GameObject recipeButton;
 
     [Header("ANIMATION SETTINGS")]
     [Space(5)]
@@ -266,6 +267,7 @@ public class FirstPersonControls : MonoBehaviour
         CheckForInteraction();
         CheckForPickUp();
         CheckForIngredients();
+        //CheckForRecipe();
 
     }
 
@@ -466,7 +468,7 @@ public class FirstPersonControls : MonoBehaviour
                 Open = false;
             }
         }
-        
+
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
@@ -481,7 +483,7 @@ public class FirstPersonControls : MonoBehaviour
                 Open = false;
             }
         }
-       
+
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             hit.collider.CompareTag("Tap");
@@ -1345,5 +1347,29 @@ public class FirstPersonControls : MonoBehaviour
 
     }
 
+    //public void CheckForRecipe()
+    //{
+    //    Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+    //    RaycastHit hit;
 
+    //    // Perform raycast to detect objects
+    //    if (Physics.Raycast(ray, out hit, pickUpRange))
+    //    {
+    //        // Check if the object has the different interactables tags  
+    //        if (hit.collider.CompareTag("Recipe1") || hit.collider.CompareTag("Recipe2") || hit.collider.CompareTag("Recipe3"))
+    //        {
+    //            recipeButton.gameObject.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            recipeButton.gameObject.SetActive(false);
+    //        }
+
+    //    }
+    //    else
+    //    {
+    //        recipeButton.gameObject.SetActive(false);
+    //    }
+
+    //}
 }
