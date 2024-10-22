@@ -113,6 +113,7 @@ public class UIManager : MonoBehaviour
 
     public void LoadRecipe()
     {
+        //playerInput.Disable();
         RecipeBook.SetActive(true);
     }
 
