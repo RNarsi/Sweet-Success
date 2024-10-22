@@ -47,6 +47,7 @@ public class FirstPersonControls : MonoBehaviour
     public TextMeshProUGUI pickUpText;
     public GameObject ingredientsText;
     public GameObject useText;
+    public GameObject RecipeBook;
     //public GameObject recipeButton;
 
     [Header("ANIMATION SETTINGS")]
@@ -214,6 +215,9 @@ public class FirstPersonControls : MonoBehaviour
     public Transform bakingSodaPowderSpawnPoint;// Point from which it will spawn
     private bool holdingBakingSoda = false;
 
+    private Controls playerInput; 
+
+
     private void Awake()
     {
         //before any other scripts start method run
@@ -222,6 +226,7 @@ public class FirstPersonControls : MonoBehaviour
         // Get and store the CharacterController component attached to this GameObject
 
         characterController = GetComponent<CharacterController>();
+        playerInput = new Controls(); 
     }
     private void OnEnable()
     {
@@ -1346,6 +1351,19 @@ public class FirstPersonControls : MonoBehaviour
         }
 
     }
+
+    public void ExitPage()
+    {
+        RecipeBook.SetActive(false);
+        playerInput.Player.Enable();
+    }
+
+    public void LoadRecipe()
+    {
+        playerInput.Player.Disable();
+        RecipeBook.SetActive(true);
+    }
+
 
     //public void CheckForRecipe()
     //{

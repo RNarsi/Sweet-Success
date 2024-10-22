@@ -13,9 +13,9 @@ public class UIManager : MonoBehaviour
     private Controls playerInput;
     public GameObject initialButton;
     public GameObject pausePage;
-    public GameObject RecipeBook;
+    //public GameObject RecipeBook;
 
-    private Controls Georgie; 
+    //private Controls Georgie; 
 
     //public GameObject resumePage;
     //public GameObject quitPage;
@@ -34,7 +34,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GamePaused = false;
-        Georgie = GetComponent<Controls>();
     }
 
     private void Update()
@@ -109,16 +108,16 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    public void ExitPage()
-    {
-        RecipeBook.SetActive(false);
-        Georgie.Player.Enable();
-    }
+    //public void ExitPage()
+    //{
+    //    RecipeBook.SetActive(false);
+    //    Georgie.Player.Enable();
+    //}
 
-    public void LoadRecipe()
-    {
-        Georgie.Player.Disable();
-        RecipeBook.SetActive(true);
-    }
+    //public void LoadRecipe()
+    //{
+    //    Georgie.Player.Disable();
+    //    RecipeBook.SetActive(true);
+    //}
 
 }
