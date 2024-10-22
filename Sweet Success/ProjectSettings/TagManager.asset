@@ -43,6 +43,7 @@ TagManager:
   - Recipe1
   - Recipe2
   - Recipe3
+  - Trigger
   layers:
   - Default
   - TransparentFX
