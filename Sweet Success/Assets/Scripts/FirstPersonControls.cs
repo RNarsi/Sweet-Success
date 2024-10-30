@@ -150,6 +150,8 @@ public class FirstPersonControls : MonoBehaviour
     public bool KnobOn = false;
     public bool KnobOff = true;
 
+    AudioSource flameAudio;
+
     [Header("PLACE SETTINGS")]
     [Space(5)]
 
