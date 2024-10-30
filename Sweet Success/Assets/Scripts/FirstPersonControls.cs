@@ -72,6 +72,7 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject WaterFlow6;
     public bool TapOpen = false;
     public bool TapClosed = true;
+    AudioSource tapAudio;
 
     [Header("STOVE SETTINGS")]
     [Space(5)]
@@ -495,12 +496,15 @@ public class FirstPersonControls : MonoBehaviour
 
             if (hit.collider.CompareTag("Tap"))
             {
+                tapAudio = hit.collider.GetComponent<AudioSource>();
+
                 if (TapOpen)
                 {
                     TapOpen = false;
                     TapClosed = true;
                     WaterFlow.gameObject.SetActive(false);
                     RunningWater.Stop();
+                    tapAudio.Stop();
                 }
                 else
                 {
@@ -508,6 +512,7 @@ public class FirstPersonControls : MonoBehaviour
                     TapClosed = false;
                     WaterFlow.gameObject.SetActive(true);
                     RunningWater.Play();
+                    tapAudio.Play();
                 }
             }
         }
@@ -518,12 +523,15 @@ public class FirstPersonControls : MonoBehaviour
 
             if (hit.collider.CompareTag("Tap1"))
             {
+                tapAudio = hit.collider.GetComponent<AudioSource>();
+
                 if (TapOpen)
                 {
                     TapOpen = false;
                     TapClosed = true;
                     WaterFlow1.gameObject.SetActive(false);
                     RunningWater1.Stop();
+                    tapAudio.Stop();
                 }
                 else
                 {
@@ -531,6 +539,7 @@ public class FirstPersonControls : MonoBehaviour
                     TapClosed = false;
                     WaterFlow1.gameObject.SetActive(true);
                     RunningWater1.Play();
+                    tapAudio.Play();
                 }
             }
         }
@@ -541,12 +550,14 @@ public class FirstPersonControls : MonoBehaviour
 
             if (hit.collider.CompareTag("Tap2"))
             {
+                tapAudio = hit.collider.GetComponent<AudioSource>();
                 if (TapOpen)
                 {
                     TapOpen = false;
                     TapClosed = true;
                     WaterFlow2.gameObject.SetActive(false);
                     RunningWater2.Stop();
+                    tapAudio.Stop();
                 }
                 else
                 {
@@ -554,6 +565,7 @@ public class FirstPersonControls : MonoBehaviour
                     TapClosed = false;
                     WaterFlow2.gameObject.SetActive(true);
                     RunningWater2.Play();
+                    tapAudio.Play();
                 }
             }
         }
@@ -564,12 +576,15 @@ public class FirstPersonControls : MonoBehaviour
 
             if (hit.collider.CompareTag("Tap3"))
             {
+                tapAudio = hit.collider.GetComponent<AudioSource>();
+
                 if (TapOpen)
                 {
                     TapOpen = false;
                     TapClosed = true;
                     WaterFlow3.gameObject.SetActive(false);
                     RunningWater3.Stop();
+                    tapAudio.Stop();
                 }
                 else
                 {
@@ -577,6 +592,7 @@ public class FirstPersonControls : MonoBehaviour
                     TapClosed = false;
                     WaterFlow3.gameObject.SetActive(true);
                     RunningWater3.Play();
+                    tapAudio.Play();
                 }
             }
         }
@@ -587,12 +603,14 @@ public class FirstPersonControls : MonoBehaviour
 
             if (hit.collider.CompareTag("Tap4"))
             {
+                tapAudio = hit.collider.GetComponent<AudioSource>();
                 if (TapOpen)
                 {
                     TapOpen = false;
                     TapClosed = true;
                     WaterFlow4.gameObject.SetActive(false);
                     RunningWater4.Stop();
+                    tapAudio.Stop();
                 }
                 else
                 {
@@ -600,6 +618,7 @@ public class FirstPersonControls : MonoBehaviour
                     TapClosed = false;
                     WaterFlow4.gameObject.SetActive(true);
                     RunningWater4.Play();
+                    tapAudio.Play();
                 }
             }
         }
@@ -610,12 +629,15 @@ public class FirstPersonControls : MonoBehaviour
 
             if (hit.collider.CompareTag("Tap5"))
             {
+                tapAudio = hit.collider.GetComponent<AudioSource>();
+
                 if (TapOpen)
                 {
                     TapOpen = false;
                     TapClosed = true;
                     WaterFlow5.gameObject.SetActive(false);
                     RunningWater5.Stop();
+                    tapAudio.Stop();
                 }
                 else
                 {
@@ -623,6 +645,7 @@ public class FirstPersonControls : MonoBehaviour
                     TapClosed = false;
                     WaterFlow5.gameObject.SetActive(true);
                     RunningWater5.Play();
+                    tapAudio.Play();
                 }
             }
         }
@@ -633,12 +656,15 @@ public class FirstPersonControls : MonoBehaviour
 
             if (hit.collider.CompareTag("Tap6"))
             {
+                tapAudio = hit.collider.GetComponent<AudioSource>();
+
                 if (TapOpen)
                 {
                     TapOpen = false;
                     TapClosed = true;
                     WaterFlow6.gameObject.SetActive(false);
                     RunningWater6.Stop();
+                    tapAudio.Stop();
                 }
                 else
                 {
@@ -646,6 +672,7 @@ public class FirstPersonControls : MonoBehaviour
                     TapClosed = false;
                     WaterFlow6.gameObject.SetActive(true);
                     RunningWater6.Play();
+                    tapAudio.Play();
                 }
             }
         }
