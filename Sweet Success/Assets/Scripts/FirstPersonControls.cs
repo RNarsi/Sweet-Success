@@ -152,6 +152,16 @@ public class FirstPersonControls : MonoBehaviour
 
     AudioSource flameAudio;
 
+    [Header("MIXER SETTINGS")]
+    [Space(5)]
+    [SerializeField] private Animator mixerAnimator = null;
+    [SerializeField] private bool OnTrigger = false;
+    [SerializeField] private bool OffTrigger = false;
+    //[SerializeField] private string mixerOn = "Mixer_On";
+    //[SerializeField] private string mixerOff = "Mixer_Off";
+    private bool isMixerOn = false;
+
+
     [Header("PLACE SETTINGS")]
     [Space(5)]
 
@@ -896,6 +906,20 @@ public class FirstPersonControls : MonoBehaviour
             }
         }
 
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            if (hit.collider.CompareTag("MixerLever"))
+            {
+                mixerAnimator = hit.collider.GetComponent<Animator>();
+
+                if(mixerAnimator != null)
+                {
+                    isMixerOn = !isMixerOn;
+                    mixerAnimator.SetTrigger(isMixerOn ? "MixerOn" : "MixerOff");
+                }
+            }
+
+        }
     }
 
 
