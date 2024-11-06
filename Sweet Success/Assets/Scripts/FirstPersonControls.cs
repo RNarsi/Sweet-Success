@@ -161,6 +161,11 @@ public class FirstPersonControls : MonoBehaviour
     //[SerializeField] private string mixerOff = "Mixer_Off";
     private bool isMixerOn = false;
 
+    [Header("PANTRY DOOR SETTINGS")]
+    [Space(5)]
+    public Animator pantryDoorAnimator;
+    public bool isOpen = false;
+    public bool isClosed = true;
 
     [Header("PLACE SETTINGS")]
     [Space(5)]
@@ -920,6 +925,31 @@ public class FirstPersonControls : MonoBehaviour
             }
 
         }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            if (hit.collider.CompareTag("PantryDoor"))
+            {
+                pantryDoorAnimator = hit.collider.GetComponent<Animator>();
+
+                isOpen = pantryDoorAnimator.GetBool("isOpen");
+
+                if (isOpen)
+                {
+                    pantryDoorAnimator.SetTrigger("CloseDoor");
+                    pantryDoorAnimator.SetBool("isOpen", false);
+                    isOpen = true;
+                    isClosed = false;
+                }
+                else 
+                {
+                    pantryDoorAnimator.SetTrigger("OpenDoor");
+                    pantryDoorAnimator.SetBool("isOpen", true);
+                    isOpen = false;
+                    isClosed = true;
+                }
+            }
+        }
     }
 
 
@@ -1355,7 +1385,7 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             // Check if the object has the different interactables tags  
-            if (hit.collider.CompareTag("Tap") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Door"))
+            if (hit.collider.CompareTag("Tap") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("PantryDoor")) 
             {
 
                 // Display the pick-up text

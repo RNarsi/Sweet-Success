@@ -45,6 +45,7 @@ TagManager:
   - Recipe3
   - Trigger
   - MixerLever
+  - PantryDoor
   layers:
   - Default
   - TransparentFX
