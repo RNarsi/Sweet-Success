@@ -46,6 +46,7 @@ TagManager:
   - Trigger
   - MixerLever
   - PantryDoor
+  - Cocoa
   layers:
   - Default
   - TransparentFX

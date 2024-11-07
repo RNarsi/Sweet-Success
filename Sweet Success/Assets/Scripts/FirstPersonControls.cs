@@ -150,11 +150,11 @@ public class FirstPersonControls : MonoBehaviour
     public bool KnobOn = false;
     public bool KnobOff = true;
 
-    AudioSource flameAudio;
+    //AudioSource flameAudio;
 
     [Header("MIXER SETTINGS")]
     [Space(5)]
-    [SerializeField] private Animator mixerAnimator = null;
+    [SerializeField] private Animator mixerAnimator;
     [SerializeField] private bool OnTrigger = false;
     [SerializeField] private bool OffTrigger = false;
     //[SerializeField] private string mixerOn = "Mixer_On";
@@ -165,7 +165,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public Animator pantryDoorAnimator;
     public bool isOpen = false;
-    public bool isClosed = true;
+    //public bool isClosed = true;
 
     [Header("PLACE SETTINGS")]
     [Space(5)]
@@ -232,6 +232,11 @@ public class FirstPersonControls : MonoBehaviour
     public GameObject bakingSodaPowderPrefab; // prefab for placing
     public Transform bakingSodaPowderSpawnPoint;// Point from which it will spawn
     private bool holdingBakingSoda = false;
+
+    [Space(5)]
+    public GameObject cocoaPowderPrefab;
+    public Transform cocoaPowderSpawnPoint;
+    private bool holdingCocoa = false;
 
     private Controls playerInput; 
 
@@ -464,6 +469,15 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = blueberry.GetComponent<Rigidbody>();
             rb.velocity = blueberrySpawnPoint.forward * 0.1f;
+        }
+        if (holdingCocoa == true)
+        {
+            // Instantiate at the spawn point
+            GameObject cocoaPowder = Instantiate(cocoaPowderPrefab, cocoaPowderSpawnPoint.position, cocoaPowderSpawnPoint.rotation);
+
+            // Get the Rigidbody component and set its velocity
+            Rigidbody rb = cocoaPowder.GetComponent<Rigidbody>();
+            rb.velocity = cocoaPowderSpawnPoint.forward * 0.1f;
         }
         else
         {
@@ -917,13 +931,12 @@ public class FirstPersonControls : MonoBehaviour
             {
                 mixerAnimator = hit.collider.GetComponent<Animator>();
 
-                if(mixerAnimator != null)
+                if (mixerAnimator != null)
                 {
                     isMixerOn = !isMixerOn;
                     mixerAnimator.SetTrigger(isMixerOn ? "MixerOn" : "MixerOff");
                 }
             }
-
         }
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
@@ -939,14 +952,14 @@ public class FirstPersonControls : MonoBehaviour
                     pantryDoorAnimator.SetTrigger("CloseDoor");
                     pantryDoorAnimator.SetBool("isOpen", false);
                     isOpen = true;
-                    isClosed = false;
+                    //isClosed = false;
                 }
-                else 
+                else
                 {
                     pantryDoorAnimator.SetTrigger("OpenDoor");
                     pantryDoorAnimator.SetBool("isOpen", true);
                     isOpen = false;
-                    isClosed = true;
+                    //isClosed = true;
                 }
             }
         }
@@ -1018,6 +1031,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
 
             }
             if (hit.collider.CompareTag("Butter"))
@@ -1050,6 +1064,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
             }
 
             if (hit.collider.CompareTag("Sugar"))
@@ -1075,6 +1090,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
 
             }
             if (hit.collider.CompareTag("Salt"))
@@ -1100,6 +1116,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1126,6 +1143,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1151,6 +1169,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingCookingOil = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1176,6 +1195,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingCookingOil = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1202,6 +1222,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1228,6 +1249,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1254,6 +1276,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingCookingOil = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1280,6 +1303,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingCookingOil = false;
                 holdingVanillaExtract = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
             }
@@ -1308,8 +1332,37 @@ public class FirstPersonControls : MonoBehaviour
                 holdingCookingOil = false;
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
+                holdingCocoa = false;
                 holdingPickUp = false;
 
+            }
+            if (hit.collider.CompareTag("Cocoa"))
+            {
+                // Pick up the object
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingCocoa = true;
+                holdingBlueberries = false;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingSalt = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingPickUp = false;
             }
             if (hit.collider.CompareTag("PickUp"))
             {
@@ -1336,6 +1389,7 @@ public class FirstPersonControls : MonoBehaviour
                 holdingVanillaExtract = false;
                 holdingChocolateChips = false;
                 holdingBlueberries = false;
+                holdingCocoa = false;
             }
             else
             {
@@ -1355,7 +1409,7 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             // Check if the object has the different interactables tags  
-            if (hit.collider.CompareTag("Butter") || hit.collider.CompareTag("Flour") || hit.collider.CompareTag("Egg") || hit.collider.CompareTag("Sugar") || hit.collider.CompareTag("Salt") || hit.collider.CompareTag("Water") || hit.collider.CompareTag("Baking Soda") || hit.collider.CompareTag("Cooking Oil") || hit.collider.CompareTag("Milk") || hit.collider.CompareTag("Vanilla Extract") || hit.collider.CompareTag("Chocolate Chips") || hit.collider.CompareTag("Blueberries"))
+            if (hit.collider.CompareTag("Butter") || hit.collider.CompareTag("Flour") || hit.collider.CompareTag("Egg") || hit.collider.CompareTag("Sugar") || hit.collider.CompareTag("Salt") || hit.collider.CompareTag("Water") || hit.collider.CompareTag("Baking Soda") || hit.collider.CompareTag("Cooking Oil") || hit.collider.CompareTag("Milk") || hit.collider.CompareTag("Vanilla Extract") || hit.collider.CompareTag("Chocolate Chips") || hit.collider.CompareTag("Blueberries") || hit.collider.CompareTag("Cocoa"))
             {
 
                 // Display the pick-up text
