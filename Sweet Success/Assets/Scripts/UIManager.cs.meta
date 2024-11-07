@@ -3,7 +3,19 @@ guid: 76bc82b0440e57b44a078ac3bd156f81
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mainCamera: {instanceID: 0}
+  - initialButton: {instanceID: 0}
+  - pausePage: {instanceID: 0}
+  - blueberryPrefab: {fileID: 7340033624455740641, guid: 328acbcc74e83354aa277e3aab126899,
+      type: 3}
+  - bowl: {fileID: 919132149155446097, guid: 4a71b9cd39343034c87a69cbc87d2130, type: 3}
+  - muffinBatterandTrayPrefab: {fileID: 8880261132169396315, guid: 4b4fe0d64eb55694f9bca26e008e2d1f,
+      type: 3}
+  - transferToTray: {instanceID: 0}
+  - bowlTransfrom: {instanceID: 0}
+  - workingTable: {instanceID: 0}
+  - tableSpawnPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

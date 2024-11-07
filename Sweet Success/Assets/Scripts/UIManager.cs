@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class UIManager : MonoBehaviour
 
     //public GameObject resumePage;
     //public GameObject quitPage;
+
+   
+
 
     bool GamePaused;
 
@@ -47,7 +51,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
         }
 
-
+       
     }
 
     // Coroutine to smoothly rotate the camera

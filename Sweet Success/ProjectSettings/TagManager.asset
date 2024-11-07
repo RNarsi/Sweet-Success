@@ -47,6 +47,7 @@ TagManager:
   - MixerLever
   - PantryDoor
   - Cocoa
+  - blueberryPrefab
   layers:
   - Default
   - TransparentFX

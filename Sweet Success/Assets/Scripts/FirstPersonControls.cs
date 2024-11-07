@@ -167,6 +167,7 @@ public class FirstPersonControls : MonoBehaviour
     public bool isOpen = false;
     //public bool isClosed = true;
 
+
     [Header("PLACE SETTINGS")]
     [Space(5)]
 
@@ -369,7 +370,7 @@ public class FirstPersonControls : MonoBehaviour
             rb.velocity = crackedEggSpawnPoint.forward * 0.1f;
 
             // Destroy the projectile after 3 seconds
-            // Destroy(crackedEgg, 3f);
+            Destroy(crackedEgg, 15f);
         }
         if (holdingButter == true)
         {
@@ -379,6 +380,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = butterBlock.GetComponent<Rigidbody>();
             rb.velocity = butterBlockSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(butterBlock, 15f);
         }
         if (holdingSugar == true)
         {
@@ -388,6 +391,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = sugarCubes.GetComponent<Rigidbody>();
             rb.velocity = sugarCubesSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(sugarCubes, 15f);
         }
         if (holdingSalt == true)
         {
@@ -397,6 +402,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = saltGrains.GetComponent<Rigidbody>();
             rb.velocity = saltGrainsSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(saltGrains, 15f);
         }
         if (holdingFlour == true)
         {
@@ -406,6 +413,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = flourPowder.GetComponent<Rigidbody>();
             rb.velocity = flourPowderSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(flourPowder, 15f);
         }
         if (holdingWater == true)
         {
@@ -415,6 +424,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = waterDrops.GetComponent<Rigidbody>();
             rb.velocity = waterDropsSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(waterDrops, 15f);
         }
         if (holdingMilk == true)
         {
@@ -424,6 +435,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = milkDrops.GetComponent<Rigidbody>();
             rb.velocity = milkDropsSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(milkDrops, 15f);
         }
         if (holdingBakingSoda == true)
         {
@@ -433,6 +446,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = bakingSodaPowder.GetComponent<Rigidbody>();
             rb.velocity = bakingSodaPowderSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(bakingSodaPowder, 15f);
         }
         if (holdingCookingOil == true)
         {
@@ -442,6 +457,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = cookingOilDrops.GetComponent<Rigidbody>();
             rb.velocity = cookingOilDropsSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(cookingOilDrops, 15f);
         }
         if (holdingVanillaExtract == true)
         {
@@ -451,6 +468,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = vanillaExtractDrops.GetComponent<Rigidbody>();
             rb.velocity = vanillaExtractDropsSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(vanillaExtractDrops, 15f);
         }
         if (holdingChocolateChips == true)
         {
@@ -460,6 +479,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = chocoChips.GetComponent<Rigidbody>();
             rb.velocity = chocoChipsSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(chocoChips, 15f);
         }
         if (holdingBlueberries == true)
         {
@@ -469,6 +490,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = blueberry.GetComponent<Rigidbody>();
             rb.velocity = blueberrySpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(blueberry, 15f);
         }
         if (holdingCocoa == true)
         {
@@ -478,6 +501,8 @@ public class FirstPersonControls : MonoBehaviour
             // Get the Rigidbody component and set its velocity
             Rigidbody rb = cocoaPowder.GetComponent<Rigidbody>();
             rb.velocity = cocoaPowderSpawnPoint.forward * 0.1f;
+            // Destroy the projectile after 3 seconds
+            Destroy(cocoaPowder, 15f);
         }
         else
         {
