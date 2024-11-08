@@ -48,6 +48,7 @@ TagManager:
   - PantryDoor
   - Cocoa
   - blueberryPrefab
+  - chocChipPrefab
   layers:
   - Default
   - TransparentFX

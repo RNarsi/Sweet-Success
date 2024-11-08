@@ -10,7 +10,9 @@ public class BowlScript : MonoBehaviour
     public Transform bowlTransform2;
     public Transform bowlTransform3;
     public Transform bowlTransform4;
-    public GameObject transferToTrayButton;
+    public GameObject transferToTrayButtonB;
+    public GameObject transferToTrayButtonCC;
+    public GameObject transferToTrayButtonCA;
     public GameObject Bowl;
 
     // Start is called before the first frame update
@@ -53,35 +55,113 @@ public class BowlScript : MonoBehaviour
         {
             if (hit.collider.CompareTag("blueberryPrefab"))
             {
-                transferToTrayButton.SetActive(true);
+                transferToTrayButtonB.SetActive(true);
             }
         }
+        if (Physics.Raycast(ray, out hit, bowlRange))
+        {
+            if (hit.collider.CompareTag("chocChipPrefab"))
+            {
+                transferToTrayButtonCC.SetActive(true);
+            }
+        }
+        if (Physics.Raycast(ray, out hit, bowlRange))
+        {
+            if (hit.collider.CompareTag("chocChipPrefab"))
+            {
+                transferToTrayButtonCC.SetActive(true);
+            }
+        }
+
+
         if (Physics.Raycast(ray1, out hit1, bowlRange))
         {
             if (hit1.collider.CompareTag("blueberryPrefab"))
             {
-                transferToTrayButton.SetActive(true);
+                transferToTrayButtonB.SetActive(true);
+            }
+        }
+        if (Physics.Raycast(ray1, out hit1, bowlRange))
+        {
+            if (hit1.collider.CompareTag("chocChipPrefab"))
+            {
+                transferToTrayButtonCC.SetActive(true);
+            }
+        }
+        if (Physics.Raycast(ray1, out hit1, bowlRange))
+        {
+            if (hit1.collider.CompareTag("chocChipPrefab"))
+            {
+                transferToTrayButtonCC.SetActive(true);
+            }
+        }
+
+
+        if (Physics.Raycast(ray2, out hit2, bowlRange))
+        {
+            if (hit2.collider.CompareTag("blueberryPrefab"))
+            {
+                transferToTrayButtonB.SetActive(true);
+            }
+        }
+        if (Physics.Raycast(ray2, out hit2, bowlRange))
+        {
+            if (hit2.collider.CompareTag("chocChipPrefab"))
+            {
+                transferToTrayButtonCC.SetActive(true);
             }
         }
         if (Physics.Raycast(ray2, out hit2, bowlRange))
         {
             if (hit2.collider.CompareTag("blueberryPrefab"))
             {
-                transferToTrayButton.SetActive(true);
+                transferToTrayButtonB.SetActive(true);
+            }
+        }
+
+
+        if (Physics.Raycast(ray3, out hit3, bowlRange))
+        {
+            if (hit3.collider.CompareTag("blueberryPrefab"))
+            {
+                transferToTrayButtonB.SetActive(true);
+            }
+        }
+        if (Physics.Raycast(ray3, out hit3, bowlRange))
+        {
+            if (hit3.collider.CompareTag("chocChipPrefab"))
+            {
+                transferToTrayButtonCC.SetActive(true);
             }
         }
         if (Physics.Raycast(ray3, out hit3, bowlRange))
         {
             if (hit3.collider.CompareTag("blueberryPrefab"))
             {
-                transferToTrayButton.SetActive(true);
+                transferToTrayButtonB.SetActive(true);
+            }
+        }
+
+
+        if (Physics.Raycast(ray4, out hit4, bowlRange))
+        {
+            if (hit4.collider.CompareTag("blueberryPrefab"))
+            {
+                transferToTrayButtonB.SetActive(true);
+            }
+        }
+        if (Physics.Raycast(ray4, out hit4, bowlRange))
+        {
+            if (hit4.collider.CompareTag("chocChipPrefab"))
+            {
+                transferToTrayButtonCC.SetActive(true);
             }
         }
         if (Physics.Raycast(ray4, out hit4, bowlRange))
         {
             if (hit4.collider.CompareTag("blueberryPrefab"))
             {
-                transferToTrayButton.SetActive(true);
+                transferToTrayButtonB.SetActive(true);
             }
         }
     }

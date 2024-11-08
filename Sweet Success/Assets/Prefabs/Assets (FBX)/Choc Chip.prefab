@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7a4fb4ad164e47c4e953ce14edd2ea16,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 56.626
+      value: 16.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a4fb4ad164e47c4e953ce14edd2ea16,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 56.626
+      value: 16.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a4fb4ad164e47c4e953ce14edd2ea16,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 56.626
+      value: 16.44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a4fb4ad164e47c4e953ce14edd2ea16,
         type: 3}
@@ -87,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choc Chip
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7a4fb4ad164e47c4e953ce14edd2ea16,
+        type: 3}
+      propertyPath: m_TagString
+      value: chocChipPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
