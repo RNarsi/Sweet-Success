@@ -67,9 +67,9 @@ public class BowlScript : MonoBehaviour
         }
         if (Physics.Raycast(ray, out hit, bowlRange))
         {
-            if (hit.collider.CompareTag("chocChipPrefab"))
+            if (hit.collider.CompareTag("cocoaPowderPrefab"))
             {
-                transferToTrayButtonCC.SetActive(true);
+                transferToTrayButtonCA.SetActive(true);
             }
         }
 
@@ -90,9 +90,9 @@ public class BowlScript : MonoBehaviour
         }
         if (Physics.Raycast(ray1, out hit1, bowlRange))
         {
-            if (hit1.collider.CompareTag("chocChipPrefab"))
+            if (hit1.collider.CompareTag("cocoaPowderPrefab"))
             {
-                transferToTrayButtonCC.SetActive(true);
+                transferToTrayButtonCA.SetActive(true);
             }
         }
 
@@ -113,9 +113,9 @@ public class BowlScript : MonoBehaviour
         }
         if (Physics.Raycast(ray2, out hit2, bowlRange))
         {
-            if (hit2.collider.CompareTag("blueberryPrefab"))
+            if (hit2.collider.CompareTag("cocoaPowderPrefab"))
             {
-                transferToTrayButtonB.SetActive(true);
+                transferToTrayButtonCA.SetActive(true);
             }
         }
 
@@ -136,9 +136,9 @@ public class BowlScript : MonoBehaviour
         }
         if (Physics.Raycast(ray3, out hit3, bowlRange))
         {
-            if (hit3.collider.CompareTag("blueberryPrefab"))
+            if (hit3.collider.CompareTag("cocoaPowderPrefab"))
             {
-                transferToTrayButtonB.SetActive(true);
+                transferToTrayButtonCA.SetActive(true);
             }
         }
 
@@ -159,9 +159,9 @@ public class BowlScript : MonoBehaviour
         }
         if (Physics.Raycast(ray4, out hit4, bowlRange))
         {
-            if (hit4.collider.CompareTag("blueberryPrefab"))
+            if (hit4.collider.CompareTag("cocoaPowderPrefab"))
             {
-                transferToTrayButtonB.SetActive(true);
+                transferToTrayButtonCA.SetActive(true);
             }
         }
     }

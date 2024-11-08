@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookieButton : MonoBehaviour
+public class CakeButton : MonoBehaviour
 {
-    //public GameObject tableStation;
     public Transform tableSpawnPoint;
 
-    public GameObject cookieDoughAndTray;
+    public GameObject cakeBatterAndTray;
 
-    public GameObject transferToTrayButtonCC;
+    public GameObject transferToTrayButtonCA;
 
     // Start is called before the first frame update
     void Start()
@@ -23,15 +22,15 @@ public class CookieButton : MonoBehaviour
         
     }
 
-    public void TransferCookie()
+    public void TransferCake()
     {
         // Instantiate at the spawn point
-        GameObject CookieTray = Instantiate(cookieDoughAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
+        GameObject CakeTray = Instantiate(cakeBatterAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
 
         // Get the Rigidbody component and set its velocity
-        Rigidbody rb = CookieTray.GetComponent<Rigidbody>();
+        Rigidbody rb = CakeTray.GetComponent<Rigidbody>();
         rb.velocity = tableSpawnPoint.forward * 0f;
 
-        transferToTrayButtonCC.SetActive(false);
+        transferToTrayButtonCA.SetActive(false);
     }
 }

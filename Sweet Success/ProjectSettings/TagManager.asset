@@ -49,6 +49,7 @@ TagManager:
   - Cocoa
   - blueberryPrefab
   - chocChipPrefab
+  - cocoaPowderPrefab
   layers:
   - Default
   - TransparentFX

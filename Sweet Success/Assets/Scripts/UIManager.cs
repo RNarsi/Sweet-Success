@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     public GameObject muffinBatterAndTray;
     public GameObject tableStation;
     public Transform tableSpawnPoint;
-    //public GameObject transferToTrayButtonB;
+    public GameObject transferToTrayButtonB;
 
     //public GameObject cookieDoughAndTray;
 
@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
         Rigidbody rb = MuffinTray.GetComponent<Rigidbody>();
         rb.velocity = tableSpawnPoint.forward * 0f;
 
-        //transferToTrayButtonB.SetActive(false);
+        transferToTrayButtonB.SetActive(false);
     }
 
     //public void TransferCookie()
