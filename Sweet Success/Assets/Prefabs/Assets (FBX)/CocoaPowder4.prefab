@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 957c3b63b5e24f24f87f6ed46df8e110,
         type: 3}
       propertyPath: m_TagString
-      value: cocoaPowder
+      value: cocoaPowderPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
