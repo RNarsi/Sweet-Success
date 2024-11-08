@@ -14,6 +14,17 @@ public class UIManager : MonoBehaviour
     private Controls playerInput;
     public GameObject initialButton;
     public GameObject pausePage;
+
+    [Header("RECIPE BOOK")]
+    [Space(5)]
+    public GameObject RecipeBook1;
+    public GameObject RecipeBook2;
+    public GameObject RecipeBook3;
+
+    public GameObject recipeButton1;
+    public GameObject recipeButton2;
+    public GameObject recipeButton3;
+
     //public GameObject RecipeBook;
 
     //private Controls Georgie; 
@@ -138,16 +149,30 @@ public class UIManager : MonoBehaviour
     //    rb.velocity = tableSpawnPoint.forward * 0f;
     //}
 
-    //public void ExitPage()
-    //{
-    //    RecipeBook.SetActive(false);
-    //    Georgie.Player.Enable();
-    //}
+    public void DoneRecipe()
+    {
+        ScoreManager.instance.AddPoint();
+    }
 
-    //public void LoadRecipe()
-    //{
-    //    Georgie.Player.Disable();
-    //    RecipeBook.SetActive(true);
-    //}
+    public void LoadRecipe1()
+    {
+        //Georgie.Player.Disable();
+        RecipeBook1.SetActive(true);
+        recipeButton1.SetActive(false);
+    }
+
+    public void LoadRecipe2()
+    {
+        //Georgie.Player.Disable();
+        RecipeBook2.SetActive(true);
+        recipeButton2.SetActive(false);
+    }
+
+    public void LoadRecipe3()
+    {
+        //Georgie.Player.Disable();
+        RecipeBook3.SetActive(true);
+        recipeButton3.SetActive(false);
+    }
 
 }
