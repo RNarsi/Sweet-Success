@@ -47,12 +47,35 @@ public class FirstPersonControls : MonoBehaviour
     public TextMeshProUGUI pickUpText;
     public GameObject ingredientsText;
     public GameObject useText;
-    public GameObject RecipeBook;
+    public GameObject RecipeBook1;
+    public GameObject RecipeBook2;
+    public GameObject RecipeBook3;
+
     //public GameObject recipeButton;
 
     [Header("ANIMATION SETTINGS")]
     [Space(5)]
     public Animator animator; // Reference to the Animator component
+
+    [Header("OVEN SETTINGS")]
+    [Space(5)]
+    [SerializeField] private Animator myDoor = null;
+    [SerializeField] private bool openTrigger = false;
+    [SerializeField] private bool closeTrigger = false;
+    [SerializeField] private string doorOpen = "Oven_Open";
+    [SerializeField] private string doorClose = "Oven_Close";
+    public GameObject ovenLoad;
+    public Image timer_linear_image;
+    public GameObject timer_linear;
+    //public Image timer_radial_image;
+    //public GameObject restart_game_textholder;
+    //public GameObject restartMenu;
+    public float time_remaining;
+    public float max_time = 5.0f;
+
+    [Header("BAKE SETTINGS")]
+    [Space(5)]
+    public GameObject bakeText;
 
     [Header("TAP SETTINGS")]
     [Space(5)]
@@ -252,6 +275,12 @@ public class FirstPersonControls : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerInput = new Controls(); 
     }
+
+    void Start()
+    {
+        time_remaining = max_time;
+    }
+
     private void OnEnable()
     {
         //enables input actions
@@ -285,6 +314,8 @@ public class FirstPersonControls : MonoBehaviour
         playerInput.Player.PickUp.performed += ctx => PickUpObject(); // Call the PickUpObject method when pick-up input is performed
 
         playerInput.Player.Interaction.performed += ctx => Interact();
+
+        playerInput.Player.Bake.performed += ctx => Bake();
     }
     private void Update()
     {
@@ -296,8 +327,40 @@ public class FirstPersonControls : MonoBehaviour
         CheckForInteraction();
         CheckForPickUp();
         CheckForIngredients();
-        //CheckForRecipe();
+        CheckForBake();
+        Bake();
 
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+
+        if (Physics.Raycast(ray, out hit, pickUpRange, Baker))
+        {
+
+            Debug.Log(hit.collider.tag);
+
+            if (hit.collider.CompareTag("BakeButton") && Input.GetKey(KeyCode.B))
+            {
+                ovenLoad.gameObject.SetActive(true);
+
+                if (time_remaining > 0)
+                {
+                    time_remaining -= Time.deltaTime;    //real time seconds 
+                    timer_linear_image.fillAmount = time_remaining / max_time;
+
+                }
+                else    //time is 0 and we want to display the text 
+                {
+                    timer_linear.SetActive(false);
+                    //timer_radial_textholder.SetActive(false);
+
+                }
+            }
+            else
+            {
+                ovenLoad.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void Move()
@@ -988,7 +1051,28 @@ public class FirstPersonControls : MonoBehaviour
                 }
             }
         }
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            hit.collider.CompareTag("OvenHandle");
+
+            if (hit.collider.CompareTag("OvenHandle"))
+            {
+                myDoor.Play(doorOpen, 0, 0.0f);
+            }
+            else
+            {
+                myDoor.Play(doorClose, 0, 0.0f);
+            }
+        }
     }
+
+    public LayerMask Baker;
+    public void Bake()
+    {
+
+    }
+
 
 
     private IEnumerator SlideDoor(GameObject door)
@@ -1464,7 +1548,7 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             // Check if the object has the different interactables tags  
-            if (hit.collider.CompareTag("Tap") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("PantryDoor")) 
+            if (hit.collider.CompareTag("Tap") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("PantryDoor") || hit.collider.CompareTag("OvenHandle")) 
             {
 
                 // Display the pick-up text
@@ -1514,16 +1598,51 @@ public class FirstPersonControls : MonoBehaviour
 
     }
 
-    public void ExitPage()
+    private void CheckForBake()
     {
-        RecipeBook.SetActive(false);
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        // Perform raycast to detect objects
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            // Check if the object has the different interactables tags  
+            if (hit.collider.CompareTag("BakeButton"))
+            {
+                // Display the pick-up text
+                bakeText.gameObject.SetActive(true);
+                /*pickUpText.text = hit.collider.gameObject.name + " Click 'E' to PickUp ";*/
+            }
+            else
+            {
+                // Hide the pick-up text if not looking at a interactable 
+                bakeText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            // Hide the text if not looking at any object
+            bakeText.gameObject.SetActive(false);
+        }
+
+    }
+
+    public void ExitPage1()
+    {
+        RecipeBook1.SetActive(false);
         playerInput.Player.Enable();
     }
 
-    public void LoadRecipe()
+    public void ExitPage2()
     {
-        playerInput.Player.Disable();
-        RecipeBook.SetActive(true);
+        RecipeBook2.SetActive(false);
+        playerInput.Player.Enable();
+    }
+
+    public void ExitPage3()
+    {
+        RecipeBook3.SetActive(false);
+        playerInput.Player.Enable();
     }
 
 

@@ -71,6 +71,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Bake"",
+                    ""type"": ""Button"",
+                    ""id"": ""9537a80b-d111-4f75-9742-7212ccad17ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -282,6 +291,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cafe901-ca0e-419d-967b-d121ceec1c29"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Bake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f04fef5b-7d23-42ee-8583-eb929d07da00"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Bake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -318,6 +349,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
         m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
+        m_Player_Bake = m_Player.FindAction("Bake", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -384,6 +416,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Place;
     private readonly InputAction m_Player_Interaction;
+    private readonly InputAction m_Player_Bake;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -393,6 +426,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Place => m_Wrapper.m_Player_Place;
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
+        public InputAction @Bake => m_Wrapper.m_Player_Bake;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -417,6 +451,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Interaction.started += instance.OnInteraction;
             @Interaction.performed += instance.OnInteraction;
             @Interaction.canceled += instance.OnInteraction;
+            @Bake.started += instance.OnBake;
+            @Bake.performed += instance.OnBake;
+            @Bake.canceled += instance.OnBake;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -436,6 +473,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Interaction.started -= instance.OnInteraction;
             @Interaction.performed -= instance.OnInteraction;
             @Interaction.canceled -= instance.OnInteraction;
+            @Bake.started -= instance.OnBake;
+            @Bake.performed -= instance.OnBake;
+            @Bake.canceled -= instance.OnBake;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -478,5 +518,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnPickUp(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
+        void OnBake(InputAction.CallbackContext context);
     }
 }

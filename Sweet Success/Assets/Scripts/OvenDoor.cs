@@ -2,90 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Drawing;
 using UnityEngine;
 
 public class OvenDoor : MonoBehaviour
 {
-    [SerializeField] private Animator ovenDoor;
+    [SerializeField] private Animator myDoor = null;
 
-    private void OnTriggerEnter(Collider obj)
+
+    [SerializeField] private bool openTrigger = false;
+    [SerializeField] private bool closeTrigger = false;
+
+    [SerializeField] private string doorOpen = "Oven_Open";
+    [SerializeField] private string doorClose = "Oven_Close";
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (obj.CompareTag("Player"))
-          {
-           bool isOpen = ovenDoor.GetBool("isOpen");
-
-            if (isOpen)
+        if (other.CompareTag("Player"))
+        {
+            if (openTrigger)
             {
-                ovenDoor.SetTrigger("Open");
-                ovenDoor.SetBool("isOpen", true);
+                myDoor.Play(doorOpen, 0, 0.0f);
+                //gameObject.SetActive(false);    
             }
-            //else
-            //{
-            //ovenDoor.SetTrigger("Open");
-            //ovenDoor.SetBool("isOpen", false);
-            //}
 
+            else if (closeTrigger)
+            {
+                myDoor.Play(doorClose, 0, 0.0f);
+                //gameObject.SetActive(false);
+            }
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        ovenDoor.SetTrigger("Close");
-        ovenDoor.SetBool("isOpen", false);
-
-        
-    }
 }
-            
-
-
-        //[SerializeField] private bool openTrigger;
-
-
-        //private void OnTriggerStay(Collider other)
-        //{
-        //    if (other.CompareTag("Trigger"))
-        //    {
-        //        ovenDoor.SetBool("openTrigger", true);
-        //        StartCoroutine("StopDoor");
-        //    }
-        //    else
-        //    {
-        //        ovenDoor.SetBool("openTrigger", false);
-        //    }
-
-        //}
-        //    public Transform Hinge;
-        //    public float openAngle;
-        //    private bool open;
-
-        //    private void OnTriggerEnter(Collider other)
-        //    {
-        //        OpenDoor();
-        //    }
-        //    public void OnTriggerExit(Collider other)
-        //    {
-        //        CloseDoor();
-        //    }
-
-        //    public void OpenDoor()
-        //    {
-        //        Debug.Log("Opening");
-        //        Hinge.Rotate(openAngle, 0, 0);
-        //    }
-
-        //    public void CloseDoor()
-        //    {
-        //        Debug.Log("closing");
-        //        Hinge.Rotate(-openAngle, 0, 0); 
-        //    }
-
-
-        //IEnumerator StopDoor()
-        //{
-        //    yield return new WaitForSeconds(0.5f);
-        //    ovenDoor.SetBool("openTrigger", false); 
-        //    ovenDoor.enabled = false;   
-        //}
-//    }
-//}

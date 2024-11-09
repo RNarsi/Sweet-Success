@@ -50,6 +50,8 @@ TagManager:
   - blueberryPrefab
   - chocChipPrefab
   - cocoaPowderPrefab
+  - BakeButton
+  - OvenHandle
   layers:
   - Default
   - TransparentFX
@@ -63,7 +65,7 @@ TagManager:
   - BigEquipment
   - SmallEquipment
   - Interact
-  - 
+  - Baker
   - 
   - 
   - 

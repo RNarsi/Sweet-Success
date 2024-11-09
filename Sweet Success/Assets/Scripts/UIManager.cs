@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     public GameObject RecipeBook2;
     public GameObject RecipeBook3;
 
+    [Header("RECIPE BUTTON")]
+    [Space(5)]
     public GameObject recipeButton1;
     public GameObject recipeButton2;
     public GameObject recipeButton3;
@@ -33,7 +35,7 @@ public class UIManager : MonoBehaviour
     //public GameObject quitPage;
 
     public GameObject muffinBatterAndTray;
-    public GameObject tableStation;
+    //public GameObject tableStation;
     public Transform tableSpawnPoint;
     public GameObject transferToTrayButtonB;
 
@@ -53,6 +55,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GamePaused = false;
+
     }
 
     private void Update()
@@ -65,7 +68,6 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-
        
     }
 
@@ -153,6 +155,7 @@ public class UIManager : MonoBehaviour
     {
         ScoreManager.instance.AddPoint();
     }
+
 
     public void LoadRecipe1()
     {
