@@ -387,113 +387,113 @@ public class FirstPersonControls : MonoBehaviour
 
         }
 
-        if (time_remaining <= 0 && cakebaked == false)
-        {
-            Ray ray1 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
-            RaycastHit hit1;
+        //if (time_remaining <= 0 && cakebaked == false)
+        //{
+        //    Ray ray1 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
+        //    RaycastHit hit1;
 
-            Debug.DrawRay(bakeTransform.position, bakeTransform.forward * bakeRange, Color.red, 2f);
+        //    Debug.DrawRay(bakeTransform.position, bakeTransform.forward * bakeRange, Color.red, 2f);
 
-            //Ray ray2 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
-            //RaycastHit hit2;
+        //    //Ray ray2 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
+        //    //RaycastHit hit2;
 
-            //Debug.DrawRay(bakeTransform1.position, bakeTransform1.forward * bakeRange, Color.red, 2f);
+        //    //Debug.DrawRay(bakeTransform1.position, bakeTransform1.forward * bakeRange, Color.red, 2f);
 
-            //Ray ray3 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
-            //RaycastHit hit3;
+        //    //Ray ray3 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
+        //    //RaycastHit hit3;
 
-            //Debug.DrawRay(bakeTransform2.position, bakeTransform2.forward * bakeRange, Color.red, 2f);
+        //    //Debug.DrawRay(bakeTransform2.position, bakeTransform2.forward * bakeRange, Color.red, 2f);
 
-            if (Physics.Raycast(ray1, out hit1, bakeRange))
-            {
-                if (hit1.collider.CompareTag("MuffinTray"))
-                {
-                    Destroy(MuffinTray);
+        //    if (Physics.Raycast(ray1, out hit1, bakeRange))
+        //    {
+        //        if (hit1.collider.CompareTag("MuffinTray"))
+        //        {
+        //            Destroy(MuffinTray);
 
-                    Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //            Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-                    cakebaked = true;
-                }
+        //            cakebaked = true;
+        //        }
 
-                if (hit1.collider.CompareTag("CookieTray"))
-                {
-                    Destroy(CookieTray);
+        //        if (hit1.collider.CompareTag("CookieTray"))
+        //        {
+        //            Destroy(CookieTray);
 
-                    Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //            Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-                    cakebaked = true;
-                }
+        //            cakebaked = true;
+        //        }
 
-                if (hit1.collider.CompareTag("CakeTray"))
-                {
-                    Destroy(CakeTray);
+        //        if (hit1.collider.CompareTag("CakeTray"))
+        //        {
+        //            Destroy(CakeTray);
 
-                    Instantiate(CakeBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //            Instantiate(CakeBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-                    cakebaked = true;
-                }
-            }
+        //            cakebaked = true;
+        //        }
+        //    }
 
-            //if (Physics.Raycast(ray2, out hit2, bakeRange))
-            //{
-            //    if (hit2.collider.CompareTag("MuffinTray"))
-            //    {
-            //        Destroy(MuffinTray);
+        //    //if (Physics.Raycast(ray2, out hit2, bakeRange))
+        //    //{
+        //    //    if (hit2.collider.CompareTag("MuffinTray"))
+        //    //    {
+        //    //        Destroy(MuffinTray);
 
-            //        Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //    //        Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-            //        cakebaked = true;
-            //    }
+        //    //        cakebaked = true;
+        //    //    }
 
-            //    if (hit2.collider.CompareTag("CookieTray"))
-            //    {
-            //        Destroy(CookieTray);
+        //    //    if (hit2.collider.CompareTag("CookieTray"))
+        //    //    {
+        //    //        Destroy(CookieTray);
 
-            //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //    //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-            //        cakebaked = true;
-            //    }
+        //    //        cakebaked = true;
+        //    //    }
 
-            //    if (hit2.collider.CompareTag("CakeTray"))
-            //    {
-            //        Destroy(CakeTray);
+        //    //    if (hit2.collider.CompareTag("CakeTray"))
+        //    //    {
+        //    //        Destroy(CakeTray);
 
-            //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //    //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-            //        cakebaked = true;
-            //    }
-            //}
+        //    //        cakebaked = true;
+        //    //    }
+        //    //}
 
 
-            //if (Physics.Raycast(ray3, out hit3, bakeRange))
-            //{
-            //    if (hit3.collider.CompareTag("MuffinTray"))
-            //    {
-            //        Destroy(MuffinTray);
+        //    //if (Physics.Raycast(ray3, out hit3, bakeRange))
+        //    //{
+        //    //    if (hit3.collider.CompareTag("MuffinTray"))
+        //    //    {
+        //    //        Destroy(MuffinTray);
 
-            //        Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //    //        Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-            //        cakebaked = true;
-            //    }
+        //    //        cakebaked = true;
+        //    //    }
 
-            //    if (hit3.collider.CompareTag("CookieTray"))
-            //    {
-            //        Destroy(CookieTray);
+        //    //    if (hit3.collider.CompareTag("CookieTray"))
+        //    //    {
+        //    //        Destroy(CookieTray);
 
-            //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //    //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
 
-            //        cakebaked = true;
-            //    }
+        //    //        cakebaked = true;
+        //    //    }
 
-            //    if (hit3.collider.CompareTag("CakeTray"))
-            //    {
-            //        Destroy(CakeTray);
+        //    //    if (hit3.collider.CompareTag("CakeTray"))
+        //    //    {
+        //    //        Destroy(CakeTray);
 
-            //        Instantiate(CakeBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
-            //        cakebaked = true;
-            //    }
-            //}
-        }
+        //    //        Instantiate(CakeBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+        //    //        cakebaked = true;
+        //    //    }
+        //    //}
+        //}
 
     }
 
