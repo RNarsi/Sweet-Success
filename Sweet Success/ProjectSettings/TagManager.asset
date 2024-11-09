@@ -52,6 +52,12 @@ TagManager:
   - cocoaPowderPrefab
   - BakeButton
   - OvenHandle
+  - CakeTray
+  - MuffinTray
+  - CookieTray
+  - CakeBake
+  - CookieBake
+  - MuffinBake
   layers:
   - Default
   - TransparentFX

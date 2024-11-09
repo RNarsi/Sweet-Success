@@ -76,6 +76,21 @@ public class FirstPersonControls : MonoBehaviour
     [Header("BAKE SETTINGS")]
     [Space(5)]
     public GameObject bakeText;
+    [Header("BAKE")]
+    [Space(5)]
+    public GameObject CakeBake;
+    public GameObject MuffinBake;
+    public GameObject CookieBake;
+    public GameObject CookieTray;
+    public GameObject MuffinTray;
+    public GameObject CakeTray;
+    private bool cakebaked = false;
+    public float bakeRange;
+
+    public Transform cakeSpawnPoint;
+    public Transform bakeTransform;
+    public Transform bakeTransform1;
+    public Transform bakeTransform2;
 
     [Header("TAP SETTINGS")]
     [Space(5)]
@@ -262,6 +277,14 @@ public class FirstPersonControls : MonoBehaviour
     public Transform cocoaPowderSpawnPoint;
     private bool holdingCocoa = false;
 
+    [Space(5)]
+    private bool holdingMuffinTray = false;
+    private bool holdingCookieTray = false;
+    private bool holdingCakeTray = false;
+    private bool holdingMuffinBake = false;
+    private bool holdingCookieBake = false;
+    private bool holdingCakeBake = false;
+
     private Controls playerInput; 
 
 
@@ -359,9 +382,121 @@ public class FirstPersonControls : MonoBehaviour
             else
             {
                 ovenLoad.gameObject.SetActive(false);
+
             }
+
         }
+
+        if (time_remaining <= 0 && cakebaked == false)
+        {
+            Ray ray1 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
+            RaycastHit hit1;
+
+            Debug.DrawRay(bakeTransform.position, bakeTransform.forward * bakeRange, Color.red, 2f);
+
+            //Ray ray2 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
+            //RaycastHit hit2;
+
+            //Debug.DrawRay(bakeTransform1.position, bakeTransform1.forward * bakeRange, Color.red, 2f);
+
+            //Ray ray3 = new Ray(cakeSpawnPoint.position, cakeSpawnPoint.forward);
+            //RaycastHit hit3;
+
+            //Debug.DrawRay(bakeTransform2.position, bakeTransform2.forward * bakeRange, Color.red, 2f);
+
+            if (Physics.Raycast(ray1, out hit1, bakeRange))
+            {
+                if (hit1.collider.CompareTag("MuffinTray"))
+                {
+                    Destroy(MuffinTray);
+
+                    Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+                    cakebaked = true;
+                }
+
+                if (hit1.collider.CompareTag("CookieTray"))
+                {
+                    Destroy(CookieTray);
+
+                    Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+                    cakebaked = true;
+                }
+
+                if (hit1.collider.CompareTag("CakeTray"))
+                {
+                    Destroy(CakeTray);
+
+                    Instantiate(CakeBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+                    cakebaked = true;
+                }
+            }
+
+            //if (Physics.Raycast(ray2, out hit2, bakeRange))
+            //{
+            //    if (hit2.collider.CompareTag("MuffinTray"))
+            //    {
+            //        Destroy(MuffinTray);
+
+            //        Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+            //        cakebaked = true;
+            //    }
+
+            //    if (hit2.collider.CompareTag("CookieTray"))
+            //    {
+            //        Destroy(CookieTray);
+
+            //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+            //        cakebaked = true;
+            //    }
+
+            //    if (hit2.collider.CompareTag("CakeTray"))
+            //    {
+            //        Destroy(CakeTray);
+
+            //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+            //        cakebaked = true;
+            //    }
+            //}
+
+
+            //if (Physics.Raycast(ray3, out hit3, bakeRange))
+            //{
+            //    if (hit3.collider.CompareTag("MuffinTray"))
+            //    {
+            //        Destroy(MuffinTray);
+
+            //        Instantiate(MuffinBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+            //        cakebaked = true;
+            //    }
+
+            //    if (hit3.collider.CompareTag("CookieTray"))
+            //    {
+            //        Destroy(CookieTray);
+
+            //        Instantiate(CookieBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+
+            //        cakebaked = true;
+            //    }
+
+            //    if (hit3.collider.CompareTag("CakeTray"))
+            //    {
+            //        Destroy(CakeTray);
+
+            //        Instantiate(CakeBake, cakeSpawnPoint.position, cakeSpawnPoint.rotation);
+            //        cakebaked = true;
+            //    }
+            //}
+        }
+
     }
+
 
     public void Move()
     {
@@ -1500,6 +1635,183 @@ public class FirstPersonControls : MonoBehaviour
                 holdingBlueberries = false;
                 holdingCocoa = false;
             }
+            if (hit.collider.CompareTag("MuffinTray"))
+            {
+                // Pick up the object
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to Interact ";
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingMuffinTray = true;
+                holdingPickUp = false;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+            }
+            if (hit.collider.CompareTag("CookieTray"))
+            {
+                // Pick up the object
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to Interact ";
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingCookieTray = true;
+                holdingMuffinTray = false;
+                holdingPickUp = false;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+            }
+            if (hit.collider.CompareTag("CakeTray"))
+            {
+                // Pick up the object
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to Interact ";
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingCakeTray = true;
+                holdingCookieTray = false;
+                holdingMuffinTray = false;
+                holdingPickUp = false;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+            }
+            if (hit.collider.CompareTag("MuffinBake"))
+            {
+                // Pick up the object
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to Interact ";
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingMuffinBake = true;
+                holdingCakeTray = false;
+                holdingCookieTray = false;
+                holdingMuffinTray = false;
+                holdingPickUp = false;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+            }
+            if (hit.collider.CompareTag("CookieBake"))
+            {
+                // Pick up the object
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to Interact ";
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingCookieBake = true;
+                holdingMuffinBake = false;
+                holdingCakeTray = false;
+                holdingCookieTray = false;
+                holdingMuffinTray = false;
+                holdingPickUp = false;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+            }
+            if (hit.collider.CompareTag("CakeBake"))
+            {
+                // Pick up the object
+                pickUpText.gameObject.SetActive(true);
+                pickUpText.text = hit.collider.gameObject.name + " Click 'E' to Interact ";
+                heldObject = hit.collider.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+
+                // Attach the object to the hold position
+                heldObject.transform.position = holdPosition.position;
+                heldObject.transform.rotation = holdPosition.rotation;
+                heldObject.transform.parent = holdPosition;
+
+                holdingCakeBake = true;
+                holdingCookieBake = false;
+                holdingMuffinBake = false;
+                holdingCakeTray = false;
+                holdingCookieTray = false;
+                holdingMuffinTray = false;
+                holdingPickUp = false;
+                holdingEgg = false;
+                holdingButter = false;
+                holdingSugar = false;
+                holdingFlour = false;
+                holdingWater = false;
+                holdingMilk = false;
+                holdingBakingSoda = false;
+                holdingCookingOil = false;
+                holdingVanillaExtract = false;
+                holdingChocolateChips = false;
+                holdingBlueberries = false;
+            }
             else
             {
                 // Hide the pick-up text if not looking at a interactable 
@@ -1578,7 +1890,7 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             // Check if the object has the different interactables tags  
-            if (hit.collider.CompareTag("PickUp"))
+            if (hit.collider.CompareTag("PickUp") || hit.collider.CompareTag("MuffinTray") || hit.collider.CompareTag("CookieTray") || hit.collider.CompareTag("CakeTray") || hit.collider.CompareTag("MuffinBake") || hit.collider.CompareTag("CookieBake") || hit.collider.CompareTag("CakeBake"))
             {
                 // Display the pick-up text
                 useText.gameObject.SetActive(true);

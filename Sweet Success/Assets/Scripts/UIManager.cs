@@ -56,6 +56,9 @@ public class UIManager : MonoBehaviour
     {
         GamePaused = false;
 
+        //recipeButton1.SetActive(true);
+        //recipeButton2.SetActive(true);
+        //recipeButton3.SetActive(true);
     }
 
     private void Update()
