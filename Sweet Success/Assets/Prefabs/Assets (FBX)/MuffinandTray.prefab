@@ -113,6 +113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MuffinandTray
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 565085e1fcb57b646a57cc2a9a7874e3,
+        type: 3}
+      propertyPath: m_TagString
+      value: MuffinBake
+      objectReference: {fileID: 0}
     - target: {fileID: 1129496810705857465, guid: 565085e1fcb57b646a57cc2a9a7874e3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
