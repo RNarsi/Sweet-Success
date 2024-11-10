@@ -24,13 +24,14 @@ public class CakeButton : MonoBehaviour
 
     public void TransferCake()
     {
-        // Instantiate at the spawn point
-        GameObject CakeTray = Instantiate(cakeBatterAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
+        cakeBatterAndTray.SetActive(true);
+        //// Instantiate at the spawn point
+        //GameObject CakeTray = Instantiate(cakeBatterAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
 
-        // Get the Rigidbody component and set its velocity
-        Rigidbody rb = CakeTray.GetComponent<Rigidbody>();
-        rb.velocity = tableSpawnPoint.forward * 0f;
-        Debug.Log("has sapwned");
+        //// Get the Rigidbody component and set its velocity
+        //Rigidbody rb = CakeTray.GetComponent<Rigidbody>();
+        //rb.velocity = tableSpawnPoint.forward * 0f;
+        //Debug.Log("has sapwned");
 
         transferToTrayButtonCA.SetActive(false);
     }

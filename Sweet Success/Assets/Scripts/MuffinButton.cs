@@ -23,13 +23,14 @@ public class MuffinButton : MonoBehaviour
     }
     public void TransferMuffin()
     {
-        // Instantiate at the spawn point
-        GameObject MuffinTray = Instantiate(muffinBatterAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
+        muffinBatterAndTray.SetActive(true);
+        //// Instantiate at the spawn point
+        //GameObject MuffinTray = Instantiate(muffinBatterAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
 
-        // Get the Rigidbody component and set its velocity
-        Rigidbody rb = MuffinTray.GetComponent<Rigidbody>();
-        rb.velocity = tableSpawnPoint.forward * 0f;
-        Debug.Log("has sapwned");
+        //// Get the Rigidbody component and set its velocity
+        //Rigidbody rb = MuffinTray.GetComponent<Rigidbody>();
+        //rb.velocity = tableSpawnPoint.forward * 0f;
+        //Debug.Log("has sapwned");
 
         transferToTrayButtonB.SetActive(false);
     }

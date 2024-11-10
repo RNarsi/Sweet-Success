@@ -25,13 +25,14 @@ public class CookieButton : MonoBehaviour
 
     public void TransferCookie()
     {
-        // Instantiate at the spawn point
-        GameObject CookieTray = Instantiate(cookieDoughAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
+        cookieDoughAndTray.SetActive(true);
+        //// Instantiate at the spawn point
+        //GameObject CookieTray = Instantiate(cookieDoughAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
 
-        // Get the Rigidbody component and set its velocity
-        Rigidbody rb = CookieTray.GetComponent<Rigidbody>();
-        rb.velocity = tableSpawnPoint.forward * 0f;
-        Debug.Log("has sapwned");
+        //// Get the Rigidbody component and set its velocity
+        //Rigidbody rb = CookieTray.GetComponent<Rigidbody>();
+        //rb.velocity = tableSpawnPoint.forward * 0f;
+        //Debug.Log("has sapwned");
 
         transferToTrayButtonCC.SetActive(false);
     }
