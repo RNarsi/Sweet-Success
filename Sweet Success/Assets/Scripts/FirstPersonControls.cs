@@ -302,6 +302,10 @@ public class FirstPersonControls : MonoBehaviour
     void Start()
     {
         time_remaining = max_time;
+
+        RecipeBook1.gameObject.SetActive(false);
+        RecipeBook2.gameObject.SetActive(false);
+        RecipeBook3.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -1860,7 +1864,7 @@ public class FirstPersonControls : MonoBehaviour
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
             // Check if the object has the different interactables tags  
-            if (hit.collider.CompareTag("Tap") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("PantryDoor") || hit.collider.CompareTag("OvenHandle")) 
+            if (hit.collider.CompareTag("Tap") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("MixerLever") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Knob") || hit.collider.CompareTag("Tap1") || hit.collider.CompareTag("Tap2") || hit.collider.CompareTag("Tap3") || hit.collider.CompareTag("Tap4") || hit.collider.CompareTag("Tap5") || hit.collider.CompareTag("Tap6") || hit.collider.CompareTag("Knob1") || hit.collider.CompareTag("Knob2") || hit.collider.CompareTag("Knob3") || hit.collider.CompareTag("KnobFour") || hit.collider.CompareTag("KnobFive") || hit.collider.CompareTag("Knobvi") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("PantryDoor") || hit.collider.CompareTag("OvenHandle")) 
             {
 
                 // Display the pick-up text

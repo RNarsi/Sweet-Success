@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,19 @@ public class BakeInstatiate : MonoBehaviour
     public GameObject CakeTray;
     public GameObject CakeBake;
 
+    public GameObject done1Button;
+    public GameObject done2Button;
+    public GameObject done3Button;
+
     public float delayTime = 8.0f;
 
     private void Start()
     {
         ovenLoad.gameObject.SetActive(false);
+
+        done1Button.gameObject.SetActive(false);
+        done2Button.gameObject.SetActive(false);
+        done3Button.gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +35,7 @@ public class BakeInstatiate : MonoBehaviour
         {
 
             StartCoroutine(InstantiateMuffinAfterDelay());
+
 
         }
         //if (other.gameObject.tag == "CookieTray")
@@ -38,13 +48,17 @@ public class BakeInstatiate : MonoBehaviour
         //}
         if (other.gameObject.tag == "CookieTray")
         {
+
             StartCoroutine(InstantiateCookieAfterDelay());
+            
 
         }
 
         if (other.gameObject.tag == "CakeTray")
         {
             StartCoroutine(InstantiateCakeAfterDelay());
+            
+            
         }
     }
 
@@ -57,6 +71,8 @@ public class BakeInstatiate : MonoBehaviour
         Destroy(MuffinTray);
         MuffinTray = null;
 
+        done1Button.SetActive(true);
+
     }
 
     private IEnumerator InstantiateCookieAfterDelay()
@@ -66,6 +82,7 @@ public class BakeInstatiate : MonoBehaviour
         Destroy(CookieTray);
         CookieTray = null;
 
+        done2Button.SetActive(true);
     }
 
     private IEnumerator InstantiateCakeAfterDelay()
@@ -75,5 +92,6 @@ public class BakeInstatiate : MonoBehaviour
         Destroy(CakeTray);
         CakeTray = null;
 
+        done3Button.SetActive(true);
     }
 }
