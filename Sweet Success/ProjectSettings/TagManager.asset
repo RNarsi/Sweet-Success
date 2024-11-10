@@ -58,6 +58,9 @@ TagManager:
   - CakeBake
   - CookieBake
   - MuffinBake
+  - MuffinTrigger
+  - CakeTrigger
+  - CookieTrigger
   layers:
   - Default
   - TransparentFX

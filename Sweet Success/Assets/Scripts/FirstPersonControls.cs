@@ -1964,19 +1964,42 @@ public class FirstPersonControls : MonoBehaviour
     public void ExitPage1()
     {
         RecipeBook1.SetActive(false);
-        playerInput.Player.Enable();
+        //playerInput.Player.Enable();
     }
 
     public void ExitPage2()
     {
         RecipeBook2.SetActive(false);
-        playerInput.Player.Enable();
+        //playerInput.Player.Enable();
     }
 
     public void ExitPage3()
     {
         RecipeBook3.SetActive(false);
-        playerInput.Player.Enable();
+        //playerInput.Player.Enable();
+    }
+
+    public void LoadRecipe1()
+    {
+        //playerInput.Player.Disable();
+        RecipeBook1.SetActive(true);
+
+    }
+
+    public void LoadRecipe2()
+    {
+
+        //playerInput.Player.Disable();
+        RecipeBook2.SetActive(true);
+
+    }
+
+    public void LoadRecipe3()
+    {
+        
+        //playerInput.Player.Disable();
+        RecipeBook3.SetActive(true);
+
     }
 
 

@@ -197,27 +197,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void LoadRecipe1()
-    {
-        //Georgie.Player.Disable();
-        RecipeBook1.SetActive(true);
-        recipeButton1.SetActive(false);
-    }
-
-    public void LoadRecipe2()
-    {
-        //Georgie.Player.Disable();
-        RecipeBook2.SetActive(true);
-        recipeButton2.SetActive(false);
-    }
-
-    public void LoadRecipe3()
-    {
-        //Georgie.Player.Disable();
-        RecipeBook3.SetActive(true);
-        recipeButton3.SetActive(false);
-    }
-
     public void OnClickMuffin()
     {
         doneButton1.SetActive(false);
@@ -231,5 +210,20 @@ public class UIManager : MonoBehaviour
     public void OnClickCookie()
     {
         doneButton2.SetActive(false);
+    }
+
+    public void ViewRecipe1()
+    {
+        recipeButton1.SetActive(false);
+    }
+
+    public void ViewRecipe2()
+    {
+        recipeButton2.SetActive(false);
+    }
+
+    public void ViewRecipe3()
+    {
+        recipeButton3.SetActive(false);
     }
 }
