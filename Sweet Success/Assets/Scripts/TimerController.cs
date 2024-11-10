@@ -27,7 +27,7 @@ public class TimerController : MonoBehaviour
         {
             time_remaining -= Time.deltaTime;    //real time seconds 
             timer_linear_image.fillAmount = time_remaining / max_time;
-            timer_radial_image.fillAmount -= time_remaining / max_time; 
+            //timer_radial_image.fillAmount -= time_remaining / max_time; 
 
         }
         else    //time is 0 and we want to display the text 

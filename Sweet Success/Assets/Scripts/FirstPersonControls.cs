@@ -64,28 +64,28 @@ public class FirstPersonControls : MonoBehaviour
     [SerializeField] private bool closeTrigger = false;
     [SerializeField] private string doorOpen = "Oven_Open";
     [SerializeField] private string doorClose = "Oven_Close";
-    public GameObject ovenLoad;
-    public Image timer_linear_image;
-    public GameObject timer_linear;
-    //public Image timer_radial_image;
-    //public GameObject restart_game_textholder;
-    //public GameObject restartMenu;
-    public float time_remaining;
-    public float max_time = 5.0f;
+    //public GameObject ovenLoad;
+    //public Image timer_linear_image;
+    //public GameObject timer_linear;
+    ////public Image timer_radial_image;
+    ////public GameObject restart_game_textholder;
+    ////public GameObject restartMenu;
+    //public float time_remaining;
+    //public float max_time = 5.0f;
 
     [Header("BAKE SETTINGS")]
     [Space(5)]
     public GameObject bakeText;
     [Header("BAKE")]
     [Space(5)]
-    public GameObject CakeBake;
-    public GameObject MuffinBake;
-    public GameObject CookieBake;
-    public GameObject CookieTray;
-    public GameObject MuffinTray;
-    public GameObject CakeTray;
-    private bool cakebaked = false;
-    public float bakeRange;
+    //public GameObject CakeBake;
+    //public GameObject MuffinBake;
+    //public GameObject CookieBake;
+    //public GameObject CookieTray;
+    //public GameObject MuffinTray;
+    //public GameObject CakeTray;
+    //private bool cakebaked = false;
+    //public float bakeRange;
 
     public Transform cakeSpawnPoint;
     public Transform bakeTransform;
@@ -301,7 +301,7 @@ public class FirstPersonControls : MonoBehaviour
 
     void Start()
     {
-        time_remaining = max_time;
+        //time_remaining = max_time;
 
         RecipeBook1.gameObject.SetActive(false);
         RecipeBook2.gameObject.SetActive(false);
@@ -357,43 +357,43 @@ public class FirstPersonControls : MonoBehaviour
         CheckForBake();
         Bake();
 
-        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
-        RaycastHit hit;
+        //Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        //RaycastHit hit;
 
 
-        if (Physics.Raycast(ray, out hit, pickUpRange, Baker))
-        {
+        //if (Physics.Raycast(ray, out hit, pickUpRange, Baker))
+        //{
 
-            Debug.Log(hit.collider.tag);
+        //    Debug.Log(hit.collider.tag);
 
-            if (hit.collider.CompareTag("BakeButton") && Input.GetKey(KeyCode.B))
-            {
-                ovenLoad.gameObject.SetActive(true);
-                ResetTimer();
+        //    if (hit.collider.CompareTag("BakeButton") && Input.GetKey(KeyCode.B))
+        //    {
+        //        ovenLoad.gameObject.SetActive(true);
+        //        //ResetTimer();
 
-                //time_remaining -= Time.deltaTime;    //real time seconds 
+        //        //time_remaining -= Time.deltaTime;    //real time seconds 
 
-                //timer_linear_image.fillAmount = time_remaining / max_time;
+        //        //timer_linear_image.fillAmount = time_remaining / max_time;
 
-            }
-            else
-            {
-                ovenLoad.gameObject.SetActive(false);
-            }
+        //    }
+        //    else
+        //    {
+        //        ovenLoad.gameObject.SetActive(false);
+        //    }
 
-        }
+        //}
 
-        if (time_remaining > 0)
-        {
-            time_remaining -= Time.deltaTime;    //real time seconds 
-            //timer_linear_image.fillAmount = time_remaining / max_time;
-            UpdateTimerUI();
-        }
-        else
-        {
-            timer_linear_image.fillAmount = 0;
-            ovenLoad.SetActive(false);
-        }
+        //if (time_remaining > 0)
+        //{
+        //    time_remaining -= Time.deltaTime;    //real time seconds 
+        //    //timer_linear_image.fillAmount = time_remaining / max_time;
+        //    //UpdateTimerUI();
+        //}
+        //else
+        //{
+        //    timer_linear_image.fillAmount = 0;
+        //    ovenLoad.SetActive(false);
+        //}
 
         //if (time_remaining <= 0 && cakebaked == false)
         //{
@@ -505,19 +505,20 @@ public class FirstPersonControls : MonoBehaviour
 
     }
 
-    void ResetTimer()
-    {
-        time_remaining = max_time;
-        UpdateTimerUI();
-    }
 
-    void UpdateTimerUI()
-    {
-        if (timer_linear_image != null)
-        {
-            timer_linear_image.fillAmount = time_remaining / max_time;
-        }
-    }
+    //void ResetTimer()
+    //{
+    //    time_remaining = max_time;
+    //    UpdateTimerUI();
+    //}
+
+    //void UpdateTimerUI()
+    //{
+    //    if (timer_linear_image != null)
+    //    {
+    //        timer_linear_image.fillAmount = time_remaining / max_time;
+    //    }
+    //}
 
     public void Move()
     {

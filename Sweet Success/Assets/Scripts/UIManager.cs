@@ -27,6 +27,22 @@ public class UIManager : MonoBehaviour
     public GameObject recipeButton2;
     public GameObject recipeButton3;
 
+    [Header("OVEN BAKE")]
+    [Space(5)]
+    public GameObject MuffinBake;
+    public GameObject MuffinTray;
+    public GameObject CakeBake;
+    public GameObject CakeTray;
+    public GameObject CookieTray;
+    public GameObject CookieBake;
+    public GameObject ovenLoad1;
+    public GameObject ovenLoad2;
+    public GameObject ovenLoad3;
+
+    public GameObject doneButton1;
+    public GameObject doneButton2;
+    public GameObject doneButton3;
+
     //public GameObject RecipeBook;
 
     //private Controls Georgie; 
@@ -159,6 +175,27 @@ public class UIManager : MonoBehaviour
         ScoreManager.instance.AddPoint();
     }
 
+    public void BakeMuffin()
+    {
+        MuffinTray.SetActive(false);
+        MuffinBake.SetActive(true);
+        ovenLoad1.SetActive(false);
+    }
+
+    public void BakeCookie()
+    {
+        CookieTray.SetActive(false);
+        CookieBake.SetActive(true);
+        ovenLoad2.SetActive(false);
+    }
+
+    public void BakeCake()
+    {
+        CakeTray.SetActive(false);
+        CakeBake.SetActive(true);
+        ovenLoad3.SetActive(false); 
+    }
+
 
     public void LoadRecipe1()
     {
@@ -181,4 +218,18 @@ public class UIManager : MonoBehaviour
         recipeButton3.SetActive(false);
     }
 
+    public void OnClickMuffin()
+    {
+        doneButton1.SetActive(false);
+    }
+
+    public void OnClickCake()
+    {
+        doneButton3.SetActive(false);
+    }
+
+    public void OnClickCookie()
+    {
+        doneButton2.SetActive(false);
+    }
 }
