@@ -132,17 +132,17 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    public void TransferMuffin()
-    {
-        // Instantiate at the spawn point
-        GameObject MuffinTray = Instantiate(muffinBatterAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
+    //public void TransferMuffin()
+    //{
+    //    // Instantiate at the spawn point
+    //    GameObject MuffinTray = Instantiate(muffinBatterAndTray, tableSpawnPoint.position, tableSpawnPoint.rotation);
 
-        // Get the Rigidbody component and set its velocity
-        Rigidbody rb = MuffinTray.GetComponent<Rigidbody>();
-        rb.velocity = tableSpawnPoint.forward * 0f;
+    //    // Get the Rigidbody component and set its velocity
+    //    Rigidbody rb = MuffinTray.GetComponent<Rigidbody>();
+    //    rb.velocity = tableSpawnPoint.forward * 0f;
 
-        transferToTrayButtonB.SetActive(false);
-    }
+    //    transferToTrayButtonB.SetActive(false);
+    //}
 
     //public void TransferCookie()
     //{

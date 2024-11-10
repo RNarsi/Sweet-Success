@@ -56,6 +56,7 @@ public class BowlScript : MonoBehaviour
             if (hit.collider.CompareTag("blueberryPrefab"))
             {
                 transferToTrayButtonB.SetActive(true);
+                Debug.Log("is working");
             }
         }
         if (Physics.Raycast(ray, out hit, bowlRange))
@@ -79,6 +80,7 @@ public class BowlScript : MonoBehaviour
             if (hit1.collider.CompareTag("blueberryPrefab"))
             {
                 transferToTrayButtonB.SetActive(true);
+                Debug.Log("is working");
             }
         }
         if (Physics.Raycast(ray1, out hit1, bowlRange))
@@ -102,6 +104,7 @@ public class BowlScript : MonoBehaviour
             if (hit2.collider.CompareTag("blueberryPrefab"))
             {
                 transferToTrayButtonB.SetActive(true);
+                Debug.Log("is working");
             }
         }
         if (Physics.Raycast(ray2, out hit2, bowlRange))
@@ -125,6 +128,7 @@ public class BowlScript : MonoBehaviour
             if (hit3.collider.CompareTag("blueberryPrefab"))
             {
                 transferToTrayButtonB.SetActive(true);
+                Debug.Log("is working");
             }
         }
         if (Physics.Raycast(ray3, out hit3, bowlRange))
@@ -148,6 +152,7 @@ public class BowlScript : MonoBehaviour
             if (hit4.collider.CompareTag("blueberryPrefab"))
             {
                 transferToTrayButtonB.SetActive(true);
+                Debug.Log("is working");
             }
         }
         if (Physics.Raycast(ray4, out hit4, bowlRange))
