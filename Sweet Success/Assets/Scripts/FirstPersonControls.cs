@@ -33,7 +33,7 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public Transform holdPosition; // Position where the picked-up object will be held
     private GameObject heldObject; // Reference to the currently held object
-    public float pickUpRange = 3f; // Range within which objects can be picked up
+    public float pickUpRange = 2f; // Range within which objects can be picked up
     private bool isPickingUp = false; // Whether the player is currently picking up the object
     public float pickUpObjectSpeed;
 
@@ -369,26 +369,30 @@ public class FirstPersonControls : MonoBehaviour
             if (hit.collider.CompareTag("BakeButton") && Input.GetKey(KeyCode.B))
             {
                 ovenLoad.gameObject.SetActive(true);
+                ResetTimer();
 
-                if (time_remaining > 0)
-                {
-                    time_remaining -= Time.deltaTime;    //real time seconds 
-                    timer_linear_image.fillAmount = time_remaining / max_time;
+                //time_remaining -= Time.deltaTime;    //real time seconds 
 
-                }
-                else    //time is 0 and we want to display the text 
-                {
-                    timer_linear.SetActive(false);
-                    //timer_radial_textholder.SetActive(false);
+                //timer_linear_image.fillAmount = time_remaining / max_time;
 
-                }
             }
             else
             {
                 ovenLoad.gameObject.SetActive(false);
-
             }
 
+        }
+
+        if (time_remaining > 0)
+        {
+            time_remaining -= Time.deltaTime;    //real time seconds 
+            //timer_linear_image.fillAmount = time_remaining / max_time;
+            UpdateTimerUI();
+        }
+        else
+        {
+            timer_linear_image.fillAmount = 0;
+            ovenLoad.SetActive(false);
         }
 
         //if (time_remaining <= 0 && cakebaked == false)
@@ -501,6 +505,19 @@ public class FirstPersonControls : MonoBehaviour
 
     }
 
+    void ResetTimer()
+    {
+        time_remaining = max_time;
+        UpdateTimerUI();
+    }
+
+    void UpdateTimerUI()
+    {
+        if (timer_linear_image != null)
+        {
+            timer_linear_image.fillAmount = time_remaining / max_time;
+        }
+    }
 
     public void Move()
     {

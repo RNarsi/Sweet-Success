@@ -24,9 +24,9 @@ public class BakeInstatiate : MonoBehaviour
     {
         ovenLoad.gameObject.SetActive(false);
 
-        done1Button.gameObject.SetActive(false);
-        done2Button.gameObject.SetActive(false);
-        done3Button.gameObject.SetActive(false);
+        //done1Button.gameObject.SetActive(false);
+        //done2Button.gameObject.SetActive(false);
+        //done3Button.gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -38,14 +38,7 @@ public class BakeInstatiate : MonoBehaviour
 
 
         }
-        //if (other.gameObject.tag == "CookieTray")
-        //{
-        //    StartCoroutine(InstantiateAfterDelay());
-        //}
-        //if (other.gameObject.tag == "CakeTray")
-        //{
-        //    StartCoroutine(InstantiateAfterDelay());
-        //}
+
         if (other.gameObject.tag == "CookieTray")
         {
 
@@ -71,7 +64,7 @@ public class BakeInstatiate : MonoBehaviour
         Destroy(MuffinTray);
         MuffinTray = null;
 
-        done1Button.SetActive(true);
+        //done1Button.SetActive(true);
 
     }
 
@@ -82,7 +75,7 @@ public class BakeInstatiate : MonoBehaviour
         Destroy(CookieTray);
         CookieTray = null;
 
-        done2Button.SetActive(true);
+        //done2Button.SetActive(true);
     }
 
     private IEnumerator InstantiateCakeAfterDelay()
@@ -92,6 +85,6 @@ public class BakeInstatiate : MonoBehaviour
         Destroy(CakeTray);
         CakeTray = null;
 
-        done3Button.SetActive(true);
+        //done3Button.SetActive(true);
     }
 }
