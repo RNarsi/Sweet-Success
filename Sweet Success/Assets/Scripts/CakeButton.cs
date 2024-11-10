@@ -30,6 +30,7 @@ public class CakeButton : MonoBehaviour
         // Get the Rigidbody component and set its velocity
         Rigidbody rb = CakeTray.GetComponent<Rigidbody>();
         rb.velocity = tableSpawnPoint.forward * 0f;
+        Debug.Log("has sapwned");
 
         transferToTrayButtonCA.SetActive(false);
     }

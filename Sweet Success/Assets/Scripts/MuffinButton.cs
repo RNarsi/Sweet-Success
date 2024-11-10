@@ -29,6 +29,7 @@ public class MuffinButton : MonoBehaviour
         // Get the Rigidbody component and set its velocity
         Rigidbody rb = MuffinTray.GetComponent<Rigidbody>();
         rb.velocity = tableSpawnPoint.forward * 0f;
+        Debug.Log("has sapwned");
 
         transferToTrayButtonB.SetActive(false);
     }

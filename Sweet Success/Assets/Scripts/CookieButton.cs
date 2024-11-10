@@ -31,6 +31,7 @@ public class CookieButton : MonoBehaviour
         // Get the Rigidbody component and set its velocity
         Rigidbody rb = CookieTray.GetComponent<Rigidbody>();
         rb.velocity = tableSpawnPoint.forward * 0f;
+        Debug.Log("has sapwned");
 
         transferToTrayButtonCC.SetActive(false);
     }
