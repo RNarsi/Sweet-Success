@@ -61,6 +61,7 @@ TagManager:
   - MuffinTrigger
   - CakeTrigger
   - CookieTrigger
+  - NPC
   layers:
   - Default
   - TransparentFX
