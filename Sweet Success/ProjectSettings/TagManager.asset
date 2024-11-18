@@ -62,6 +62,8 @@ TagManager:
   - CakeTrigger
   - CookieTrigger
   - NPC
+  - Note
+  - Assignment
   layers:
   - Default
   - TransparentFX
