@@ -77,6 +77,11 @@ public class FirstPersonControls : MonoBehaviour
     [Space(5)]
     public GameObject bakeText;
 
+    [Header("Interact")]
+    [Space(5)]
+    public GameObject Notes;
+    public GameObject Assignment;
+
     [Header("RECIPE")]
     [Space(5)]
     public GameObject recipeButton;
@@ -359,6 +364,8 @@ public class FirstPersonControls : MonoBehaviour
         CheckForRecipe1();
         CheckForRecipe2();
         CheckForRecipe3();
+        CheckForAssignment();
+        CheckForNotes();
 
         if (!isRecipePanelActive)
         {
@@ -2131,4 +2138,53 @@ public class FirstPersonControls : MonoBehaviour
         }
     }
 
+    public void CheckForNotes()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            if (hit.collider.CompareTag("Note"))
+            {
+                Notes.gameObject.SetActive(true);
+                
+            }
+            else
+            {
+                Notes.gameObject.SetActive(false);
+
+            }
+        }
+        else
+        {
+            Notes.gameObject.SetActive(false);
+
+        }
+    }
+
+    public void CheckForAssignment()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            if (hit.collider.CompareTag("Assignment"))
+            {
+                Assignment.gameObject.SetActive(true);
+                isRecipePanelActive = true;
+            }
+            else
+            {
+                Assignment.gameObject.SetActive(false);
+
+            }
+        }
+        else
+        {
+            Assignment.gameObject.SetActive(false);
+
+        }
+    }
 }
