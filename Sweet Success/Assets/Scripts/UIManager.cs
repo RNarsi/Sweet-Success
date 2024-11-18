@@ -21,11 +21,14 @@ public class UIManager : MonoBehaviour
     public GameObject RecipeBook2;
     public GameObject RecipeBook3;
 
+
     [Header("RECIPE BUTTON")]
     [Space(5)]
     public GameObject recipeButton1;
     public GameObject recipeButton2;
     public GameObject recipeButton3;
+
+    public GameObject recipePic1;
 
     [Header("OVEN BAKE")]
     [Space(5)]
@@ -67,6 +70,8 @@ public class UIManager : MonoBehaviour
             StartCoroutine(RotateCameraCoroutine(90f));
         }
     }
+
+ 
 
     private void Start()
     {
@@ -215,15 +220,24 @@ public class UIManager : MonoBehaviour
     public void ViewRecipe1()
     {
         recipeButton1.SetActive(false);
+        RecipeBook1.SetActive(true);
     }
 
     public void ViewRecipe2()
     {
-        recipeButton2.SetActive(false);
+        //recipeButton2.SetActive(false);
+        RecipeBook2.SetActive(true);
     }
 
     public void ViewRecipe3()
     {
-        recipeButton3.SetActive(false);
+        //recipeButton3.SetActive(false);
+        RecipeBook3.SetActive(true);
     }
+
+    public void ExitPic1()
+    {
+        recipePic1.SetActive(false);
+    }
+
 }

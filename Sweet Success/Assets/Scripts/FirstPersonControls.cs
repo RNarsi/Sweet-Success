@@ -76,16 +76,16 @@ public class FirstPersonControls : MonoBehaviour
     [Header("BAKE SETTINGS")]
     [Space(5)]
     public GameObject bakeText;
-    [Header("BAKE")]
+
+    [Header("RECIPE")]
     [Space(5)]
-    //public GameObject CakeBake;
-    //public GameObject MuffinBake;
-    //public GameObject CookieBake;
-    //public GameObject CookieTray;
-    //public GameObject MuffinTray;
-    //public GameObject CakeTray;
-    //private bool cakebaked = false;
-    //public float bakeRange;
+    public GameObject recipeButton;
+    public GameObject recipePic1;
+    public GameObject recipePic2;
+    public GameObject recipePic3;
+    private bool isRecipePanelActive = false;
+    //public GameObject RecipeButton2;
+    //public GameObject RecipeButton3;
 
     public Transform cakeSpawnPoint;
     public Transform bakeTransform;
@@ -356,6 +356,20 @@ public class FirstPersonControls : MonoBehaviour
         CheckForIngredients();
         CheckForBake();
         Bake();
+        CheckForRecipe1();
+        CheckForRecipe2();
+        CheckForRecipe3();
+
+        if (!isRecipePanelActive)
+        {
+            // Example: Move the player
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            characterController.transform.Translate(movement * moveSpeed * Time.deltaTime);
+
+        }
 
         //Ray ray = new Ray(playerCamera.position, playerCamera.forward);
         //RaycastHit hit;
@@ -2003,29 +2017,118 @@ public class FirstPersonControls : MonoBehaviour
     }
 
 
-    //public void CheckForRecipe()
+    //////public void CheckForRecipe()
+    //////{
+    //////    Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+    //////    RaycastHit hit;
+
+    //////    //Perform raycast to detect objects
+    //////    if (Physics.Raycast(ray, out hit, pickUpRange))
+    //////    {
+    //////        //Check if the object has the different interactables tags
+    //////        if (hit.collider.CompareTag("Recipe1") || hit.collider.CompareTag("Recipe2") || hit.collider.CompareTag("Recipe3"))
+    //////        {
+    //////            recipeButton.gameObject.SetActive(true);
+    //////        }
+    //////        else
+    //////        {
+    //////            recipeButton.gameObject.SetActive(false);
+    //////        }
+
+    //////    }
+    //////    else
+    //////    {
+    //////        recipeButton.gameObject.SetActive(false);
+    //////    }
+
+    //////}
+
+
+    public void CheckForRecipe1()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            if (hit.collider.CompareTag("Recipe1"))
+            {
+                recipePic1.gameObject.SetActive(true);
+                isRecipePanelActive = true;
+            }
+            else
+            {
+                recipePic1.gameObject.SetActive(false);
+               
+            }
+        }
+        else
+        {
+            recipePic1.gameObject.SetActive(false);
+           
+        }
+    }
+
+    //private void HideRecipePanel()
     //{
-    //    Ray ray = new Ray(playerCamera.position, playerCamera.forward);
-    //    RaycastHit hit;
-
-    //    // Perform raycast to detect objects
-    //    if (Physics.Raycast(ray, out hit, pickUpRange))
-    //    {
-    //        // Check if the object has the different interactables tags  
-    //        if (hit.collider.CompareTag("Recipe1") || hit.collider.CompareTag("Recipe2") || hit.collider.CompareTag("Recipe3"))
-    //        {
-    //            recipeButton.gameObject.SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            recipeButton.gameObject.SetActive(false);
-    //        }
-
-    //    }
-    //    else
-    //    {
-    //        recipeButton.gameObject.SetActive(false);
-    //    }
-
+    //    recipePic.gameObject.SetActive(false);
+    //    isRecipePanelActive = false;
     //}
+
+    public void CheckForRecipe2()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            if (hit.collider.CompareTag("Recipe2"))
+            {
+                recipePic2.gameObject.SetActive(true);
+                isRecipePanelActive = true;
+            }
+            else
+            {
+                recipePic2.gameObject.SetActive(false);
+              
+            }
+        }
+        else
+        {
+            recipePic2.gameObject.SetActive(false);
+            
+        }
+    }
+
+    //private void HideRecipePanel()
+    //{
+    //    recipePic.gameObject.SetActive(false);
+    //    isRecipePanelActive = false;
+    //}
+
+    public void CheckForRecipe3()
+    {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, pickUpRange))
+        {
+            if (hit.collider.CompareTag("Recipe3"))
+            {
+                recipePic3.gameObject.SetActive(true);
+                isRecipePanelActive = true;
+            }
+            else
+            {
+                recipePic3.gameObject.SetActive(false);
+
+            }
+        }
+        else
+        {
+            recipePic3.gameObject.SetActive(false);
+
+        }
+    }
+
 }
