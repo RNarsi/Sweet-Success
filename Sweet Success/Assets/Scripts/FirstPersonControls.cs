@@ -56,6 +56,7 @@ public class FirstPersonControls : MonoBehaviour
     [Header("ANIMATION SETTINGS")]
     [Space(5)]
     public Animator animator; // Reference to the Animator component
+    public bool PickUpAnim;
 
     [Header("OVEN SETTINGS")]
     [Space(5)]
@@ -1294,6 +1295,8 @@ public class FirstPersonControls : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, pickUpRange))
         {
+            animator.SetTrigger("PickUpAnim");
+
             // Check if the hit object has the tag "PickUp"
             if (hit.collider.CompareTag("Egg"))
             {
