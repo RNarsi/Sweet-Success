@@ -77,6 +77,9 @@ public class FirstPersonControls : MonoBehaviour
     [Header("BAKE SETTINGS")]
     [Space(5)]
     public GameObject bakeText;
+    public GameObject userText;
+    public float displayTime = 5f;
+    
 
     [Header("Interact")]
     [Space(5)]
@@ -303,11 +306,13 @@ public class FirstPersonControls : MonoBehaviour
 
         characterController = GetComponent<CharacterController>();
         playerInput = new Controls(); 
+        
     }
 
     void Start()
     {
-        //time_remaining = max_time;
+        //time_remaining = max_time
+        ShowText();
 
         RecipeBook1.gameObject.SetActive(false);
         RecipeBook2.gameObject.SetActive(false);
@@ -597,6 +602,17 @@ public class FirstPersonControls : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime); // Apply the velocity to the character
         ///yes
 
+    }
+
+    public void ShowText()
+    {
+        userText.gameObject.SetActive(true);
+        Invoke("HideText", displayTime);
+    }
+
+    public void HideText()
+    {
+        userText.gameObject.SetActive(false);
     }
 
 
